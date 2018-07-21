@@ -1,0 +1,25 @@
+{
+  "name": "web-scrapers-common",
+  "description": "Utilities for web scraper projects",
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/web-scrapers",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel utils-src --presets babel-preset-env --plugins transform-class-properties,transform-object-rest-spread --out-dir utils"
+  },
+  "bin": {
+    "buyee-cli": "./bin/buyee-cli.js"
+  },
+  "repository": "https://github.com/msikma/web-scrapers",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.5",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}
