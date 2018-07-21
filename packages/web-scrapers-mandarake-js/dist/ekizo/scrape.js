@@ -40,6 +40,9 @@ var padToTwo = function padToTwo(str) {
  * An example: '13日18時間3分'. All numbers are regular width.
  */
 var parseTimeLeft = function parseTimeLeft(timeStr) {
+  if (timeStr === '入札開始前') {
+    return { type: 'pre-bidding' };
+  }
   var matches = timeStr.match(reTime);
   var days = matches[2] ? matches[2] : '0';
   var hours = matches[4] ? matches[4] : '0';

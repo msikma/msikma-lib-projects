@@ -10,7 +10,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                                                                                                                                                                                                                                                                    * Copyright © 2018, Michiel Sikma
                                                                                                                                                                                                                                                                    */
 
-var _query = require('../util/query');
+var _query = require('web-scrapers-common/utils/query');
 
 // Domain for Mandarake mail order site.
 var MANDARAKE_ORDER_BASE = exports.MANDARAKE_ORDER_BASE = 'https://order.mandarake.co.jp';

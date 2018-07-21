@@ -5,7 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.unloadCookies = exports.loadCookies = undefined;
 
-var _requestAsBrowser = require('requestAsBrowser');
+var _request = require('web-scrapers-common/utils/request');
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; } /**
                                                                                                                                                                                                                                                                                                                                                                                                                                                                             * mandarake-js - Mandarake Client Library <https://github.com/msikma/web-scrapers>
@@ -28,7 +28,7 @@ var cookie = {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return (0, _requestAsBrowser.loadCookieFile)(file);
+            return (0, _request.loadCookieFile)(file);
 
           case 2:
             cookie.jar = _context.sent.jar;

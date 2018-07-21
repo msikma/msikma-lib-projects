@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.browserHeaders = undefined;
+exports.loadCookieFile = exports.browserHeaders = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /**
                                                                                                                                                                                                                                                                    * web-scrapers-util - Utilities for web scraper projects <https://github.com/msikma/web-scrapers>
@@ -13,6 +13,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var _requestPromise = require('request-promise');
 
 var _requestPromise2 = _interopRequireDefault(_requestPromise);
+
+var _fileCookieStore = require('file-cookie-store');
+
+var _fileCookieStore2 = _interopRequireDefault(_fileCookieStore);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25,8 +29,26 @@ var browserHeaders = exports.browserHeaders = {
   'Cache-Control': 'max-age=0',
   'Connection': 'keep-alive'
 
-  // Default settings for requests.
-};var requestDefaults = {
+  /**
+   * Loads cookies from a specified cookies.txt file and loads them into
+   * a jar so that we can make requests with them.
+   */
+};var loadCookieFile = exports.loadCookieFile = function loadCookieFile(cookieFile) {
+  return new Promise(function (resolve, reject) {
+    try {
+      // Cookies exported from the browser in Netscape cookie file format.
+      // These are sent with our request to ensure we have access to logged in pages.
+      var cookieStore = new _fileCookieStore2.default(cookieFile, { no_file_error: true });
+      var jar = _requestPromise2.default.jar(cookieStore);
+      resolve({ jar: jar });
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+// Default settings for requests.
+var requestDefaults = {
   gzip: true
 };
 
