@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 /**
- * mdrscr - Mandarake Scraper <https://github.com/msikma/mdrscr>
+ * mandarake-js - Mandarake Client Library <https://github.com/msikma/web-scrapers>
  * Copyright © 2018, Michiel Sikma
  */
 

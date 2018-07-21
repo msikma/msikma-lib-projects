@@ -21,7 +21,7 @@ describe('objToParams', function () {
     expect((0, _query.objToParams)({ a: ['a', 'b', 'c'] })).toEqual('a[]=a&a[]=b&a[]=c');
   });
 }); /**
-     * buyee-js - Buyee Client Library <https://github.com/msikma/buyee-js>
+     * buyee-js - Buyee Client Library <https://github.com/msikma/web-scrapers>
      * Copyright © 2018, Michiel Sikma. MIT license.
      */
 

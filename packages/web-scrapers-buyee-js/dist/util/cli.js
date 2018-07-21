@@ -11,7 +11,7 @@ var _search = require('../yahoo-auction/search');
 
 // List of source and destination paths for converting from CLI format to API format.
 /**
- * buyee-js - Buyee Client Library <https://github.com/msikma/buyee-js>
+ * buyee-js - Buyee Client Library <https://github.com/msikma/web-scrapers>
  * Copyright © 2018, Michiel Sikma. MIT license.
  */
 

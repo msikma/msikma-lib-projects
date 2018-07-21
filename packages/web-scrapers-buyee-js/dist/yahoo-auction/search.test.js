@@ -33,6 +33,6 @@ const {
 } = merge(defaults, search)
 */
 /**
- * buyee-js - Buyee Client Library <https://github.com/msikma/buyee-js>
+ * buyee-js - Buyee Client Library <https://github.com/msikma/web-scrapers>
  * Copyright © 2018, Michiel Sikma. MIT license.
  */

@@ -1,6 +1,6 @@
 {
-  "name": "web-scrapers-mandarake-js",
-  "description": "Mandarake client library",
+  "name": "mandarake-js",
+  "description": "Client library for making programmatic requests to the Mandarake website",
   "version": "1.3.2",
   "homepage": "https://github.com/msikma/web-scrapers",
   "main": "dist/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "buyee-js",
-  "description": "Buyee client library",
+  "description": "Client library for making programmatic requests to the Buyee website",
   "version": "1.0.0",
   "homepage": "https://github.com/msikma/buyee-js",
   "main": "dist/index.js",
