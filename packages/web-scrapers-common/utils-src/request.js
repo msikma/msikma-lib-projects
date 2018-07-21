@@ -4,6 +4,7 @@
  */
 
 import request from 'request-promise'
+import FileCookieStore from 'file-cookie-store'
 
 // Headers similar to what a regular browser would send.
 export const browserHeaders = {
@@ -14,6 +15,25 @@ export const browserHeaders = {
   'Cache-Control': 'max-age=0',
   'Connection': 'keep-alive'
 }
+
+/**
+ * Loads cookies from a specified cookies.txt file and loads them into
+ * a jar so that we can make requests with them.
+ */
+export const loadCookieFile = (cookieFile) => (
+  new Promise((resolve, reject) => {
+    try {
+      // Cookies exported from the browser in Netscape cookie file format.
+      // These are sent with our request to ensure we have access to logged in pages.
+      const cookieStore = new FileCookieStore(cookieFile, { no_file_error: true })
+      const jar = request.jar(cookieStore)
+      resolve({ jar })
+    }
+    catch (err) {
+      reject(err)
+    }
+  })
+)
 
 // Default settings for requests.
 const requestDefaults = {

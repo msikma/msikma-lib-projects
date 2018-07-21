@@ -3,7 +3,7 @@
  * Copyright © 2018, Michiel Sikma
  */
 
-import { loadCookieFile } from 'requestAsBrowser'
+import { loadCookieFile } from 'web-scrapers-common/utils/request'
 
 // Container for our cookies.
 const cookie = {

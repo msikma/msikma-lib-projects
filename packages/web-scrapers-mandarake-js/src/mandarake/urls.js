@@ -3,7 +3,7 @@
  * Copyright © 2018, Michiel Sikma
  */
 
-import { objToParams } from '../util/query'
+import { objToParams } from 'web-scrapers-common/utils/query'
 
 // Domain for Mandarake mail order site.
 export const MANDARAKE_ORDER_BASE = 'https://order.mandarake.co.jp'

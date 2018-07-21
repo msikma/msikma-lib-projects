@@ -3,7 +3,7 @@
  * Copyright © 2018, Michiel Sikma
  */
 
-import { objToParams } from '../util/query'
+import { objToParams } from 'web-scrapers-common/utils/query'
 
 // Domain for Mandarake auction site.
 export const MANDARAKE_AUCTION_BASE = 'https://ekizo.mandarake.co.jp'
