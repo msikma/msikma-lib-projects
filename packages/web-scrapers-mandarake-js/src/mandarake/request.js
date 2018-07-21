@@ -3,7 +3,7 @@
  * Copyright © 2018, Michiel Sikma
  */
 
-import requestAsBrowser from 'requestAsBrowser'
+import requestURI from 'web-scrapers-common/utils/request'
 import cookie from '../util/cookies'
 
 import { parseSingleDetailExtended, fetchMandarakeFavorites, fetchMandarakeSearch } from './scrape'
@@ -27,7 +27,7 @@ export const getMultiplePages = (urls, progressCb = null) => {
 
   return Promise.all(urls.map(url => (
     new Promise(async (resolve) => {
-      const pageContent = await requestAsBrowser(url, cookie.jar)
+      const pageContent = await requestURI(url, null, { jar: cookie.jar })
       if (progressCb) progressCb(++downloaded, total)
       return resolve(pageContent.body)
     })
@@ -39,7 +39,7 @@ export const getMultiplePages = (urls, progressCb = null) => {
  * This loads the given URL's HTML and parses the contents, returning the results as structured objects.
  */
 export const getMandarakeSearch = async (url, searchDetails, lang) => {
-  const data = await requestAsBrowser(url, cookie.jar)
+  const data = await requestURI(url, null, { jar: cookie.jar })
   return fetchMandarakeSearch(data.body, url, searchDetails, lang)
 }
 
@@ -47,6 +47,6 @@ export const getMandarakeSearch = async (url, searchDetails, lang) => {
  * Retrieves the favorites URL and parses its contents.
  */
 export const getMandarakeFavorites = async (url, lang, addExtendedInfo = false, progressCb = null) => {
-  const data = await requestAsBrowser(url, cookie.jar)
+  const data = await requestURI(url, null, { jar: cookie.jar })
   return fetchMandarakeFavorites(data.body, lang, addExtendedInfo, progressCb)
 }

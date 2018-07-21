@@ -41,7 +41,7 @@ const requestDefaults = {
 }
 
 const requestURI = (url, headers = {}, ...props) => (
-  request({ url, headers: { ...browserHeaders, ...headers }, ...requestDefaults, ...props })
+  request({ url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...props })
 )
 
 export default requestURI
