@@ -46,6 +46,7 @@ parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['sea
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json'], defaultValue: 'json' })
 
 // Search options:
+parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
 parser.addArgument(['--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
