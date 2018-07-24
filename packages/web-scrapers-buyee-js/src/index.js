@@ -16,9 +16,16 @@ export const cli = async args => {
   }
 
   if (args.action === 'search') {
-    const cliAuction = new YahooAuction()
-    const results = await cliAuction.search(cliToAPIArgs(args))
-    outputData(results, args.output)
+    if (args.site === 'yajp') {
+      // Yahoo! Auction Japan
+      const cliAuction = new YahooAuction()
+      const results = await cliAuction.search(cliToAPIArgs(args))
+      outputData(results, args.output)
+    }
+    else {
+      console.error('buyee-cli: error: argument "--site": Invalid site')
+      process.exit(1)
+    }
     process.exit(0)
   }
   else {
