@@ -42,7 +42,7 @@ parser.formatHelp = () => {
   return buffer.map(l => l.trim() === '' ? '' : l).join('\n').split('\n\n\n').join('\n\n')
 }
 
-parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'], defaultValue: 'search' })
+parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'] })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json'], defaultValue: 'json' })
 
 // Search options:
@@ -63,10 +63,20 @@ parser.addArgument(['--recommended'], { help: 'Buyee recommended.', action: 'sto
 
 // Reminder: 'quiet' is 0, 1 or 2.
 const parsed = parser.parseArgs()
+const action = parsed.action
 const args = {
   ...parsed,
+  action: action == null ? 'search' : action,
   // Note: modify 'store_type' because the API expects 'individualSeller', but that's long to type.
   store_type: parsed.store_type === 'individual' ? 'individualSeller' : parsed.store_type
+}
+
+// Check if we have any valid search options at all. If we got none, then don't run a search unless '--action search' was specified.
+// This is to prevent us from running a useless search for everything when the user just runs 'buyee-cli' without arguments.
+const searchOptions = ['query', 'category', 'seller', 'price_min', 'price_max', 'buyout_min', 'buyout_max']
+const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.item_status !== 'any', args.store_type !== 'any'].filter(o => o).length > 0
+if (action == null && !hasAnySearchOptions) {
+  parser.error(`Must select an action if not passing any search options.`)
 }
 
 // The cli() function is only for the command line. Make sure we remember we came from there.
