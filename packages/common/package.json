@@ -1,0 +1,23 @@
+{
+  "name": "web-scrapers-common",
+  "description": "Utilities for msikma-lib-projects",
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/msikma-lib-projects",
+  "main": "utils/index.js",
+  "scripts": {
+    "build": "babel utils-src --presets babel-preset-env --plugins transform-class-properties,transform-object-rest-spread --out-dir utils"
+  },
+  "repository": "https://github.com/msikma/msikma-lib-projects",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "file-cookie-store": "msikma/file-cookie-store",
+    "bluebird": "^3.5.1",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.5",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2"
+  }
+}

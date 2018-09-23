@@ -1,0 +1,27 @@
+{
+  "_targetWebsite": "buyee.jp",
+  "_shortDescription": "Buyee client library",
+  "name": "buyee-js",
+  "description": "Client library for making programmatic requests to the Buyee website",
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/buyee-js",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --presets babel-preset-env --plugins transform-class-properties,transform-object-rest-spread --out-dir dist"
+  },
+  "bin": {
+    "buyee-cli": "./bin/buyee-cli.js"
+  },
+  "repository": "https://github.com/msikma/buyee-js",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "web-scrapers-common": "^1.0.0",
+    "argparse": "^1.0.10",
+    "argparse-longhelp": "^1.0.3",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.5"
+  }
+}
