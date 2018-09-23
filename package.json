@@ -6,6 +6,12 @@
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "_moduleAliases": {
+    "@common": "./packages/common"
+  },
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/bin/",
