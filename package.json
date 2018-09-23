@@ -1,9 +1,9 @@
 {
-  "name": "web-scrapers",
+  "name": "msikma-lib-projects",
   "version": "1.0.0",
-  "description": "Monorepo container for a number of web scraper projects",
+  "description": "Monorepo container for msikma-lib-projects, containing a number of client libraries",
   "private": true,
-  "homepage": "https://bitbucket.org/msikma/web-scrapers",
+  "homepage": "https://github.com/msikma/msikma-lib-projects",
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
   "jest": {
@@ -16,6 +16,7 @@
     "buyee-cli": "./packages/web-scrapers-buyee-js/bin/buyee-cli.js"
   },
   "scripts": {
+    "list-packages": "node scripts/pkgList.js",
     "lint-all": "for d in `find packages -maxdepth 1 -mindepth 1 -type d`; do eslint $d/src; done; exit 0",
     "build-all": "for d in `find packages -maxdepth 1 -mindepth 1 -type d`; do npm run build --prefix $d; done",
     "lint-diff": "eslint `git diff --name-only master | grep -i \".js$\"`; exit 0"
