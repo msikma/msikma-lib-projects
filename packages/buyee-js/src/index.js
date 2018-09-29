@@ -23,7 +23,7 @@ export const cli = async args => {
       outputData(results, args.output)
     }
     else {
-      console.error('buyee-cli: error: argument "--site": Invalid site')
+      console.error('buyee-cli: error: argument "--site": Invalid or unimplemented site')
       process.exit(1)
     }
     process.exit(0)
