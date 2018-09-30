@@ -29,7 +29,7 @@ export const search = async (query) => {
  * Returns full info for a specific disc by its ID.
  * E.g. http://redump.org/disc/26337/
  */
-export const getDiscInfo = (id) => {
+export const getDiscInfo = async (id) => {
   const url = detailURL(id)
   const html = await requestURI(url)
   return parseDetailPage(html)
