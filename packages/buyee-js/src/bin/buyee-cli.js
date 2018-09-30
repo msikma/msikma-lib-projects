@@ -1,11 +1,7 @@
 #!/usr/bin/env node
-/**
- * buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- *
- * Command line interface entry point. Note: this file is not transpiled
- * and must not contain syntax that Node cannot natively run.
- */
+// buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
+
 const fs = require('fs')
 const ArgumentParser = require('argparse').ArgumentParser
 const addLongHelp = require('argparse-longhelp')
@@ -82,13 +78,4 @@ if (action == null && !hasAnySearchOptions) {
 
 // The cli() function is only for the command line. Make sure we remember we came from there.
 process.env.BUYEE_JS_CLI = '1'
-
-require('babel-polyfill')
-
-// If we're transpiling on the fly, configure Babel.
-if (process.env.WEB_SCRAPERS_USE_SRC === '1') {
-  const babelConfig = JSON.parse(fs.readFileSync(`${__dirname}/../../../../.babelrc`, 'utf8'))
-  require('babel-register')(babelConfig)
-}
-
 require('../index').cli(args)

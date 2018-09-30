@@ -1,7 +1,5 @@
-/**
- * redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 /** Indicates the region the game is from. A disc can have multiple regions. */
 export const REGIONS = {

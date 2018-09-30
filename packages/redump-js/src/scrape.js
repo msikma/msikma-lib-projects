@@ -1,7 +1,5 @@
-/**
- * redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 import parse from 'm-common/scrape'
 import { STATUS_COLORS } from './static'

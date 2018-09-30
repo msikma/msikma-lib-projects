@@ -1,7 +1,5 @@
-/**
- * buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 import { merge, mapValues, isString } from 'lodash'
 import { objToParams, toFormURIComponent } from 'web-scrapers-common/utils/query'

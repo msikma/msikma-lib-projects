@@ -1,7 +1,5 @@
-/**
- * redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 export const BASE_URL = 'http://redump.org/'
 export const DISC_URL = `${BASE_URL}disc/`

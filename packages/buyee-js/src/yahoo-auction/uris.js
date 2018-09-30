@@ -1,7 +1,5 @@
-/**
- * buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 // Buyee base URI: accepts both http and https, but we'll use exclusively https.
 export const BASE_URI = 'https://buyee.jp'

@@ -1,7 +1,5 @@
-/**
- * buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
- * Copyright © 2018, Michiel Sikma. MIT license.
- */
+// buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
 
 import { cloneDeep, get, set, pick } from 'lodash'
 import { defaults as searchDefaults } from '../yahoo-auction/search'
