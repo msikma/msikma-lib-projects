@@ -70,7 +70,7 @@ case $1 in
       cat << EOF
 $usage
 
-Tooling utility function for babel-7-monorepo-example. Runs scripts to compile,
+Tooling utility function for msikma-lib-projects. Runs scripts to compile,
 lint and test code. Tasks are divided into global tasks, which operate on
 all packages, and package tasks, which need to be invoked from inside
 a package directory.
