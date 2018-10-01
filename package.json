@@ -21,7 +21,8 @@
   },
   "bin": {
     "mlib": "./scripts/mlib",
-    "buyee-cli": "./packages/web-scrapers-buyee-js/bin/buyee-cli.js"
+    "buyee-cli": "./packages/buyee-js/bin/buyee-cli.js",
+    "marktplaats-cli": "./packages/marktplaats-js/bin/marktplaats-cli.js"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.47",
