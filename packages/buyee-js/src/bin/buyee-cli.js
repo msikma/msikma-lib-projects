@@ -2,47 +2,25 @@
 // buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-const fs = require('fs')
-const ArgumentParser = require('argparse').ArgumentParser
-const addLongHelp = require('argparse-longhelp')
+import makeArgParser from 'mlib-common/lib/argparse'
+
 const packageData = require('../../package.json')
-
-const epilog = `For more information, see <https://github.com/msikma/buyee-js>.${
-  process.env.BUYEE_JS_USE_SRC ? '\nRunning in development mode (BUYEE_JS_USE_SRC=1).' : ''
-}`
-const longHelp = `Command line utility for the Buyee client library. Can be used in place
-of the library in case your project doesn't run on Node. This utility
-runs the desired action and prints the results as JSON data.
-`
-
-const parser = new ArgumentParser({
-  version: packageData.version,
+const parser = makeArgParser({
   addHelp: true,
   description: packageData.description,
-  epilog
+  epilog: `For more information, see <${packageData.homepage}>.`,
+  longHelp: `Command line utility for the Buyee client library. Can be used in place
+of the library in case your project doesn't run on Node. This utility
+runs the desired action and prints the results as JSON data.\n`,
+  version: packageData.version
 })
-addLongHelp(parser, longHelp)
-
-// We're gonna do some more magic. Add a search arguments header above the first relevant argument.
-const regularFormatHelp = parser.formatHelp
-parser.formatHelp = () => {
-  // Run the original formatting function, then find the 'query' argument.
-  // Add a header string in front of it.
-  const buffer = regularFormatHelp()
-    .split('\n')
-    .map(line => line.startsWith('  --query QUERY')
-      ? `\nSearch options:\n${line}`
-      : line)
-
-  // While we're at it, remove double empty lines.
-  return buffer.map(l => l.trim() === '' ? '' : l).join('\n').split('\n\n\n').join('\n\n')
-}
 
 parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'] })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json'], defaultValue: 'json' })
+parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
 
 // Search options:
-parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
+parser.addSection('Search options:', '--query')
 parser.addArgument(['--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
@@ -58,7 +36,6 @@ parser.addArgument(['--free-delivery'], { help: 'Free delivery inside Japan.', a
 parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 'storeTrue', dest: 'withPictures' })
 parser.addArgument(['--recommended'], { help: 'Buyee recommended.', action: 'storeTrue', dest: 'buyeeRecommended' })
 
-// Reminder: 'quiet' is 0, 1 or 2.
 const parsed = parser.parseArgs()
 const action = parsed.action
 const args = {
