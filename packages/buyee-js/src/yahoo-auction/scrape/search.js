@@ -2,7 +2,7 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import cheerio from 'cheerio'
-import requestURI from 'web-scrapers-common/utils/request'
+import requestURI from 'mlib-common/lib/request'
 
 import { ensureFullURI } from '../uris'
 import { getIDFromURL, scrapePrice } from './helpers'

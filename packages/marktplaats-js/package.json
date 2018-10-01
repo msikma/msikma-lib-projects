@@ -13,6 +13,6 @@
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
   "dependencies": {
-    "common": "^1.0.0"
+    "mlib-common": "^1.0.0"
   }
 }

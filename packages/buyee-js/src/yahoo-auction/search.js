@@ -2,7 +2,7 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { merge, mapValues, isString } from 'lodash'
-import { objToParams, toFormURIComponent } from 'web-scrapers-common/utils/query'
+import { objToParams, toFormURIComponent } from 'mlib-common/lib/query'
 
 import { searchURI, originalAuctionURI, auctionURI } from './uris'
 import { fetchSearchData, fetchProductData } from './scrape'

@@ -1,7 +1,7 @@
 // buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import { removeEmptyLines, blockElsToLb } from 'web-scrapers-common/utils/text'
+import { removeEmptyLines, blockElsToLb } from 'mlib-common/lib/text'
 
 /**
  * Returns an item ID from either a link to a detail page, or to a category.

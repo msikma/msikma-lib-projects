@@ -3,9 +3,8 @@
 
 import cheerio from 'cheerio'
 import path from 'path'
-import { writeFileAsync } from '../../util/promisified/fs'
+import { readFileAsync } from 'mlib-common/lib/promisified/fs'
 
-import { readFileAsync } from '../../util/promisified/fs'
 import { scrapeProductPage } from './product'
 
 /** Test directory in the project root. */

@@ -4,7 +4,7 @@
 import cheerio from 'cheerio'
 import path from 'path'
 
-import { readFileAsync } from '../../util/promisified/fs'
+import { readFileAsync } from 'mlib-common/lib/promisified/fs'
 import { scrapeSearchPage } from './search'
 
 /** Test directory in the project root. */

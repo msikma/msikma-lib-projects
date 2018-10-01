@@ -16,6 +16,6 @@
   "devDependencies": {
   },
   "dependencies": {
-    "common": "^1.0.0"
+    "mlib-common": "^1.0.0"
   }
 }

@@ -1,7 +1,7 @@
 // redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import parse from 'm-common/scrape'
+import parse from 'mlib-common/lib/scrape'
 import { STATUS_COLORS } from './static'
 
 /**
@@ -22,7 +22,7 @@ export const parseBrowsePage = (html) => {
  */
 export const parseDetailPage = (html) => {
   const $ = parse(html)
-
+  return {}
 }
 
 /**

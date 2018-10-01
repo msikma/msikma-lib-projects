@@ -1,7 +1,7 @@
 // redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import { requestURI } from 'm-common/request'
+import { requestURI } from 'mlib-common/lib/request'
 import { browseURL, detailURL, SEARCH_URL } from './urls'
 import { parseBrowsePage, parseDetailPage } from './scrape'
 
