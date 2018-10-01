@@ -16,7 +16,7 @@ runs the desired action and prints the results as JSON or XML.\n`,
   version: packageData.version
 })
 
-parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'] })
+parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'], metavar: 'ACTION', _choicesHelp: ['Runs a search query and returns results.'] })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml'], defaultValue: 'json' })
 parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
 

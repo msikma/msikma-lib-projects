@@ -10,13 +10,25 @@ const addLongHelp = require('argparse-longhelp')
 const makeArgParser = (opts) => {
   return new class ArgumentParserWrapper {
     constructor() {
+      // List of extra multiple choice items we'll print.
+      this.choices = []
+      // List of section headers we'll print.
       this.sections = []
+
       this.parser = new ArgumentParser(opts)
       if (opts.longHelp) addLongHelp(this.parser, opts.longHelp)
     }
 
     // Wrapper for ArgumentParser.addArgument().
-    addArgument = (...opts) => this.parser.addArgument(...opts)
+    addArgument = (...opts) => {
+      // Special formatting case: if an argument has 'choices', 'metavar' and
+      // our own '_choicesHelp', we want to display its options differently than normal.
+      // Save a reference and modify the output before parsing.
+      if (opts[1].choices && opts[1].metavar && opts[1]._choicesHelp) {
+        this.choices.push({ name: opts[0], choices: opts[1].choices, choicesHelp: opts[1]._choicesHelp })
+      }
+      return this.parser.addArgument(...opts)
+    }
 
     // Wrapper for ArgumentParser.error().
     error = (...opts) => this.parser.error(...opts)
@@ -47,10 +59,29 @@ const makeArgParser = (opts) => {
           ))
         })
 
+        // Format the extra multiple choice sections.
+        this.choices.forEach(choiceItem => {
+          let choiceSection = []
+          const choices = choiceItem.choices.length
+          for (let a = 0; a < choices; ++a) {
+            choiceSection.push(`     ${a === 0 ? '{' : ' ' }${`${choiceItem.choices[a]}${a < choices - 1 ? ',' : '}'}`.padEnd(18)}${choiceItem.choicesHelp[a] ? choiceItem.choicesHelp[a] : ''}`)
+          }
+          buffer = buffer.map(line => (
+            line.trim().startsWith(this._getArgStr(choiceItem.name)) ? `${line}\n${choiceSection.join('\n')}` : line
+          ))
+        })
+
         // While we're at it, remove double empty lines.
         return this._removeDoubleEmptyLines(buffer)
       }
     }
+
+    // Returns a string with the given argument, e.g. '-h, --help'.
+    _getArgStr = (arg) => (
+      arg.length === 1
+        ? `${arg[0]}`
+        : `${arg[0]}, ${arg[1]}`
+    )
 
     // Removes double empty lines that sometimes show up.
     _removeDoubleEmptyLines = (str) => (

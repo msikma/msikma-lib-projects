@@ -15,7 +15,7 @@ as JSON or XML.\n`,
   version: packageData.version
 })
 
-parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail'], metavar: 'ACTION' })
+parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail'], _choicesHelp: ['Runs a search query and returns results.', 'Prints full details for a single item by ID.'], metavar: 'ACTION' })
 parser.addArgument(['--list-cats'], { help: 'Prints a list of categories. Call with category ID to get subcategories.', dest: 'ID', defaultValue: 'main' })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml'], defaultValue: 'json' })
 
