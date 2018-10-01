@@ -27,3 +27,9 @@ export const blockElsToLb = ($text) => {
   $text.find('br').replaceWith('\n')
   $text.find('hr').replaceWith('\n')
 }
+
+// Ensures that a string ends with a period.
+export const ensurePeriod = (str) => {
+  if (str.slice(-1) === '.') return str
+  return `${str}.`
+}

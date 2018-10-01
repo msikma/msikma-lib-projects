@@ -3,9 +3,7 @@
   "_shortDescription": "Buyee client library",
   "name": "buyee-js",
   "description": "Client library for making programmatic requests to the Buyee website",
-  "files": [
-    "lib"
-  ],
+  "files": ["lib", "bin"],
   "version": "1.0.0",
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",

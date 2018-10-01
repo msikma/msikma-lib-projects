@@ -3,20 +3,21 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import makeArgParser from 'mlib-common/lib/argparse'
+import { ensurePeriod } from 'mlib-common/lib/text'
 
 const packageData = require('../../package.json')
 const parser = makeArgParser({
   addHelp: true,
-  description: packageData.description,
+  description: ensurePeriod(packageData.description),
   epilog: `For more information, see <${packageData.homepage}>.`,
   longHelp: `Command line utility for the Buyee client library. Can be used in place
 of the library in case your project doesn't run on Node. This utility
-runs the desired action and prints the results as JSON data.\n`,
+runs the desired action and prints the results as JSON or XML.\n`,
   version: packageData.version
 })
 
 parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search'] })
-parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json'], defaultValue: 'json' })
+parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml'], defaultValue: 'json' })
 parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
 
 // Search options:
