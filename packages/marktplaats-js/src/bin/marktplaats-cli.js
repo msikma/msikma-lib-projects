@@ -4,6 +4,7 @@
 
 import makeArgParser from 'mlib-common/lib/argparse'
 import { ensurePeriod } from 'mlib-common/lib/text'
+import '@babel/polyfill'
 
 const packageData = require('../../package.json')
 const parser = makeArgParser({
@@ -51,5 +52,5 @@ if (action == null && !hasAnySearchOptions) {
 }
 
 // The cli() function is only for the command line. Make sure we remember we came from there.
-process.env.BUYEE_JS_CLI = '1'
+process.env.MARKTPLAATS_JS_CLI = '1'
 require('../index').cli(args)
