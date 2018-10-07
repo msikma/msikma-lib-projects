@@ -37,20 +37,24 @@ babelargs="--config-file $root/babel.config.js --verbose --relative $root/packag
 
 case $1 in
   compile)
+    cd $root
     export NODE_ENV=production
     exe "$babel $babelargs" --ignore $root'/packages/**/src/**/*.test.js' --ignore $root'/packages/**/src/*.test.js'
     ;;
   watch)
+    cd $root
     exe "$babel --watch $babelargs"
     ;;
   clean)
     exe "rm -rfv $root/packages/**/lib"
     ;;
   lint-all)
-    exe "eslint $root"
+    cd $root
+    exe "eslint packages/**/src"
     ;;
   test-all)
-    exe "jest $root"
+    cd $root
+    exe "jest packages/**/src"
     ;;
   lint)
     reqpkg $1
