@@ -60,7 +60,7 @@ case $1 in
   test)
     reqpkg $1
     cd $root
-    exe "jest $package"
+    exe "jest $package"/src
     ;;
   -v|--version)
     echo "$project ($version)"
