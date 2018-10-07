@@ -2,6 +2,8 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import request from 'mlib-common/lib/request'
+import runSearch from './scrape/search'
+import toDataString from './out'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {
@@ -10,16 +12,24 @@ export const cli = async args => {
     throw new Error('Cannot use cli() except from the marktplaats-cli command line utility')
   }
 
-  if (args.action === 'search') {
-    console.error('marktplaats-cli: error: not implemented yet')
-    process.exit(1)
+  try {
+    if (args.action === 'search') {
+      const result = await runSearch({ query: args.query })
+      const output = toDataString(result, args.output)
+      console.log(output)
+      process.exit(0)
+    }
+    else if (args.action === 'detail') {
+      console.error('marktplaats-cli: error: not implemented yet')
+      process.exit(1)
+    }
+    else {
+      console.error(`marktplaats-cli: error: argument "--action": Invalid action (${args.action})`)
+      process.exit(1)
+    }
   }
-  else if (args.action === 'detail') {
-    console.error('marktplaats-cli: error: not implemented yet')
-    process.exit(1)
-  }
-  else {
-    console.error(`marktplaats-cli: error: argument "--action": Invalid action (${args.action})`)
+  catch (err) {
+    console.error(`marktplaats-cli: error: uncaught exception while running task - ${err.toString()}`)
     process.exit(1)
   }
 }

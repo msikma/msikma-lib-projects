@@ -33,3 +33,15 @@ export const ensurePeriod = (str) => {
   if (str.slice(-1) === '.') return str
   return `${str}.`
 }
+
+/**
+ * Splits a string by a separator, but only by the last occurrence of the separator.
+ * The separators are kept. e.g. './.hidden/.dir/myfile.jpg' becomes ['./.hidden/.dir/myfile', '.jpg']
+ */
+export const splitOnLast = (str, sep) => {
+  const segments = str.split(sep)
+  if (segments.length === 1) return segments
+  const start = segments.slice(0, segments.length - 1)
+  const end = segments.slice(-1)
+  return [`${start.join('.')}`, `${sep}${end[0]}`]
+}

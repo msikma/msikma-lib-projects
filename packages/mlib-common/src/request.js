@@ -38,6 +38,10 @@ const requestDefaults = {
   gzip: true
 }
 
+// Requests a URI using our specified browser headers as defaults.
+// This function has a higher chance of being permitted by the source site
+// since it's designed to look like a normal browser request rather than a script.
+// The request() function returns a promise, so remember to await.
 const requestURI = (url, headers = {}, ...props) => (
   request({ url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...props })
 )

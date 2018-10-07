@@ -18,12 +18,13 @@ as JSON or XML.\n`,
 
 parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail'], _choicesHelp: ['Runs a search query and returns results.', 'Prints full details for a single item by ID.'], metavar: 'ACTION' })
 parser.addArgument(['--list-cats'], { help: 'Prints a list of categories. Call with category ID to get subcategories.', dest: 'ID', defaultValue: 'main' })
-parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml'], defaultValue: 'json' })
+parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml', 'terminal'], _choicesHelp: ['JSON string', 'XML string', 'Plain text readable in terminal (default)'], metavar: 'TYPE', defaultValue: 'terminal' })
 
 // Search options:
 parser.addSection('Search options:', '--query')
 parser.addArgument(['--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
+parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
 parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE' })
 parser.addArgument(['--price-max'], { help: '~', metavar: 'PRICE' })
@@ -33,6 +34,9 @@ parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 's
 // Detail options:
 parser.addSection('Detail options:', '--id')
 parser.addArgument(['--id'], { help: 'ID of the item to search details for.' })
+//parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
+//parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
+
 
 const parsed = parser.parseArgs()
 const action = parsed.action

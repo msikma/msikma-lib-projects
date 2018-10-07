@@ -32,3 +32,13 @@ export const objToParams = (obj, {
  */
 export const toFormURIComponent = paramStr =>
   paramStr.replace(/%20/g, '+')
+
+/**
+ * Removes the query string from a URL string.
+ * If the URL has no query string, the input is returned unchanged.
+ */
+export const removeQuery = url => (
+  url.indexOf('?') > -1
+    ? url.split('?')[0]
+    : url
+)
