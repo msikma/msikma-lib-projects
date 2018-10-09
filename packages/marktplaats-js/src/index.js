@@ -1,7 +1,7 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import request from 'mlib-common/lib/request'
+import getDetail from './scrape/detail'
 import runSearch from './scrape/search'
 import toDataString from './out'
 
@@ -15,13 +15,16 @@ export const cli = async args => {
   try {
     if (args.action === 'search') {
       const result = await runSearch({ query: args.query })
-      const output = toDataString(result, args.output)
-      console.log(output)
-      process.exit(0)
+      return outputAndExit(result, args)
     }
     else if (args.action === 'detail') {
-      console.error('marktplaats-cli: error: not implemented yet')
-      process.exit(1)
+      //const result = await getDetail({ query: args.query })
+      const result = await getDetail({
+        id: 'm1307407671',
+        category: ['spelcomputers-en-games', 'games-overige'],
+        slug: 'msx-base-floppy-handleiding'
+      })
+      return outputAndExit(result, args)
     }
     else {
       console.error(`marktplaats-cli: error: argument "--action": Invalid action (${args.action})`)
@@ -32,4 +35,11 @@ export const cli = async args => {
     console.error(`marktplaats-cli: error: uncaught exception while running task - ${err.toString()}`)
     process.exit(1)
   }
+}
+
+//
+const outputAndExit = (result, args) => {
+  const output = toDataString(result, args.output)
+  console.log(output)
+  process.exit(0)
 }

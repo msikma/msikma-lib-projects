@@ -33,7 +33,8 @@ parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 's
 
 // Detail options:
 parser.addSection('Detail options:', '--id')
-parser.addArgument(['--id'], { help: 'ID of the item to search details for.' })
+parser.addArgument(['--id'], { help: 'ID of the item to retrieve details for.' })
+parser.addArgument(['--slug'], { help: 'Slug of the item page (optional).' })
 //parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
 //parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
 

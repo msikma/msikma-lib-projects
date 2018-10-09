@@ -45,11 +45,11 @@ const getRealResults = ($) => {
 const runSearch = async params => {
   const url = searchURI({ query: 'floppy', categoryID: 356 })
   const html = await requestURI(url)
-  const results = scrapeResults(html)
+  const data = scrapeResults(html)
   return {
-    searchParams: params,
-    searchURL: url,
-    results
+    reqParams: params,
+    reqURL: url,
+    data
   }
 }
 
