@@ -1,4 +1,4 @@
-### msikma-lib-projects
+## msikma-lib-projects
 
 Monorepo containing several JS libraries (some with CLI tool) and common code.
 
