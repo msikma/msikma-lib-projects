@@ -1,10 +1,13 @@
+// marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
+
 import { cheerio } from 'mlib-common/lib/scrape'
-import requestURI from 'mlib-common/lib/request'
+import { parseStatus, parseDelivery, parsePrice } from './util'
 import { removeQuery } from 'mlib-common/lib/query'
 import { searchURI } from './uris'
-import { parseStatus, parseDelivery, parsePrice } from './vocab'
+import requestURI from 'mlib-common/lib/request'
 
-//
+// Runs search page scraping code on the passed HTML string.
 const scrapeResults = (html) => {
   const $ = cheerio.load(html)
   return getRealResults($)
@@ -42,6 +45,7 @@ const getRealResults = ($) => {
   })
 }
 
+// Runs a search query, extracts the information, and then returns it.
 const runSearch = async params => {
   const url = searchURI({ query: 'floppy', categoryID: 356 })
   const html = await requestURI(url)

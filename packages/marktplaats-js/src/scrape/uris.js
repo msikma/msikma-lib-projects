@@ -1,3 +1,6 @@
+// marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
+// Copyright © 2018, Michiel Sikma. MIT license.
+
 import { objToParams } from 'mlib-common/lib/query'
 
 const baseURL = 'https://www.marktplaats.nl/'
