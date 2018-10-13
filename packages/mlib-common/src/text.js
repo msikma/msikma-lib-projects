@@ -16,6 +16,13 @@ export const removeEmptyLines = (str, leaveGap = false) => {
   }
 }
 
+// For some reason, argparse sometimes outputs an extra linebreak after the usage text.
+// This seems to happen when the previous usage line is of a precise length.
+// Bit hackish, but this removes it.
+export const removeUnnecessaryLines = (str) => (
+  str.split('\n').map(s => s.trim() === '' ? s.trim() : s).join('\n').split('\n\n\n').join('\n\n')
+)
+
 /** List of block elements. (Non-exhaustive, but it works well enough for most cases.) */
 const blockEls = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ol', 'ul', 'pre', 'address', 'blockquote', 'dl', 'div', 'fieldset', 'form', 'noscript', 'table']
 

@@ -2,7 +2,8 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 const ArgumentParser = require('argparse').ArgumentParser
-const addLongHelp = require('argparse-longhelp')
+const HelpFormatter = require('argparse/lib/help/formatter')
+import { removeUnnecessaryLines } from './text'
 
 // A simple wrapper for the ArgumentParser library. Adds support for an extra help paragraph,
 // and the ability to add multiple sections. This is useful for grouping certain options together.
@@ -16,7 +17,7 @@ const makeArgParser = (opts) => {
       this.sections = []
 
       this.parser = new ArgumentParser(opts)
-      if (opts.longHelp) addLongHelp(this.parser, opts.longHelp)
+      this._addLongHelp(opts.longHelp)
     }
 
     // Wrapper for ArgumentParser.addArgument().
@@ -43,6 +44,32 @@ const makeArgParser = (opts) => {
     // E.g. addSection('Search options:', '--query') will add a search options right before the --query tag.
     addSection(header, firstTag) {
       this.sections.push({ header, firstTag })
+    }
+
+    // Adds extra help lines to the output if needed, and sets up a modified help formatter.
+    _addLongHelp = (longHelp, removeLines = true) => {
+      this.parser.formatHelp = () => {
+        // Here we do some messing around with the private ArgumentParser API in order to
+        // get extra text to show up. You're never supposed to do that, but oh well.
+        const formatter = new HelpFormatter({ prog: this.parser.prog })
+        formatter.addUsage(this.parser.usage, this.parser._actions, this.parser._mutuallyExclusiveGroups)
+        formatter.addText(this.parser.description)
+        if (longHelp) {
+          // Add the long help text without filtering the text formatting.
+          formatter._addItem(str => str, [longHelp])
+        }
+        this.parser._actionGroups.forEach((actionGroup) => {
+          formatter.startSection(actionGroup.title)
+          formatter.addText(actionGroup.description)
+          formatter.addArguments(actionGroup._groupActions)
+          formatter.endSection()
+        });
+        // Add epilogue without reformatting the whitespace.
+        // Don't you DARE take away my linebreaks.
+        formatter._addItem(str => str, [this.parser.epilog])
+        const formatted = formatter.formatHelp()
+        return removeLines ? removeUnnecessaryLines(formatted) : formatted
+      }
     }
 
     // Replaces ArgumentParser's usual help formatter with one that supports multiple sections.

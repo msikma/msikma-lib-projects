@@ -965,13 +965,6 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
-argparse-longhelp@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/argparse-longhelp/-/argparse-longhelp-1.0.3.tgz#2f6c70d74874bdb477c10ea49b638a440bb22407"
-  integrity sha512-0N5QPaIU71k0zyUfgKKoy14YAiNlF3IzPhlau7omFlTajIdxxXGP5Biy6YhconZ1OMY7iVYhzBU6h/SAHfJheA==
-  dependencies:
-    argparse "^1.0.10"
-
 argparse@^1.0.10, argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
