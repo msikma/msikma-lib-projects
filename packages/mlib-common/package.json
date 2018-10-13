@@ -13,11 +13,12 @@
   "devDependencies": {
   },
   "dependencies": {
-    "file-cookie-store": "msikma/file-cookie-store",
+    "array-flatten": "^2.1.1",
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
+    "file-cookie-store": "msikma/file-cookie-store",
     "lodash": "^4.17.5",
     "request": "^2.87.0",
-    "request-promise": "^4.2.2"
+    "throttled-request": "^0.1.1"
   }
 }

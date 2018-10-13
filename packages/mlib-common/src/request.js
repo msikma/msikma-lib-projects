@@ -1,8 +1,20 @@
 // common - Utilities for msikma library projects <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import request from 'request-promise'
+import request from 'request'
+import throttleRequest from 'throttled-request'
 import FileCookieStore from 'file-cookie-store'
+
+// Create a modified request() function that uses throttling.
+const throttledRequest = throttleRequest(request)
+
+// Configures the throttled request library.
+const configureThrottling = (config = {}) => {
+  throttledRequest.configure({ requests: 2, milliseconds: 1000, ...config })
+}
+
+// Set default throttling values.
+configureThrottling()
 
 // Headers similar to what a regular browser would send.
 export const browserHeaders = {
@@ -38,12 +50,22 @@ const requestDefaults = {
   gzip: true
 }
 
+// As requestURI(), but throttled.
+export const throttledRequestURI = (url, fullResponse = false, headers = {}, ...props) =>
+  requestURI(url, fullResponse, headers, true, ...props)
+
 // Requests a URI using our specified browser headers as defaults.
 // This function has a higher chance of being permitted by the source site
 // since it's designed to look like a normal browser request rather than a script.
 // The request() function returns a promise, so remember to await.
-const requestURI = (url, headers = {}, ...props) => (
-  request({ url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...props })
-)
+const requestURI = (url, fullResponse = false, headers = {}, throttle = false, ...props) => new Promise((resolve, reject) => (
+  (throttle ? throttledRequest : request)(
+    { url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...props },
+    (err, res) => {
+      if (err) return reject(err)
+      resolve(fullResponse ? res : res.body)
+    }
+  )
+))
 
 export default requestURI
