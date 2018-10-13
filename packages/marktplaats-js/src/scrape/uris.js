@@ -3,7 +3,7 @@
 
 import { objToParams } from 'mlib-common/lib/query'
 
-const baseURL = 'https://www.marktplaats.nl/'
+export const baseURL = 'https://www.marktplaats.nl/'
 
 const searchPage = 'z.html'
 

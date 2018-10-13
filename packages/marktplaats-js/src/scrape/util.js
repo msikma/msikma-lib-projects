@@ -60,4 +60,25 @@ export const parsePrice = (str) => {
   }
 }
 
+// Extracts a category slug from a URL. Works for category subpage URLs
+// and for category links on a subpage.
+// E.g. 'https://www.marktplaats.nl/c/antiek-en-kunst/c1.html' yields 'antiek-en-kunst'.
+// Or 'https://www.marktplaats.nl/z/antiek-en-kunst/antiek-servies-compleet.html?categoryId=1843' yields 'antiek-servies-compleet'.
+export const getCatSlug = (url) => {
+  const match1 = url.match(/c\/(.+?)\//)
+  const match2 = url.match(/\/(.+?).html\?categoryId/)
 
+  if (match1 && match1[1]) return match1[1]
+  if (match2 && match2[1]) return match2[1]
+}
+
+// Extracts a category ID from a URL.
+// E.g. 'https://www.marktplaats.nl/c/antiek-en-kunst/c1.html' yields 1.
+// Or 'https://www.marktplaats.nl/z/antiek-en-kunst/antiek-boeken-en-bijbels.html?categoryId=3' yields 3.
+export const getCatID = (url) => {
+  const match1 = url.match(/c([0-9]+)\.html/)
+  const match2 = url.match(/categoryId=([0-9]+)$/)
+
+  if (match1 && match1[1]) return parseInt(match1[1], 10)
+  if (match2 && match2[1]) return parseInt(match2[1], 10)
+}
