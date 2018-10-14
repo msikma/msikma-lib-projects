@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta name="application-name" content="JIRA" data-name="jira" data-version="7.3.1"><meta name="ajs-dev-mode" content="false">
+<meta name="ajs-context-path" content="">
+<meta name="ajs-version-number" content="7.3.1">
+<meta name="ajs-build-number" content="73012">
+<meta name="ajs-is-beta" content="false">
+<meta name="ajs-is-rc" content="false">
+<meta name="ajs-is-snapshot" content="false">
+<meta name="ajs-is-milestone" content="false">
+<meta name="ajs-remote-user" content="msikma">
+<meta name="ajs-remote-user-fullname" content="Michiel Sikma">
+<meta name="ajs-user-locale" content="en_US">
+<meta name="ajs-user-locale-group-separator" content=",">
+<meta name="ajs-app-title" content="Theorycraft">
+<meta name="ajs-keyboard-shortcuts-enabled" content="true">
+<meta name="ajs-keyboard-accesskey-modifier" content="Ctrl">
+<meta name="ajs-enabled-dark-features" content="[&quot;com.atlassian.jira.agile.darkfeature.editable.detailsview&quot;,&quot;nps.survey.inline.dialog&quot;,&quot;jira.plugin.devstatus.phasetwo&quot;,&quot;jira.frother.reporter.field&quot;,&quot;atlassian.rest.xsrf.legacy.enabled&quot;,&quot;jira.issue.status.lozenge&quot;,&quot;jira.project.config.new.version.menu&quot;,&quot;com.atlassian.jira.config.BIG_PIPE&quot;,&quot;com.atlassian.jira.projects.issuenavigator&quot;,&quot;jira.sidebar.components.managecomponents&quot;,&quot;com.atlassian.jira.config.PDL&quot;,&quot;jira.plugin.devstatus.phasetwo.enabled&quot;,&quot;jira.project.config.old.components.screen.disabled&quot;,&quot;atlassian.aui.raphael.disabled&quot;,&quot;app-switcher.new&quot;,&quot;frother.assignee.field&quot;,&quot;com.atlassian.jira.projects.ProjectCentricNavigation.Switch&quot;,&quot;jira.onboarding.cyoa&quot;,&quot;com.atlassian.jira.config.ProjectConfig.MENU&quot;,&quot;com.atlassian.jira.projects.sidebar.DEFER_RESOURCES&quot;,&quot;jira.zdu.admin-updates-ui&quot;,&quot;jira.zdu.jmx-monitoring&quot;,&quot;sd.new.settings.sidebar.location.disabled&quot;,&quot;jira.sidebar.components.manageversions&quot;,&quot;jira.zdu.cluster-upgrade-state&quot;,&quot;com.atlassian.jira.config.CoreFeatures.LICENSE_ROLES_ENABLED&quot;,&quot;com.atlassian.feedback.feedback-button-move-to-header-enable&quot;,&quot;jira.export.csv.enabled&quot;]">
+<meta name="ajs-in-admin-mode" content="false">
+<meta name="ajs-is-sysadmin" content="true">
+<meta name="ajs-is-admin" content="true">
+<meta name="ajs-outgoing-mail-enabled" content="false">
+<meta name="ajs-date-relativize" content="true">
+<meta name="ajs-date-time" content="h:mm a">
+<meta name="ajs-date-day" content="EEEE h:mm a">
+<meta name="ajs-date-dmy" content="dd/MMM/yy">
+<meta name="ajs-date-complete" content="dd/MMM/yy h:mm a">
+<meta name="stp-license-product-name" content="JIRA"/> <meta name="stp-license-days-to-expiry" content="-235"/> <meta name="stp-license-is-admin" content="true"/> <meta name="stp-license-should-keep-banner-hidden" content="false"/><script type="text/javascript">var AJS=AJS||{};AJS.debug=true;</script><meta name="ajs-admin-quicksearch-show" content="true">
+
+
+    
+<meta id="atlassian-token" name="atlassian-token" content="BF1R-MBNW-YQIQ-7LN1|654c5d0c276a91b04b1beb29d59b3869144ef727|lin">
+
+
+
+<link rel="shortcut icon" href="/s/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/_/favicon.ico">
+
+
+    
+
+
+
+<!--[if IE]><![endif]-->
+<script type="text/javascript">var contextPath = '';</script>
+<script>
+window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};window.WRM._unparsedErrors=window.WRM._unparsedErrors||{};
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"\"";
+WRM._unparsedData["jira.webresources:feature-flags.feature-flag-data"]="{\"enabled-feature-keys\":[\"com.atlassian.jira.agile.darkfeature.editable.detailsview\",\"nps.survey.inline.dialog\",\"jira.plugin.devstatus.phasetwo\",\"jira.frother.reporter.field\",\"atlassian.rest.xsrf.legacy.enabled\",\"jira.issue.status.lozenge\",\"jira.project.config.new.version.menu\",\"com.atlassian.jira.config.BIG_PIPE\",\"com.atlassian.jira.projects.issuenavigator\",\"jira.sidebar.components.managecomponents\",\"com.atlassian.jira.config.PDL\",\"jira.plugin.devstatus.phasetwo.enabled\",\"jira.project.config.old.components.screen.disabled\",\"atlassian.aui.raphael.disabled\",\"app-switcher.new\",\"frother.assignee.field\",\"com.atlassian.jira.projects.ProjectCentricNavigation.Switch\",\"jira.onboarding.cyoa\",\"com.atlassian.jira.config.ProjectConfig.MENU\",\"com.atlassian.jira.projects.sidebar.DEFER_RESOURCES\",\"jira.zdu.admin-updates-ui\",\"jira.zdu.jmx-monitoring\",\"sd.new.settings.sidebar.location.disabled\",\"jira.sidebar.components.manageversions\",\"jira.zdu.cluster-upgrade-state\",\"com.atlassian.jira.config.CoreFeatures.LICENSE_ROLES_ENABLED\",\"com.atlassian.feedback.feedback-button-move-to-header-enable\",\"jira.export.csv.enabled\"],\"feature-flag-states\":{\"jira.jql.autoselectfirst\":true,\"jira.instrumentation.laas\":false,\"jira.create.linked.issue\":true}}";
+WRM._unparsedData["jira.webresources:default-comment-security-level.DefaultCommentSecurityLevelHelpLink"]="{\"extraClasses\":\"default-comment-level-help\",\"title\":\"Commenting on an Issue\",\"url\":\"https://docs.atlassian.com/jira/jsw-docs-073/Editing+and+collaborating+on+issues#Editingandcollaboratingonissues-restrictacomment\",\"isLocal\":false}";
+WRM._unparsedData["jira.webresources:dateFormatProvider.allFormats"]="{\"dateFormats\":{\"meridiem\":[\"AM\",\"PM\"],\"eras\":[\"BC\",\"AD\"],\"months\":[\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"monthsShort\":[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"],\"weekdaysShort\":[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"],\"weekdays\":[\"Sunday\",\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\"]},\"lookAndFeelFormats\":{\"relativize\":\"true\",\"time\":\"h:mm a\",\"day\":\"EEEE h:mm a\",\"dmy\":\"dd/MMM/yy\",\"complete\":\"dd/MMM/yy h:mm a\"}}";
+WRM._unparsedData["com.atlassian.plugins.helptips.jira-help-tips:help-tip-manager.JiraHelpTipData"]="{\"dismissed\":[\"add.new.users\",\"automaticTransitionDevSummaryTooltip\",\"devstatus.cta.createbranch.tooltip\",\"newsletter-signup-tip\",\"onboarding-start-sprint\"],\"anonymous\":false}";
+WRM._unparsedData["com.atlassian.jira.project-templates-plugin:project-templates-plugin-resources.ptAnalyticsData"]="{\"instanceCreatedDate\":\"2017-03-25\"}";
+WRM._unparsedData["jira.webresources:avatar-picker.data"]="{}";
+WRM._unparsedData["com.atlassian.feedback.jira-feedback-plugin:button-resources-init.data"]="{\"jira.feedback.plugin.issue.collector.core\":\"https://jira.atlassian.com/s/576e9ab86257d4f65f6ea5b6dd50de44-T/en_UK3ljiw5/71006/b6b48b2829824b869586ac216d119363/2.0.11/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-UK&collectorId=abbf546d\",\"jira.feedback.plugin.issue.collector.default\":\"https://jira.atlassian.com/s/576e9ab86257d4f65f6ea5b6dd50de44-T/en_UK3ljiw5/71006/b6b48b2829824b869586ac216d119363/2.0.11/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-UK&collectorId=abbf546d\",\"jira.feedback.plugin.issue.collector.service.desk\":\"https://jira.atlassian.com/s/576e9ab86257d4f65f6ea5b6dd50de44-T/en_UK3ljiw5/71006/b6b48b2829824b869586ac216d119363/2.0.11/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-UK&collectorId=a698db21\",\"jira.feedback.plugin.issue.collector.software\":\"https://jira.atlassian.com/s/576e9ab86257d4f65f6ea5b6dd50de44-T/en_UK3ljiw5/71006/b6b48b2829824b869586ac216d119363/2.0.11/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-UK&collectorId=abbf546d\",\"isHeaderFeedbackButtonEnabled\":true}";
+WRM._unparsedData["com.atlassian.jira.jira-header-plugin:dismissedFlags.flags"]="{\"dismissed\":[\"com.atlassian.jira.tzdetect.0,3600000\",\"com.atlassian.jira.reindex.required\",\"com.atlassian.jira.tzdetect.3600000,7200000\",\"com.atlassian.jira.tzdetect.-28800000,-25200000\",\"com.atlassian.jira.baseurl\",\"com.atlassian.jira.tzdetect.32400000,32400000\",\"com.atlassian.jira.tzdetect.0,0\"]}";
+WRM._unparsedData["com.atlassian.jira.jira-header-plugin:newsletter-signup-tip.newsletterSignup"]="{\"signupDescription\":\"Stay up-to-date with the latest JIRA tips, tricks, and exclusive inside jokes. All this and more in JIRA Insiders, delivered every month from our inbox to yours.\",\"formUrl\":\"https://www.atlassian.com/apis/exact-target/{0}/subscribe?mailingListId=1239131\",\"userEmail\":\"michiel@sikma.org\",\"signupTitle\":\"JIRA Insiders\",\"signupId\":\"newsletter-signup-tip\",\"showNewsletterTip\":true}";
+WRM._unparsedData["jira.webresources:user-message-flags.adminLockout"]="{}";
+WRM._unparsedData["com.atlassian.jira.plugins.jira-wiki-editor:wiki-editor-resources.help-data"]="{\"showHelp\":true,\"editorDocumentationUrl\":[\"https://docs.atlassian.com/jira/jsw-docs-073/Visual+editing\"],\"editorDocumentationTitle\":[\"Show me documentation for the visual editor\"]}";
+WRM._unparsedData["jira.request.correlation-id"]="\"e9ed0bd04ebc91\"";
+WRM._unparsedData["tzdetect.pref.auto.detect"]="true";
+WRM._unparsedData["tzdetect.pref.tzid"]="\"Europe/Amsterdam\"";
+WRM._unparsedData["tzdetect.pref.tzname"]="\"(GMT+01:00) Amsterdam\"";
+WRM._unparsedData["tzdetect.pref.janOffset"]="3600000";
+WRM._unparsedData["tzdetect.pref.julyOffset"]="7200000";
+WRM._unparsedData["dashboardInfoMessage"]="\"\"";
+WRM._unparsedData["dashboardInstallMessage"]="null";
+if(window.WRM._dataArrived)window.WRM._dataArrived();</script>
+<link type="text/css" rel="stylesheet" href="/s/65edabc02d240e1339a8d88cfbb42018-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/36bdaebd89070ad4ecdd9b63c8a47c95/_/download/contextbatch/css/_super/batch.css" data-wrm-key="_super" data-wrm-batch-type="context" media="all">
+<link type="text/css" rel="stylesheet" href="/s/b1c384c2904eba63cfe69b702f8b6130-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/c5be4587d6368515907b4c6191d4171c/_/download/contextbatch/css/atl.dashboard,atl.general,jira.global,jira.general,-_super/batch.css?agile_global_admin_condition=true&amp;healthcheck-resources=true&amp;is-server-instance=true&amp;is-system-admin=true&amp;jag=true&amp;jaguser=true&amp;nps-acknowledged=true&amp;nps-not-opted-out=true" data-wrm-key="atl.dashboard,atl.general,jira.global,jira.general,-_super" data-wrm-batch-type="context" media="all">
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" href="/s/b1c384c2904eba63cfe69b702f8b6130-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/c5be4587d6368515907b4c6191d4171c/_/download/contextbatch/css/atl.dashboard,atl.general,jira.global,jira.general,-_super/batch.css?agile_global_admin_condition=true&amp;healthcheck-resources=true&amp;ieonly=true&amp;is-server-instance=true&amp;is-system-admin=true&amp;jag=true&amp;jaguser=true&amp;nps-acknowledged=true&amp;nps-not-opted-out=true" data-wrm-key="atl.dashboard,atl.general,jira.global,jira.general,-_super" data-wrm-batch-type="context" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/15b1cbd286168a84732f7bd68b29c9e8-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:calendar/jira.webresources:calendar.css" data-wrm-key="jira.webresources:calendar" data-wrm-batch-type="resource" media="all">
+<link type="text/css" rel="stylesheet" href="/s/15b1cbd286168a84732f7bd68b29c9e8-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:groupbrowser/jira.webresources:groupbrowser.css" data-wrm-key="jira.webresources:groupbrowser" data-wrm-batch-type="resource" media="all">
+<link type="text/css" rel="stylesheet" href="/s/15b1cbd286168a84732f7bd68b29c9e8-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:group-pickers/jira.webresources:group-pickers.css" data-wrm-key="jira.webresources:group-pickers" data-wrm-batch-type="resource" media="all">
+<link type="text/css" rel="stylesheet" href="/s/90e738eca301c4d89366b1a4d15fe37f-T/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/7.3.1/_/download/batch/com.atlassian.feedback.jira-feedback-plugin:button-resources-init/com.atlassian.feedback.jira-feedback-plugin:button-resources-init.css" data-wrm-key="com.atlassian.feedback.jira-feedback-plugin:button-resources-init" data-wrm-batch-type="resource" media="all">
+<script type="text/javascript" src="/s/5f83f0e42faf51ecc3303c9d70141c95-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/36bdaebd89070ad4ecdd9b63c8a47c95/_/download/contextbatch/js/_super/batch.js?locale=en-US" data-wrm-key="_super" data-wrm-batch-type="context" data-initially-rendered></script>
+<script type="text/javascript" src="/s/592232bd544c8f3c010251ab605948a1-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/c5be4587d6368515907b4c6191d4171c/_/download/contextbatch/js/atl.dashboard,atl.general,jira.global,jira.general,-_super/batch.js?agile_global_admin_condition=true&amp;content-type=text%2Fjavascript%3B+charset%3DUTF-8&amp;healthcheck-resources=true&amp;is-server-instance=true&amp;is-system-admin=true&amp;jag=true&amp;jaguser=true&amp;locale=en-US&amp;nps-acknowledged=true&amp;nps-not-opted-out=true" data-wrm-key="atl.dashboard,atl.general,jira.global,jira.general,-_super" data-wrm-batch-type="context" data-initially-rendered></script>
+<script type="text/javascript" src="/s/592232bd544c8f3c010251ab605948a1-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/c5be4587d6368515907b4c6191d4171c/_/download/contextbatch/js/atl.dashboard,atl.general,jira.global,jira.general,-_super/batch.js?agile_global_admin_condition=true&amp;healthcheck-resources=true&amp;is-server-instance=true&amp;is-system-admin=true&amp;jag=true&amp;jaguser=true&amp;locale=en-US&amp;nps-acknowledged=true&amp;nps-not-opted-out=true" data-wrm-key="atl.dashboard,atl.general,jira.global,jira.general,-_super" data-wrm-batch-type="context" data-initially-rendered></script>
+<script type="text/javascript" src="/s/434335f1f0710bec0ee970cbbcde2830-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/9296915968fd19e3630cf5546b9a3e64/_/download/contextbatch/js/atl.global,-_super/batch.js?locale=en-US" data-wrm-key="atl.global,-_super" data-wrm-batch-type="context" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/0ebeaac9279ffbe1c657c1641d2bd07e/_/download/contextbatch/js/jira.dashboard,-_super/batch.js" data-wrm-key="jira.dashboard,-_super" data-wrm-batch-type="context" data-initially-rendered></script>
+<script type="text/javascript" src="/s/879cce1aa0e5abc09ad4f69c7d4c4b80-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/2.3.1/_/download/batch/com.atlassian.jira.jira-tzdetect-plugin:tzdetect-lib/com.atlassian.jira.jira-tzdetect-plugin:tzdetect-lib.js?locale=en-US" data-wrm-key="com.atlassian.jira.jira-tzdetect-plugin:tzdetect-lib" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:calendar/jira.webresources:calendar.js" data-wrm-key="jira.webresources:calendar" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:calendar-en/jira.webresources:calendar-en.js" data-wrm-key="jira.webresources:calendar-en" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:calendar-localisation-moment/jira.webresources:calendar-localisation-moment.js" data-wrm-key="jira.webresources:calendar-localisation-moment" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/434335f1f0710bec0ee970cbbcde2830-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:group-label-lozenge/jira.webresources:group-label-lozenge.js?locale=en-US" data-wrm-key="jira.webresources:group-label-lozenge" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:groupbrowser/jira.webresources:groupbrowser.js" data-wrm-key="jira.webresources:groupbrowser" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/879cce1aa0e5abc09ad4f69c7d4c4b80-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:group-pickers/jira.webresources:group-pickers.js?locale=en-US" data-wrm-key="jira.webresources:group-pickers" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:ie-imitation-placeholder/jira.webresources:ie-imitation-placeholder.js" data-wrm-key="jira.webresources:ie-imitation-placeholder" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/6b73f713300c29e4a487314acb864b7d-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:jira-project-issuetype-fields/jira.webresources:jira-project-issuetype-fields.js?locale=en-US" data-wrm-key="jira.webresources:jira-project-issuetype-fields" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/879cce1aa0e5abc09ad4f69c7d4c4b80-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:jira-fields/jira.webresources:jira-fields.js?locale=en-US" data-wrm-key="jira.webresources:jira-fields" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/4.3.2/_/download/batch/com.atlassian.jira.jira-projects-plugin:data/com.atlassian.jira.jira-projects-plugin:data.js" data-wrm-key="com.atlassian.jira.jira-projects-plugin:data" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/4.3.2/_/download/batch/com.atlassian.jira.jira-projects-plugin:projects-api/com.atlassian.jira.jira-projects-plugin:projects-api.js" data-wrm-key="com.atlassian.jira.jira-projects-plugin:projects-api" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/7.3.1/_/download/batch/com.atlassian.feedback.jira-feedback-plugin:button-resources/com.atlassian.feedback.jira-feedback-plugin:button-resources.js" data-wrm-key="com.atlassian.feedback.jira-feedback-plugin:button-resources" data-wrm-batch-type="resource" data-initially-rendered></script>
+<link type="text/css" rel="stylesheet" href="/s/82ac703321c3c5be2233959e344ef8b8-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/95f098a0f02448092395a19c2113be5f/_/download/contextbatch/css/jira.global.look-and-feel,-_super/batch.css" data-wrm-key="jira.global.look-and-feel,-_super" data-wrm-batch-type="context" media="all">
+
+<script type="text/javascript" src="/rest/api/1.0/shortcuts/73012/6e996169c8ce4eb50eef9f3d66bbf625/shortcuts.js"></script>
+<meta name="stp-license-product-name" content="JIRA"/> <meta name="stp-license-days-to-expiry" content="-235"/> <meta name="stp-license-is-admin" content="true"/> <meta name="stp-license-should-keep-banner-hidden" content="false"/>
+
+
+    
+
+
+
+
+
+
+
+<title>Dada - Theorycraft</title>
+<link rel="search" type="application/opensearchdescription+xml" href="/osd.jsp" title="Dada - Theorycraft"/>
+
+
+</head>
+
+
+
+
+
+<body id="jira" class="aui-layout aui-theme-default page-type-dashboard" data-version="7.3.1">
+<div id="page">
+    <header id="header" role="banner">
+        
+
+
+
+
+
+
+<script>
+require(["jquery", "jira/license-banner"], function ($, licenseBanner) {
+    $(function () {
+        licenseBanner.showLicenseBanner("");
+        licenseBanner.showLicenseFlag("");
+    });
+});
+</script>
+
+
+
+        
+
+
+
+
+        
+
+
+<nav class="aui-header aui-dropdown2-trigger-group" role="navigation"><div class="aui-header-inner"><div class="aui-header-before"><a class=" aui-dropdown2-trigger app-switcher-trigger" aria-controls="app-switcher" aria-haspopup="true" role="button" tabindex="0" data-aui-trigger href="#app-switcher"><span class="aui-icon aui-icon-small aui-iconfont-appswitcher">Linked Applications</span></a><div id="app-switcher" class="aui-dropdown2 aui-style-default" role="menu" aria-hidden="true" data-is-switcher="true" data-environment="{&quot;isUserAdmin&quot;:true,&quot;isAppSuggestionAvailable&quot;:false,&quot;isSiteAdminUser&quot;:true}"><div role="application"><div class="app-switcher-loading">Loading&hellip;</div></div></div></div><div class="aui-header-primary"><h1 id="logo" class="aui-header-logo aui-header-logo-custom"><a href="http://jira.theorycraft.fi/secure/MyJiraHome.jspa"><img src="/s/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/_/jira-logo-scaled.png" alt="Theorycraft" /></a></h1><ul class='aui-nav'><li><a href="/secure/Dashboard.jspa" class=" aui-nav-link aui-dropdown2-trigger aui-dropdown2-ajax" id="home_link" aria-haspopup="true" aria-controls="home_link-content" title="View and manage your dashboards" accesskey="d">Dashboards</a><div class="aui-dropdown2 aui-style-default" id="home_link-content" data-aui-dropdown2-ajax-key="home_link"></div></li><li><a href="/browse/CDB" class=" aui-nav-link aui-dropdown2-trigger aui-dropdown2-ajax" id="browse_link" aria-haspopup="true" aria-controls="browse_link-content" title="View recent projects and browse a list of projects" accesskey="p">Projects</a><div class="aui-dropdown2 aui-style-default" id="browse_link-content" data-aui-dropdown2-ajax-key="browse_link"></div></li><li><a href="/issues/" class=" aui-nav-link aui-dropdown2-trigger aui-dropdown2-ajax" id="find_link" aria-haspopup="true" aria-controls="find_link-content" title="Search for issues and view recent issues" accesskey="i">Issues</a><div class="aui-dropdown2 aui-style-default" id="find_link-content" data-aui-dropdown2-ajax-key="find_link"></div></li><li><a href="/secure/RapidBoard.jspa" class=" aui-nav-link aui-dropdown2-trigger" id="greenhopper_menu" aria-haspopup="true" aria-controls="greenhopper_menu-content" title="Manage your project with JIRA Software">Boards</a><div class="aui-dropdown2 aui-style-default" id="greenhopper_menu-content"><div id="greenhopper_menu_dropdown" class="aui-dropdown2-section" ><ul class="aui-list-truncate"><li id="ghx-manageviews-mlink"><a href="/secure/ManageRapidViews.jspa" id="ghx-manageviews-mlink_lnk" class="">View all boards</a></li></ul></div></div></li>
+<li id="create-menu"><a  id="create_link"  class="aui-button aui-button-primary aui-style create-issue "  title="Create a new issue / bug / feature request / etc" href="/secure/CreateIssue!default.jspa" accesskey="c">Create</a></li></ul></div><div class="aui-header-secondary"><ul class='aui-nav'><li>
+    <form action="/secure/QuickSearch.jspa" method="get" id="quicksearch" class="aui-quicksearch dont-default-focus ajs-dirty-warning-exempt">
+        <input id="quickSearchInput" class="search" type="text" title="Search" placeholder="Search" name="searchString" accessKey="q" />
+        <input type="submit" class="hidden" value="Search">
+    </form>
+</li><li><a class="jira-feedback-plugin" role="button" aria-haspopup="true" id="jira-header-feedback-link" href="#"><span class="aui-icon aui-icon-small jira-feedback-plugin-icon">Give feedback to Atlassian</span></a></li>
+
+
+
+    <li id="system-help-menu">
+        <a class="aui-nav-link aui-dropdown2-trigger" id="help_menu" aria-haspopup="true" aria-owns="system-help-menu-content" href="https://docs.atlassian.com/jira/jsw-docs-073/"  target="$textUtils.htmlEncode($rootHelpMenuItem.params.target)"  title="Help"><span class="aui-icon aui-icon-small aui-iconfont-help">Help</span></a>
+        <div id="system-help-menu-content" class="aui-dropdown2 aui-style-default">
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="jira-help" class="aui-list-truncate">
+                                                            <li>
+                                    <a id="gh_view_help" class="aui-nav-link " title="Get help online for JIRA Software" href="https://docs.atlassian.com/jira/jsw-docs-073/"  target="_blank" >JIRA Software help</a>
+                                </li>
+                                                            <li>
+                                    <a id="view_core_help" class="aui-nav-link " title="Go to the online documentation for JIRA Core" href="https://docs.atlassian.com/jira/jcore-docs-073/"  target="_blank" >JIRA Core help</a>
+                                </li>
+                                                            <li>
+                                    <a id="view_admin_help" class="aui-nav-link " title="Go to the latest JIRA admin documentation" href="https://docs.atlassian.com/jira/jadm-docs-073/"  target="_blank" >JIRA admin help</a>
+                                </li>
+                                                            <li>
+                                    <a id="keyshortscuthelp" class="aui-nav-link " title="Get more information about JIRA's Keyboard Shortcuts" href="/secure/ViewKeyboardShortcuts!default.jspa"  target="_blank" >Keyboard Shortcuts</a>
+                                </li>
+                                                            <li>
+                                    <a id="view_about" class="aui-nav-link " title="Get more information about JIRA" href="/secure/AboutPage.jspa" >About JIRA</a>
+                                </li>
+                                                            <li>
+                                    <a id="view_credits" class="aui-nav-link " title="See who did what" href="/secure/JiraCreditsPage!default.jspa"  target="_blank" >JIRA Credits</a>
+                                </li>
+                                                    </ul>
+                                    </div>
+                    </div>
+    </li>
+
+
+<li id="system-admin-menu">
+    <a href="/plugins/servlet/applications/versions-licenses" id="admin_menu" class="aui-nav-link aui-dropdown2-trigger" aria-haspopup="true" aria-owns="system-admin-menu-content" title="Administration"><span class="aui-icon aui-icon-small aui-iconfont-configure">Administration</span></a>
+    <div id="system-admin-menu-content" class="aui-dropdown2 aui-style-default">
+                    <div class="aui-dropdown2-section">
+                <strong>JIRA administration</strong>
+                <ul class="aui-list-truncate">
+                                            <li>
+                            <a href="/plugins/servlet/applications/versions-licenses" class="aui-nav-link" id="admin_applications_menu" >Applications</a>
+                        </li>
+                                            <li>
+                            <a href="/secure/project/ViewProjects.jspa" class="aui-nav-link" id="admin_project_menu" >Projects</a>
+                        </li>
+                                            <li>
+                            <a href="/secure/admin/ViewIssueTypes.jspa" class="aui-nav-link" id="admin_issues_menu" >Issues</a>
+                        </li>
+                                            <li>
+                            <a href="/plugins/servlet/upm/marketplace" class="aui-nav-link" id="admin_plugins_menu" >Add-ons</a>
+                        </li>
+                                            <li>
+                            <a href="/secure/admin/user/UserBrowser.jspa" class="aui-nav-link" id="admin_users_menu" >User management</a>
+                        </li>
+                                            <li>
+                            <a href="/secure/admin/ViewApplicationProperties.jspa" class="aui-nav-link" id="admin_system_menu" >System</a>
+                        </li>
+                                    </ul>
+            </div>
+            </div>
+</li>
+
+
+
+
+
+
+
+
+<li id="user-options">
+            <a id="header-details-user-fullname" class="aui-dropdown2-trigger" aria-haspopup="true" aria-owns="user-options-content" data-username="msikma" data-displayname="Michiel Sikma" href="/secure/ViewProfile.jspa" title="User profile for Michiel Sikma">
+            <span class="aui-avatar aui-avatar-small">
+                <span class="aui-avatar-inner">
+                    <img src="http://www.gravatar.com/avatar/271c7f04d8be40ba652d9808c9e57643?d=mm&s=24" alt="User profile for Michiel Sikma"/>
+                </span>
+            </span>
+        </a>
+                <div id="user-options-content" class="aui-dropdown2 aui-style-default">
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="personal" class="aui-list-truncate">
+                                                                                                                            <li>
+                                        <a  id="view_profile"   class=""  title="View and change your details and preferences" href="/secure/ViewProfile.jspa">Profile</a>
+                                    </li>
+                                                                                                                                <li>
+                                        <a  id="upm-requests-link"   class=""   href="/plugins/servlet/upm/requests?source=header_user">Atlassian Marketplace</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                            <div class="aui-dropdown2-section">
+                                            <strong>My JIRA Home</strong>
+                                                                <ul id="set_my_jira_home" class="aui-list-truncate">
+                                                                                                                                                                                                                                                                    <li>
+                                        <a  id="set_my_jira_home_default"  class="aui-dropdown2-radio interactive checked    " title="Set my JIRA Home to the Dashboard." href="/secure/UpdateMyJiraHome.jspa?target=com.atlassian.jira.jira-my-home-plugin%3Aset_my_jira_home_dashboard&atl_token=BF1R-MBNW-YQIQ-7LN1|654c5d0c276a91b04b1beb29d59b3869144ef727|lin">Dashboard</a>
+                                    </li>
+                                                                                                                                <li>
+                                        <a  id="greenhopper-my-jira-home-set"  class="aui-dropdown2-radio interactive    " title="Set my JIRA home page to Boards." href="/secure/UpdateMyJiraHome.jspa?target=com.pyxis.greenhopper.jira%3Agreenhopper-my-jira-home-set-51&atl_token=BF1R-MBNW-YQIQ-7LN1|654c5d0c276a91b04b1beb29d59b3869144ef727|lin">Boards</a>
+                                    </li>
+                                                                                                                                <li>
+                                        <a  id="set_my_jira_home_issuenav"  class="aui-dropdown2-radio interactive    " title="Set my JIRA Home to the Issue Navigator." href="/secure/UpdateMyJiraHome.jspa?target=com.atlassian.jira.jira-my-home-plugin%3Aset_my_jira_home_issue&atl_token=BF1R-MBNW-YQIQ-7LN1|654c5d0c276a91b04b1beb29d59b3869144ef727|lin">Issue Navigator</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="system" class="aui-list-truncate">
+                                                                                                                            <li>
+                                        <a  id="log_out"   class=""  title="Log out and cancel any automatic login." href="/logout?atl_token=BF1R-MBNW-YQIQ-7LN1|654c5d0c276a91b04b1beb29d59b3869144ef727|lin">Log Out</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                    </div>
+    </li>
+</ul></div></div><!-- .aui-header-inner--></nav><!-- .aui-header -->
+    </header>
+    
+
+
+
+    <section id="content" role="main">
+<dashboard params="{&quot;dashboardDirectoryResourceUrl&quot;:&quot;http://jira.theorycraft.fi/rest/config/1.0/directory&quot;,&quot;dashboardUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101&quot;,&quot;dashboardDirectoryUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0//directory/10101&quot;,&quot;layoutAction&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/layout&quot;,&quot;errorGadgetUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/error/spec-not-found&quot;,&quot;writable&quot;:true,&quot;canAddExternalGadgetsToDirectory&quot;:true,&quot;dashboardDiagnosticsUrl&quot;:&quot;/plugins/servlet/gadgets/dashboard-diagnostics&quot;,&quot;maxGadgets&quot;:20,&quot;gadgetDirectoryAdminUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/admin&quot;,&quot;dashboardDirectoryBaseUrl&quot;:&quot;http://jira.theorycraft.fi/&quot;,&quot;securityTokensUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/security-tokens&quot;,&quot;dashboardResourceUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101&quot;}" layouts="{&quot;layouts&quot;:[{&quot;layout&quot;:&quot;AB&quot;,&quot;resourceUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101&quot;,&quot;active&quot;:true,&quot;id&quot;:&quot;10101&quot;,&quot;title&quot;:&quot;Dada&quot;,&quot;uri&quot;:&quot;Dashboard.jspa?selectPageId=10101&quot;,&quot;gadgets&quot;:[{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color3&quot;,&quot;column&quot;:0,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10110/color&quot;,&quot;amdModule&quot;:&quot;jira-dashboard-items/filter-results&quot;,&quot;title&quot;:&quot;Filter Results&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10110/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;filterId&quot;,&quot;name&quot;:&quot;filterId&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;10105&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;columnNames&quot;,&quot;name&quot;:&quot;columnNames&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;issuetype|issuekey|summary|priority|status|assignee&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isPopup&quot;,&quot;name&quot;:&quot;isPopup&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;num&quot;,&quot;name&quot;:&quot;num&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;50&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;15&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10110&quot;,&quot;width&quot;:0,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10110&quot;,&quot;properties&quot;:{&quot;filterId&quot;:&quot;10105&quot;,&quot;isConfigured&quot;:&quot;true&quot;,&quot;columnNames&quot;:&quot;issuetype|issuekey|summary|priority|status|assignee&quot;,&quot;isPopup&quot;:&quot;false&quot;,&quot;num&quot;:&quot;50&quot;,&quot;refresh&quot;:&quot;15&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:true,&quot;id&quot;:&quot;10110&quot;,&quot;configurable&quot;:true,&quot;height&quot;:100,&quot;inlineHtml&quot;:&quot;&quot;},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color3&quot;,&quot;column&quot;:0,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10115/color&quot;,&quot;title&quot;:&quot;Projects&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10115/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;viewType&quot;,&quot;name&quot;:&quot;viewType&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;detailed&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;projectsOrCategories&quot;,&quot;name&quot;:&quot;projectsOrCategories&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;cat10000&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;60&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;cols&quot;,&quot;name&quot;:&quot;cols&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;single-col&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10115&quot;,&quot;renderedGadgetUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/ifr?container=atlassian&amp;mid=10115&amp;country=US&amp;lang=en&amp;view=default&amp;view-params=%7B%22writable%22%3A%22true%22%7D&amp;st=atlassian%3AwivT5zdi74yQPBxcggR8FyvPdR5L1iNZ%2BZTzj6Gc0KgnJr9RqJ%2B%2FuFiEK1ppn%2BxsDPqUf0qKdh6PyGFPl7TGpIdDv9OqOWIf3trugSeAJlCdc5zwV%2FbxYFqouAW9GgPrHIlCCtNsmrew%2B6gxPHPOVkaS7QVvXGWuHaho%2F0fbC9DBumgzoAxQq4r9KLnIpslQT%2FPteoVOg22a1aeWCvIRwl4dfw6Of90t63wZVX5pissJv55CqjAuRxE6Ea0pVxgPM0kZO4j0N%2B%2BSMSiH4THUbb4MT3UX%2FR7ZY%2BI7oWGXIeVYJ00J&amp;up_isConfigured=true&amp;up_refresh=60&amp;up_projectsOrCategories=cat10000&amp;up_viewType=detailed&amp;up_cols=single-col&amp;url=http%3A%2F%2Fjira.theorycraft.fi%2Frest%2Fgadgets%2F1.0%2Fg%2Fcom.atlassian.jira.gadgets%3Aproject-gadget%2Fgadgets%2Fproject-gadget.xml&amp;libs=auth-refresh&quot;,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10115&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;projectsOrCategories&quot;:&quot;cat10000&quot;,&quot;viewType&quot;:&quot;detailed&quot;,&quot;refresh&quot;:&quot;60&quot;,&quot;cols&quot;:&quot;single-col&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:false,&quot;id&quot;:&quot;10115&quot;,&quot;gadgetSpecUrl&quot;:&quot;rest/gadgets/1.0/g/com.atlassian.jira.gadgets:project-gadget/gadgets/project-gadget.xml&quot;,&quot;titleUrl&quot;:&quot;http://www.atlassian.com/&quot;,&quot;height&quot;:100},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color5&quot;,&quot;column&quot;:0,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10119/color&quot;,&quot;title&quot;:&quot;Projects&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10119/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;viewType&quot;,&quot;name&quot;:&quot;viewType&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;detailed&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;projectsOrCategories&quot;,&quot;name&quot;:&quot;projectsOrCategories&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;cat10003&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;60&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;cols&quot;,&quot;name&quot;:&quot;cols&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;single-col&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10119&quot;,&quot;renderedGadgetUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/ifr?container=atlassian&amp;mid=10119&amp;country=US&amp;lang=en&amp;view=default&amp;view-params=%7B%22writable%22%3A%22true%22%7D&amp;st=atlassian%3AnPEwKp9qPeksT%2FbopbleR6eS1DtReEKscxuzrjN0E1yHfxRiMrBE%2B8o23h5a%2BJtSEZXwkOh4CwA2I4jwQmeq41WFVtBRVwhwc1vIlavZqAc5s4UuaQXMtTPxf93FTaBStXgq2Fw1eiiD9ficgkeANv0QmhpnDaoeuEDYslsnsN8HUiY8kKcIE8Le1rC%2BHvZQthZK23Bby8wxZWzUh2wsTnpG0837paXQD88SeCb9owMu6fEGbPxf%2FH8BBa2ZBZRrHDXjtmwiF0wafZonEKGT5nmbdp9WKabTf5mATKWscIltmwsU&amp;up_isConfigured=true&amp;up_refresh=60&amp;up_projectsOrCategories=cat10003&amp;up_viewType=detailed&amp;up_cols=single-col&amp;url=http%3A%2F%2Fjira.theorycraft.fi%2Frest%2Fgadgets%2F1.0%2Fg%2Fcom.atlassian.jira.gadgets%3Aproject-gadget%2Fgadgets%2Fproject-gadget.xml&amp;libs=auth-refresh&quot;,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10119&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;projectsOrCategories&quot;:&quot;cat10003&quot;,&quot;viewType&quot;:&quot;detailed&quot;,&quot;refresh&quot;:&quot;60&quot;,&quot;cols&quot;:&quot;single-col&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:false,&quot;id&quot;:&quot;10119&quot;,&quot;gadgetSpecUrl&quot;:&quot;rest/gadgets/1.0/g/com.atlassian.jira.gadgets:project-gadget/gadgets/project-gadget.xml&quot;,&quot;titleUrl&quot;:&quot;http://www.atlassian.com/&quot;,&quot;height&quot;:100},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color3&quot;,&quot;column&quot;:0,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10117/color&quot;,&quot;title&quot;:&quot;Agile Wallboard Gadget&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10117/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;rapidViewId&quot;,&quot;name&quot;:&quot;rapidViewId&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;9&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;showRapidViewName&quot;,&quot;name&quot;:&quot;showRapidViewName&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;quickFilters&quot;,&quot;name&quot;:&quot;quickFilters&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;none&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;60&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;showQuickFilterNames&quot;,&quot;name&quot;:&quot;showQuickFilterNames&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10117&quot;,&quot;renderedGadgetUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/ifr?container=atlassian&amp;mid=10117&amp;country=US&amp;lang=en&amp;view=default&amp;view-params=%7B%22writable%22%3A%22true%22%7D&amp;st=atlassian%3A8XgVzRcVO0WTN%2FXdZ%2F2VgJdJKDKYvFDmOOpwYnwI25cGT8%2FE42w2LC33md3sS2Ra79RynRTTPZaz5uVHhWswf1l5YZUnQaiOvI%2FkDq9FO6q971BKY3S%2FDWlrMg4F22DtLejS8psRO4ixYxwbeYMn8bUIkkdp0SnTyysK5ZfiLzqMXpP2O%2Fm5XQCddXe7yR8M%2B1guQD6GcfcLxJgS%2Bf8Te13YPwcVCm94QuhgZke%2BdWOyQq6nMS4lWdCmi9RoIAyLyWINPU2GgSOPrz7q358eXnFcw2%2FUEpvaAYpejO%2BD0GHQ1ji1OGDpJx8z1lUHL3kp7ELW4Q%3D%3D&amp;up_isConfigured=true&amp;up_rapidViewId=9&amp;up_showRapidViewName=false&amp;up_quickFilters=none&amp;up_showQuickFilterNames=false&amp;up_refresh=60&amp;url=http%3A%2F%2Fjira.theorycraft.fi%2Frest%2Fgadgets%2F1.0%2Fg%2Fcom.pyxis.greenhopper.jira%3Agreenhopper-gadget-rapid-view%2Fgadgets%2Fgreenhopper-rapid-view.xml&amp;libs=auth-refresh&quot;,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10117&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;rapidViewId&quot;:&quot;9&quot;,&quot;showRapidViewName&quot;:&quot;false&quot;,&quot;quickFilters&quot;:&quot;none&quot;,&quot;refresh&quot;:&quot;60&quot;,&quot;showQuickFilterNames&quot;:&quot;false&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:false,&quot;id&quot;:&quot;10117&quot;,&quot;gadgetSpecUrl&quot;:&quot;rest/gadgets/1.0/g/com.pyxis.greenhopper.jira:greenhopper-gadget-rapid-view/gadgets/greenhopper-rapid-view.xml&quot;,&quot;height&quot;:600},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color4&quot;,&quot;column&quot;:1,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10112/color&quot;,&quot;amdModule&quot;:&quot;jira-dashboard-items/stats&quot;,&quot;title&quot;:&quot;Issue Statistics&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10112/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;sortDirection&quot;,&quot;name&quot;:&quot;sortDirection&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;asc&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;statType&quot;,&quot;name&quot;:&quot;statType&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;statuses&quot;,&quot;required&quot;:false},{&quot;name&quot;:&quot;name&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;All Dada project tasks&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;15&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;sortBy&quot;,&quot;name&quot;:&quot;sortBy&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;natural&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;projectOrFilterId&quot;,&quot;name&quot;:&quot;projectOrFilterId&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;filter-10105&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;includeResolvedIssues&quot;,&quot;name&quot;:&quot;includeResolvedIssues&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;name&quot;:&quot;id&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;10105&quot;,&quot;required&quot;:false},{&quot;name&quot;:&quot;type&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;filter&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10112&quot;,&quot;width&quot;:0,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10112&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;sortDirection&quot;:&quot;asc&quot;,&quot;statType&quot;:&quot;statuses&quot;,&quot;name&quot;:&quot;All Dada project tasks&quot;,&quot;refresh&quot;:&quot;15&quot;,&quot;sortBy&quot;:&quot;natural&quot;,&quot;projectOrFilterId&quot;:&quot;filter-10105&quot;,&quot;includeResolvedIssues&quot;:&quot;false&quot;,&quot;id&quot;:&quot;10105&quot;,&quot;type&quot;:&quot;filter&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:true,&quot;id&quot;:&quot;10112&quot;,&quot;configurable&quot;:true,&quot;height&quot;:100,&quot;inlineHtml&quot;:&quot;&quot;},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color4&quot;,&quot;column&quot;:1,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10116/color&quot;,&quot;amdModule&quot;:&quot;jira-dashboard-items/createdvsresolved&quot;,&quot;title&quot;:&quot;Created vs. Resolved Chart&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10116/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isPopup&quot;,&quot;name&quot;:&quot;isPopup&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;15&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;periodName&quot;,&quot;name&quot;:&quot;periodName&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;weekly&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;showUnresolvedTrend&quot;,&quot;name&quot;:&quot;showUnresolvedTrend&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;projectOrFilterId&quot;,&quot;name&quot;:&quot;projectOrFilterId&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;type&quot;,&quot;name&quot;:&quot;type&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;filter&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;versionLabel&quot;,&quot;name&quot;:&quot;versionLabel&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;all&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isCumulative&quot;,&quot;name&quot;:&quot;isCumulative&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;name&quot;:&quot;name&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;All Dada project tasks&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;daysprevious&quot;,&quot;name&quot;:&quot;daysprevious&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;30&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;id&quot;,&quot;name&quot;:&quot;id&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;10105&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;operation&quot;,&quot;name&quot;:&quot;operation&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;cumulative&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10116&quot;,&quot;width&quot;:0,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10116&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;isPopup&quot;:&quot;false&quot;,&quot;refresh&quot;:&quot;15&quot;,&quot;periodName&quot;:&quot;weekly&quot;,&quot;showUnresolvedTrend&quot;:&quot;true&quot;,&quot;projectOrFilterId&quot;:&quot;&quot;,&quot;type&quot;:&quot;filter&quot;,&quot;versionLabel&quot;:&quot;all&quot;,&quot;isCumulative&quot;:&quot;false&quot;,&quot;name&quot;:&quot;All Dada project tasks&quot;,&quot;daysprevious&quot;:&quot;30&quot;,&quot;id&quot;:&quot;10105&quot;,&quot;operation&quot;:&quot;cumulative&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:true,&quot;id&quot;:&quot;10116&quot;,&quot;configurable&quot;:true,&quot;height&quot;:100,&quot;inlineHtml&quot;:&quot;&lt;div class=&#39;createdvsresolved-gadget&#39;&gt;&lt;\/div&gt;&quot;},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color4&quot;,&quot;column&quot;:1,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10113/color&quot;,&quot;title&quot;:&quot;Recently Created Chart&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10113/prefs&quot;,&quot;fields&quot;:[{&quot;displayName&quot;:&quot;isConfigured&quot;,&quot;name&quot;:&quot;isConfigured&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;true&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;isPopup&quot;,&quot;name&quot;:&quot;isPopup&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;false&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;refresh&quot;,&quot;name&quot;:&quot;refresh&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;60&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;periodName&quot;,&quot;name&quot;:&quot;periodName&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;weekly&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;projectOrFilterId&quot;,&quot;name&quot;:&quot;projectOrFilterId&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;filter-10105&quot;,&quot;required&quot;:false},{&quot;displayName&quot;:&quot;daysprevious&quot;,&quot;name&quot;:&quot;daysprevious&quot;,&quot;type&quot;:&quot;hidden&quot;,&quot;value&quot;:&quot;30&quot;,&quot;required&quot;:false}]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10113&quot;,&quot;renderedGadgetUrl&quot;:&quot;http://jira.theorycraft.fi/plugins/servlet/gadgets/ifr?container=atlassian&amp;mid=10113&amp;country=US&amp;lang=en&amp;view=default&amp;view-params=%7B%22writable%22%3A%22true%22%7D&amp;st=atlassian%3AaMueZ7%2Bs1P9erz7WsJkiVvkSBtTzb7hxqvwZxxGC91fKVvJ4UTx6e71LoQFQ6mQyxtMLUNup%2FLg13wEo8%2Bsz5P%2BB8duAlir2StYOh6bznuu3o2LNNVLDYXIOnD9GqgIJkMnLjyNvy75%2Fapr3524RSnpqLfWL3BxatZvhvP9Xopt3OKT0JyRUQtApSNr%2BRSbShwhiyWolxyiKI3RSsQznhc1VBft8Ui3HNy%2FtaxQ7vhcztUYpOmukqZDuichyeGZ8E6LyTkbuMxx8wr2o0Itl3tL04ee41aw%2FAbMerEv%2Bw5Ijp9OvuvkbbglJkCl1rZbgSw1Ikg%3D%3D&amp;up_isConfigured=true&amp;up_isPopup=false&amp;up_refresh=60&amp;up_projectOrFilterId=filter-10105&amp;up_daysprevious=30&amp;up_periodName=weekly&amp;url=http%3A%2F%2Fjira.theorycraft.fi%2Frest%2Fgadgets%2F1.0%2Fg%2Fcom.atlassian.jira.gadgets%3Arecently-created-chart-gadget%2Fgadgets%2Frecently-created-gadget.xml&amp;libs=auth-refresh&quot;,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10113&quot;,&quot;properties&quot;:{&quot;isConfigured&quot;:&quot;true&quot;,&quot;isPopup&quot;:&quot;false&quot;,&quot;refresh&quot;:&quot;60&quot;,&quot;periodName&quot;:&quot;weekly&quot;,&quot;projectOrFilterId&quot;:&quot;filter-10105&quot;,&quot;daysprevious&quot;:&quot;30&quot;}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:true,&quot;id&quot;:&quot;10113&quot;,&quot;gadgetSpecUrl&quot;:&quot;rest/gadgets/1.0/g/com.atlassian.jira.gadgets:recently-created-chart-gadget/gadgets/recently-created-gadget.xml&quot;,&quot;height&quot;:100},{&quot;hasNonHiddenUserPrefs&quot;:false,&quot;color&quot;:&quot;color4&quot;,&quot;column&quot;:1,&quot;colorUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10118/color&quot;,&quot;title&quot;:&quot;Quick Links&quot;,&quot;userPrefs&quot;:{&quot;action&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10118/prefs&quot;,&quot;fields&quot;:[]},&quot;loaded&quot;:true,&quot;gadgetUrl&quot;:&quot;http://jira.theorycraft.fi/rest/dashboards/1.0/10101/gadget/10118&quot;,&quot;width&quot;:0,&quot;context&quot;:{&quot;view&quot;:{&quot;viewType&quot;:{&quot;aliases&quot;:[&quot;DEFAULT&quot;,&quot;DASHBOARD&quot;,&quot;profile&quot;,&quot;home&quot;],&quot;name&quot;:&quot;default&quot;,&quot;canonicalName&quot;:&quot;default&quot;}},&quot;dashboardItem&quot;:{&quot;id&quot;:&quot;10118&quot;,&quot;properties&quot;:{}},&quot;user&quot;:{&quot;key&quot;:&quot;msikma&quot;,&quot;username&quot;:&quot;msikma&quot;},&quot;dashboard&quot;:{&quot;id&quot;:&quot;10101&quot;}},&quot;isMaximizable&quot;:false,&quot;id&quot;:&quot;10118&quot;,&quot;configurable&quot;:false,&quot;height&quot;:50,&quot;inlineHtml&quot;:&quot;&lt;div class=\&quot;quicklinks-dashboard-item\&quot;&gt;&lt;ul class=\&quot;quicklinks-links-list\&quot;&gt;&lt;h6 class=\&quot;list-label\&quot;&gt;Navigation&lt;\/h6&gt;&lt;li&gt;&lt;a href=\&quot;/secure/BrowseProjects.jspa\&quot; title=\&quot;Browse the projects you have permission to view\&quot; target=\&quot;_parent\&quot;&gt;Browse Projects&lt;\/a&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href=\&quot;/secure/IssueNavigator.jspa?mode=show\&quot; title=\&quot;Find issues in the projects you have permission to view\&quot; target=\&quot;_parent\&quot;&gt;Search for Issues&lt;\/a&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href=\&quot;/secure/CreateIssue!default.jspa\&quot; title=\&quot;Create a new issue\&quot; target=\&quot;_parent\&quot;&gt;Create Issue&lt;\/a&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href=\&quot;/secure/project/ViewProjects.jspa\&quot; title=\&quot;gadget.quicklinks.administration.title\&quot; target=\&quot;_parent\&quot;&gt;Administration&lt;\/a&gt;&lt;\/li&gt;&lt;\/ul&gt;&lt;ul class=\&quot;quicklinks-links-list\&quot;&gt;&lt;h6 class=\&quot;list-label\&quot;&gt;Filters&lt;\/h6&gt;&lt;li&gt;&lt;a href=\&quot;/secure/IssueNavigator.jspa?reset=true&amp;amp;hide=true&amp;amp;jqlQuery=resolution+%3D+Unresolved+AND+reporter+%3D+currentUser%28%29\&quot; title=\&quot;View all unresolved issues that I have reported\&quot; target=\&quot;_parent\&quot;&gt;My Unresolved Reported Issues&lt;\/a&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href=\&quot;/secure/IssueNavigator.jspa?reset=true&amp;amp;jqlQuery=key+in+votedIssues%28%29\&quot; title=\&quot;View all issues voted for\&quot; target=\&quot;_parent\&quot;&gt;Votes&lt;\/a&gt;&lt;\/li&gt;&lt;li&gt;&lt;a href=\&quot;/secure/IssueNavigator.jspa?reset=true&amp;amp;jqlQuery=key+in+watchedIssues%28%29\&quot; title=\&quot;View all issues you are watching\&quot; target=\&quot;_parent\&quot;&gt;Watches&lt;\/a&gt;&lt;\/li&gt;&lt;\/ul&gt;&lt;\/div&gt;&quot;}],&quot;writable&quot;:true}]}"><div id="dashboard" class="dashboard initializing draggable"><div id="dashboard-content"><div class="aui-page-header"><div class="aui-page-header-inner"><div class="aui-page-header-main"><h1>Dada</h1></div><div class="aui-page-header-actions" id="dash-options"><div id="dash-throbber" class="throbber">&nbsp;</div><a  id="add-gadget" class=" aui-button add-gadget-link" href="http://jira.theorycraft.fi">Add gadget</a><a  id="layout-changer" class=" aui-button" href="http://jira.theorycraft.fi/#">Edit layout</a><a aria-owns="tools-dropdown-items" aria-haspopup="true" class="aui-button aui-dropdown2-trigger aui-dropdown2-trigger-arrowless"><span class="aui-icon aui-icon-small aui-iconfont-more">Tools</span></a><div id="tools-dropdown-items" class="aui-style-default aui-dropdown2"><ul class="aui-list-truncate"><li><a  id="copy_dashboard" class="item-link " href="http://jira.theorycraft.fi/secure/AddPortalPage!default.jspa?clonePageId=10101&amp;returnUrl=/secure/Dashboard.jspa">Copy Dashboard</a></li><li><a  id="edit_dashboard" class="item-link " href="http://jira.theorycraft.fi/secure/EditPortalPage!default.jspa?pageId=10101&amp;returnUrl=/secure/Dashboard.jspa">Edit Dashboard</a></li><li><a  id="share_dashboard" class="item-link " href="http://jira.theorycraft.fi/secure/EditPortalPage!default.jspa?pageId=10101&amp;returnUrl=/secure/Dashboard.jspa">Share Dashboard</a></li><li><a  id="delete_dashboard" class="item-link " href="http://jira.theorycraft.fi/secure/DeletePortalPage!default.jspa?pageId=10101&amp;returnUrl=/secure/Dashboard.jspa">Delete Dashboard</a></li><li><a  id="find" class="item-link groupmarker" href="http://jira.theorycraft.fi/secure/ConfigurePortalPages!default.jspa?returnUrl=/secure/Dashboard.jspa&amp;view=search">Find Dashboards</a></li><li><a  id="create_dashboard" class="item-link groupmarker" href="http://jira.theorycraft.fi/secure/AddPortalPage!default.jspa?returnUrl=/secure/Dashboard.jspa">Create Dashboard</a></li><li><a  id="wallboard_link" class="item-link groupmarker" href="http://jira.theorycraft.fi/plugins/servlet/Wallboard/?dashboardId=10101">View as wallboard</a></li><li><a  id="configure_wallboard" class="item-link " href="http://jira.theorycraft.fi#">Set up wallboard slideshow</a></li></ul></div></div></div></div></div></div><div id="diagnostic-warning" class="hidden"></div><div id="i18n-settings"><input class="locale-lang" type="hidden" value="en"><input class="locale-country" type="hidden" value="US"></div><dashboard-done /></dashboard>
+    </section>
+    <footer id="footer" role="contentinfo">
+        
+
+<section class="footer-body">
+
+
+
+<ul class="atlassian-footer">
+    <li>
+        Atlassian JIRA <a class="seo-link" rel="nofollow" href="https://www.atlassian.com/software/jira">Project Management Software</a>
+
+                                    
+                        
+        <span id="footer-build-information">(v7.3.1#73012-<span title='68837e38d8ed1b069612405186dcdceed665bb39' data-commit-id='68837e38d8ed1b069612405186dcdceed665bb39}'>sha1:68837e3</span>)</span>
+    </li>
+    <li>
+        <a id="about-link" rel="nofollow" href="/secure/AboutPage.jspa">About JIRA</a>
+    </li>
+    <li>
+                        <a id="footer-report-problem-link" rel="nofollow" href="/plugins/servlet/stp/view/">Report a problem</a>
+    </li>
+</ul>
+
+    <div id="footer-logo"><a rel="nofollow" href="http://www.atlassian.com/">Atlassian</a></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<fieldset class="hidden parameters">
+    <input type="hidden" title="loggedInUser" value="msikma">
+    <input type="hidden" title="ajaxTimeout" value="The call to the JIRA server did not complete within the timeout period.  We are unsure of the result of this operation.">
+    <input type="hidden" title="JiraVersion" value="7.3.1" />
+    <input type="hidden" title="ajaxUnauthorised" value="You are not authorized to perform this operation.  Please log in.">
+    <input type="hidden" title="baseURL" value="http://jira.theorycraft.fi" />
+    <input type="hidden" title="ajaxCommsError" value="The JIRA server could not be contacted. This may be a temporary glitch or the server may be down. ">
+    <input type="hidden" title="ajaxServerError" value="The JIRA server was contacted but has returned an error response. We are unsure of the result of this operation.">
+    <input type="hidden" title="ajaxErrorCloseDialog" value="Close this dialog and press refresh in your browser">
+    <input type="hidden" title="ajaxErrorDialogHeading" value="Communications Breakdown">
+
+    <input type="hidden" title="dirtyMessage" value="You have entered new data on this page. If you navigate away from this page without first saving your data, the changes will be lost.">
+    <input type="hidden" title="dirtyDialogMessage" value="You have entered new data in this dialog. If you navigate away from this dialog without first saving your data, the changes will be lost. Click cancel to return to the dialog.">
+    <input type="hidden" title="keyType" value="Type">
+    <input type="hidden" title="keyThen" value="then">
+    <input type="hidden" title="dblClickToExpand" value="Double click to expand">
+    <input type="hidden" title="actions" value="Actions">
+    <input type="hidden" title="removeItem" value="Remove">
+    <input type="hidden" title="workflow" value="Workflow">
+    <input type="hidden" title="labelNew" value="New Label">
+    <input type="hidden" title="issueActionsHint" value="Begin typing for available operations or press down to see all">
+    <input type="hidden" title="closelink" value="Close">
+    <input type="hidden" title="dotOperations" value="Operations">
+    <input type="hidden" title="dotLoading" value="Loading...">
+    <input type="hidden" title="frotherSuggestions" value="Suggestions">
+    <input type="hidden" title="frotherNomatches" value="No Matches">
+    <input type="hidden" title="multiselectVersionsError" value="{0} is not a valid version.">
+    <input type="hidden" title="multiselectComponentsError" value="{0} is not a valid component.">
+    <input type="hidden" title="multiselectGenericError" value="The value {0} is invalid.">
+</fieldset>
+
+    </footer>
+</div>
+
+
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:bigpipe-js/jira.webresources:bigpipe-js.js" data-wrm-key="jira.webresources:bigpipe-js" data-wrm-batch-type="resource" data-initially-rendered></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/-j5g2pl/73012/e1c7500d3f61ee32a818c3f77fcba6ef/1.0/_/download/batch/jira.webresources:bigpipe-init/jira.webresources:bigpipe-init.js" data-wrm-key="jira.webresources:bigpipe-init" data-wrm-batch-type="resource" data-initially-rendered></script>
+
+<form id="jira_request_timing_info" class="dont-default-focus" >
+	<fieldset class="parameters hidden">
+		<input type="hidden" title="jira.request.start.millis" value="1539546048068" />
+		<input type="hidden" title="jira.request.server.time" value="4653" />
+		<input type="hidden" title="jira.request.id" value="1300x194312x1" />
+		<input type="hidden" title="jira.session.expiry.time" value="1539564048029" />
+		<input type="hidden" title="jira.session.expiry.in.mins" value="299" />
+		<input id="jiraConcurrentRequests" type="hidden" name="jira.request.concurrent.requests" value="1" />
+		<input type="hidden" title="db.reads.time.in.ms" value="20" />
+		<input type="hidden" title="db.conns.time.in.ms" value="26" />
+	</fieldset>
+</form>
+<!--
+	                 REQUEST ID : 1300x194312x1
+	          REQUEST TIMESTAMP : [14/Oct/2018:21:40:48 +0200]
+	               REQUEST TIME : 4.6530
+	                 ASESSIONID : hqdxtw
+	        CONCURRENT REQUESTS : 1
+
+	                      db.reads : OpSnapshot{name='db.reads', invocationCount=37, elapsedTotal=20325171, elapsedMin=205110, elapsedMax=7750343, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
+	                      db.conns : OpSnapshot{name='db.conns', invocationCount=41, elapsedTotal=26460234, elapsedMin=226261, elapsedMax=7863462, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
+-->
+
+</body>
+</html>

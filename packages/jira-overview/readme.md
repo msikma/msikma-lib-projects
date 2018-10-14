@@ -1,0 +1,7 @@
+## `jira-overview`
+
+Very simple scraper script for a specific Jira instance. Written for use by a personal script.
+
+### License
+
+MIT license.
