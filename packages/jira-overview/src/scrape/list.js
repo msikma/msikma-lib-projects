@@ -15,7 +15,7 @@ const listProjectTasks = async () => {
   return data
 }
 
-const scrapeTasks = ($) => {
+export const scrapeTasks = ($) => {
   return $('#issuetable .issuerow').get().map(issue => {
     const type = $('.issuetype img', issue).attr('alt').trim()
     const $key = $('.issuekey .issue-link', issue)
