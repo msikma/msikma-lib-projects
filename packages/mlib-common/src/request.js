@@ -3,7 +3,7 @@
 
 import request from 'request'
 import throttleRequest from 'throttled-request'
-import FileCookieStore from 'file-cookie-store'
+import FileCookieStore from 'file-cookie-store-sync'
 
 // Create a modified request() function that uses throttling.
 const throttledRequest = throttleRequest(request)
@@ -37,7 +37,7 @@ export const loadCookieFile = (cookieFile) => (
       // These are sent with our request to ensure we have access to logged in pages.
       const cookieStore = new FileCookieStore(cookieFile, { no_file_error: true })
       const jar = request.jar(cookieStore)
-      resolve({ jar })
+      resolve(jar)
     }
     catch (err) {
       reject(err)
@@ -58,9 +58,9 @@ export const throttledRequestURI = (url, fullResponse = false, headers = {}, ...
 // This function has a higher chance of being permitted by the source site
 // since it's designed to look like a normal browser request rather than a script.
 // The request() function returns a promise, so remember to await.
-const requestURI = (url, fullResponse = false, headers = {}, throttle = false, ...props) => new Promise((resolve, reject) => (
+const requestURI = (url, fullResponse = false, headers = {}, throttle = false, etc = {}) => new Promise((resolve, reject) => (
   (throttle ? throttledRequest : request)(
-    { url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...props },
+    { url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...etc },
     (err, res) => {
       if (err) return reject(err)
       resolve(fullResponse ? res : res.body)
