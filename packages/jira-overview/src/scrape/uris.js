@@ -25,7 +25,6 @@ export const issueTableURL = () => (
     showActions: true,
     filterId: 10105,
     sortBy: '',
-    startIndex: 0,
-    _: 1539547208205
-  })}&${columnNames.join('&')}`
+    startIndex: 0
+  }, { removeEmptyString: false })}&${columnNames.join('&')}`
 )

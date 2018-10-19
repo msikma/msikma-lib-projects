@@ -20,6 +20,4 @@ const parsed = parser.parseArgs()
 const action = parsed.action
 const args = { ...parsed, action: action == null ? 'list' : action }
 
-// The cli() function is only for the command line. Make sure we remember we came from there.
-process.env.JIRA_OVERVIEW_JS_CLI = '1'
 require('../index').cli(args)

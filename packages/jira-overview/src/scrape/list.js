@@ -2,17 +2,32 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import path from 'path'
+import get from 'lodash/get'
 import { cheerio } from 'mlib-common/lib/scrape'
 import { readFileAsync } from 'mlib-common/lib/promisified/fs'
-import requestURI from 'mlib-common/lib/request'
+import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { issueTableURL } from './uris'
 
 const listProjectTasks = async () => {
-  //const json = JSON.parse(await requestURI(issueTableURL()))
-  const json = JSON.parse(await readFileAsync(path.normalize(`${__dirname}/../../test/issue-table.json`)))
+  const json = await reqProjectTasks()
+
+  // Throw here if we received an error message from Jira.
+  if (get(json, 'errors.length', 0) > 0) {
+    throw new Error(`${json.errors[0].field}: ${json.errors[0].error}`)
+  }
+
+  // If not, scrape all issues and return them.
   const $ = cheerio.load(json.table)
   const data = scrapeTasks($)
   return data
+}
+
+const reqProjectTasks = async () => {
+  const cookieFile = path.normalize(path.join(process.env.HOME, '.config', 'jirajs', 'cookies.txt'))
+  const cookieJar = await loadCookieFile(cookieFile)
+  const issues = await requestURI(issueTableURL(), false, {}, false, { jar: cookieJar })
+  const json = JSON.parse(issues)
+  return json
 }
 
 export const scrapeTasks = ($) => {

@@ -5,11 +5,6 @@ import listProjectTasks from './scrape/list'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {
-  // Don't run this unless we came from the command line.
-  if (process.env.JIRA_OVERVIEW_JS_CLI !== '1') {
-    throw new Error('Cannot use cli() except from the jira-overview-cli command line utility')
-  }
-
   try {
     if (args.action === 'list') {
       const result = await listProjectTasks()
