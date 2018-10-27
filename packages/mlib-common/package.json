@@ -10,14 +10,14 @@
   "repository": "https://github.com/msikma/msikma-lib-projects",
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {
     "array-flatten": "^2.1.1",
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
     "file-cookie-store-sync": "^0.1.0",
     "lodash": "^4.17.5",
+    "mkdirp": "^0.5.1",
     "request": "^2.87.0",
     "throttled-request": "^0.1.1"
   }
