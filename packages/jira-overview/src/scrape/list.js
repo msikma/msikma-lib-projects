@@ -4,7 +4,6 @@
 import path from 'path'
 import get from 'lodash/get'
 import { cheerio } from 'mlib-common/lib/scrape'
-import { readFileAsync } from 'mlib-common/lib/promisified/fs'
 import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { issueTableURL } from './uris'
 
