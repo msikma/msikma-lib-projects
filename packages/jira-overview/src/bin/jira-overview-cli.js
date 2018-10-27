@@ -20,7 +20,7 @@ parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['lis
 parser.addArgument(['--no-cache'], { help: 'Forces a cache-less request.', action: 'storeTrue' })
 parser.addArgument(['--cookie-loc'], { help: 'Location of the cookie authentication file.', defaultValue: '~/.config/jirajs/cookies.txt', metavar: 'CKL' })
 parser.addArgument(['--cache-loc'], { help: 'Location of the tasks cache.', defaultValue: '~/.cache/jirajs/tasks-cache.json', metavar: 'CL' })
-parser.addArgument(['--cache-time'], { help: 'Duration that the cache is considered valid, in minutes.', defaultValue: 15, metavar: 'MIN' })
+parser.addArgument(['--cache-time'], { help: 'Duration that the cache is considered valid, in minutes. By default: 300 (5 hours).', defaultValue: 300, metavar: 'MIN' })
 
 const parsed = parser.parseArgs()
 const action = parsed.action
