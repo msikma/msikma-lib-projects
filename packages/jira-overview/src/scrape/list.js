@@ -6,19 +6,25 @@ import get from 'lodash/get'
 import { cheerio } from 'mlib-common/lib/scrape'
 import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { issueTableURL } from './uris'
-import cacheTasks from './cache'
+import cacheTasks, { retrieveCache } from './cache'
 
 const listProjectTasks = async (args) => {
-  const json = await reqProjectTasks(args.cookie_loc)
-
-  // Throw here if we received an error message from Jira.
-  if (get(json, 'errors.length', 0) > 0) {
-    throw new Error(`${json.errors[0].field}: ${json.errors[0].error}`)
+  let data = await retrieveCache(args.cache_loc, args.cache_time)
+  if (!data) {
+    data = await reqProjectTasks(args.cookie_loc)
+    // Throw here if we received an error message from Jira.
+    if (get(data, 'errors.length', 0) > 0) {
+      throw new Error(`${data.errors[0].field}: ${data.errors[0].error}`)
+    }
+  }
+  else {
+    // Cached data has already been processed.
+    return data
   }
 
   // If not, scrape all issues and return them.
-  const $notDone = cheerio.load(json.notDoneData.table)
-  const $done = cheerio.load(json.doneData.table)
+  const $notDone = cheerio.load(data.notDoneData.table)
+  const $done = cheerio.load(data.doneData.table)
   const notDone = scrapeTasks($notDone)
   const done = scrapeTasks($done)
 
@@ -26,7 +32,7 @@ const listProjectTasks = async (args) => {
 
   // Save to cache.
   if (!args.no_cache) {
-    cacheTasks(tasks, args.cache_loc)
+    await cacheTasks(tasks, args.cache_loc)
   }
   return tasks
 }
