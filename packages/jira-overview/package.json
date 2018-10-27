@@ -1,7 +1,10 @@
 {
   "name": "jira-overview",
   "description": "Simple scraper used to get a list of project tasks from a Jira dashboard",
-  "files": ["lib", "bin"],
+  "files": [
+    "lib",
+    "bin"
+  ],
   "version": "1.0.0",
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
@@ -12,7 +15,7 @@
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
   "dependencies": {
-    "mlib-common": "^1.0.0",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "mlib-common": "^1.0.0"
   }
 }

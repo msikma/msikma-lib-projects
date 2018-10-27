@@ -9,7 +9,8 @@ import { issueTableURL } from './uris'
 import cacheTasks, { retrieveCache } from './cache'
 
 const listProjectTasks = async (args) => {
-  let data = await retrieveCache(args.cache_loc, args.cache_time)
+  // Retrieve cache, unless the user specified not to use it.
+  let data = args.no_cache ? null : (await retrieveCache(args.cache_loc, args.cache_time))
   if (!data) {
     data = await reqProjectTasks(args.cookie_loc)
     // Throw here if we received an error message from Jira.
@@ -31,9 +32,8 @@ const listProjectTasks = async (args) => {
   const tasks = [...done, ...notDone]
 
   // Save to cache.
-  if (!args.no_cache) {
-    await cacheTasks(tasks, args.cache_loc)
-  }
+  await cacheTasks(tasks, args.cache_loc)
+
   return tasks
 }
 
