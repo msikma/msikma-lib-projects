@@ -2321,14 +2321,15 @@ figures@^2.0.0:
   dependencies:
     escape-string-regexp "^1.0.5"
 
-file-cookie-store@msikma/file-cookie-store:
-  version "0.3.0"
-  resolved "https://codeload.github.com/msikma/file-cookie-store/tar.gz/f587e907f22a2db6892576974ab10a90cbbbd70e"
+file-cookie-store-sync@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/file-cookie-store-sync/-/file-cookie-store-sync-0.1.0.tgz#8579f9e69c00b15543ab7fd96c210b440e74d180"
+  integrity sha1-hXn55pwAsVVDq3/ZbCELRA500YA=
   dependencies:
     lockfile "~1.0.0"
     punycode "~1.2.3"
     q "~1.0.1"
-    tough-cookie "~2.3.3"
+    tough-cookie "~2.0.0"
 
 file-entry-cache@^2.0.0:
   version "2.0.0"
@@ -3881,7 +3882,7 @@ mixin-deep@^1.2.0:
 
 mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
-  resolved "http://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
+  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
@@ -5200,12 +5201,10 @@ tough-cookie@>=2.3.3, tough-cookie@^2.3.4, tough-cookie@~2.4.3:
     psl "^1.1.24"
     punycode "^1.4.1"
 
-tough-cookie@~2.3.3:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.4.tgz#ec60cee38ac675063ffc97a5c18970578ee83655"
-  integrity sha512-TZ6TTfI5NtZnuyy/Kecv+CnoROnyXn2DN97LontgQpCwsX2XyLYCC0ENhYkehSOwAp8rTQKc/NUIF7BkQ5rKLA==
-  dependencies:
-    punycode "^1.4.1"
+tough-cookie@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.0.0.tgz#41ce08720b35cf90beb044dd2609fb19e928718f"
+  integrity sha1-Qc4Icgs1z5C+sETdJgn7GekocY8=
 
 tr46@^1.0.1:
   version "1.0.1"
