@@ -15,6 +15,9 @@ const parser = makeArgParser({
 })
 
 parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['list'] })
+parser.addArgument(['--no-cache'], { help: 'Forces a cache-less request.', action: 'storeTrue' })
+parser.addArgument(['--cookie-loc'], { help: 'Location of the cookie authentication file.', defaultValue: '~/.config/jirajs/cookies.txt', metavar: 'CKL' })
+parser.addArgument(['--cache-loc'], { help: 'Location of the tasks cache.', defaultValue: '~/.cache/jirajs/tasks-cache.json', metavar: 'CL' })
 
 const parsed = parser.parseArgs()
 const action = parsed.action

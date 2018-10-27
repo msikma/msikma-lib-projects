@@ -15,7 +15,7 @@ const columnNames = [
   'columnNames=assignee'
 ]
 
-export const issueTableURL = () => (
+export const issueTableURL = (taskType) => (
   `${issueTableBaseURL}?${objToParams({
     num: 50,
     tableContext: 'jira.table.cols.dashboard',
@@ -23,7 +23,7 @@ export const issueTableURL = () => (
     enableSorting: true,
     paging: true,
     showActions: true,
-    filterId: 10105,
+    filterId: taskType === 'done' ? '10113' : '10112',
     sortBy: '',
     startIndex: 0
   }, { removeEmptyString: false })}&${columnNames.join('&')}`

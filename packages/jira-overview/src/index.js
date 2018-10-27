@@ -7,7 +7,7 @@ import listProjectTasks from './scrape/list'
 export const cli = async args => {
   try {
     if (args.action === 'list') {
-      const result = await listProjectTasks()
+      const result = await listProjectTasks(args)
       outputAndExit(result)
       process.exit(0)
     }
