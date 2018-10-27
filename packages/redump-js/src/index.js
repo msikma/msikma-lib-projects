@@ -21,7 +21,7 @@ export const browse = async ({ system, letter, region, page }) => {
  */
 export const search = async (query) => {
   const form = { quicksearch: query }
-  const html = await requestURI({ url: SEARCH_URL, form }, false, {}, { method: 'POST' })
+  const html = await requestURI({ url: SEARCH_URL, form }, {}, false, { method: 'POST' })
   return parseBrowsePage(html)
 }
 

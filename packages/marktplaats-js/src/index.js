@@ -3,6 +3,7 @@
 
 import getDetail from './scrape/detail'
 import runSearch from './scrape/search'
+import listCategories from './categories'
 import toDataString from './out'
 
 // Runs a single action from the command line, prints the result and then exits.
@@ -13,7 +14,11 @@ export const cli = async args => {
   }
 
   try {
-    if (args.action === 'search') {
+    if (args.action === 'list-categories') {
+      const result = await listCategories(args.id)
+      return outputAndExit(result, args)
+    }
+    else if (args.action === 'search') {
       const result = await runSearch({ query: args.query })
       return outputAndExit(result, args)
     }
@@ -41,5 +46,5 @@ export const cli = async args => {
 const outputAndExit = (result, args) => {
   const output = toDataString(result, args.output)
   console.log(output)
-  process.exit(0)
+  process.exitCode = 0
 }

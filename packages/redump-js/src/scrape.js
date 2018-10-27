@@ -1,7 +1,7 @@
 // redump-js - Redump Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-import parse from 'mlib-common/lib/scrape'
+import { cheerio } from 'mlib-common/lib/scrape'
 import { STATUS_COLORS } from './static'
 
 /**
@@ -9,7 +9,7 @@ import { STATUS_COLORS } from './static'
  * Each entry contains a small amount of data.
  */
 export const parseBrowsePage = (html) => {
-  const $ = parse(html)
+  const $ = cheerio.load(html)
   const items = $('.gamesblock .games tr')
   const results = items.get().map(item => parseSingleResult($, item))
   return {
@@ -21,7 +21,7 @@ export const parseBrowsePage = (html) => {
  * Parses a full detail page containing a disc's complete information.
  */
 export const parseDetailPage = (html) => {
-  const $ = parse(html)
+  const $ = cheerio.load(html)
   return {}
 }
 

@@ -1,6 +1,8 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
+import { splitOnLast } from 'mlib-common/lib/text'
+
 // List of abbreviated Dutch month names, translated to a zero-padded number.
 const dutchMonths = ['jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
 const dutchMonthTable = dutchMonths.reduce((acc, month, idx) => ({ ...acc, [month]: (idx < 10 ? `0${idx}` : idx) }), {})

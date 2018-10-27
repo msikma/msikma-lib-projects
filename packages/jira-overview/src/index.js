@@ -3,6 +3,7 @@
 
 import toDataString from 'mlib-common/lib/output'
 import listProjectTasks from './scrape/list'
+import toDataString from './out'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {

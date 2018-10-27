@@ -17,7 +17,7 @@ as JSON or XML.\n`,
 })
 
 parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail'], _choicesHelp: ['Runs a search query and returns results.', 'Prints full details for a single item by ID.'], metavar: 'ACTION' })
-parser.addArgument(['--list-cats'], { help: 'Prints a list of categories. Call with category ID to get subcategories.', dest: 'ID', defaultValue: 'main' })
+parser.addArgument(['--list-cats'], { help: 'Prints a list of categories. Call with category ID to retrieve subcategories instead.', dest: 'id', defaultValue: 'none', nargs: '?' })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml', 'terminal'], _choicesHelp: ['JSON string', 'XML string', 'Plain text readable in terminal (default)'], metavar: 'TYPE', defaultValue: 'terminal' })
 
 // Search options:
@@ -43,7 +43,7 @@ const parsed = parser.parseArgs()
 const action = parsed.action
 const args = {
   ...parsed,
-  action: action == null ? 'search' : action,
+  action: parsed.id !== 'none' ? 'list-categories' : action == null ? 'search' : action,
   // Note: modify 'store_type' because the API expects 'individualSeller', but that's long to type.
   store_type: parsed.store_type === 'individual' ? 'individualSeller' : parsed.store_type
 }
