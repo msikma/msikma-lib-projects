@@ -1,4 +1,4 @@
-// jira-overview - Simple Jira dash scraper <https://github.com/msikma/msikma-lib-projects>
+// ms-jira-overview - Simple Jira dash scraper <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import path from 'path'
@@ -38,7 +38,7 @@ const listProjectTasks = async (args) => {
 }
 
 const reqProjectTasks = async (cookieLoc) => {
-  const cookieFile = cookieLoc ? cookieLoc : path.normalize(path.join(process.env.HOME, '.config', 'jirajs', 'cookies.txt'))
+  const cookieFile = cookieLoc ? cookieLoc : path.normalize(path.join(process.env.HOME, '.config', 'ms-jira-js', 'cookies.txt'))
   const cookieJar = await loadCookieFile(cookieFile)
   const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar })
   const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar })

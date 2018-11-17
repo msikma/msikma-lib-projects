@@ -61,9 +61,9 @@ export const throttledRequestURI = (url, fullResponse = false, headers = {}, ...
 const requestURI = (url, fullResponse = false, headers = {}, throttle = false, etc = {}) => new Promise((resolve, reject) => (
   (throttle ? throttledRequest : request)(
     { url, headers: { ...browserHeaders, ...(headers != null ? headers : {}) }, ...requestDefaults, ...etc },
-    (err, res) => {
+    (err, res, body) => {
       if (err) return reject(err)
-      resolve(fullResponse ? res : res.body)
+      resolve(fullResponse ? res : body)
     }
   )
 ))

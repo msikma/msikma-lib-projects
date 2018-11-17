@@ -1,8 +1,8 @@
-## `jira-overview`
+## `ms-gmail-overview`
 
-Very simple scraper script the Gmail simple HTML version.
+Very simple scraper script for the Gmail simple HTML version.
 
-The cookies file must be in Netscape format, named `cookies.txt` and placed in `~/.config/gmailjs`.
+The cookies file must be in Netscape format, named `cookies.txt` and placed in `~/.config/ms-gmail-js`.
 
 ### License
 

@@ -6,7 +6,7 @@
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
   "bin": {
-    "ms-gmail-overview-cli": "./bin/ms-gmail-overview-cli.js"
+    "ms-gmail-cli": "./bin/ms-gmail-cli.js"
   },
   "repository": "https://github.com/msikma/msikma-lib-projects",
   "author": "Michiel Sikma <michiel@sikma.org>",

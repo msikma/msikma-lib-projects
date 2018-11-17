@@ -1,4 +1,4 @@
-// jira-overview - Simple Jira dash scraper <https://github.com/msikma/msikma-lib-projects>
+// ms-jira-overview - Simple Jira dash scraper <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { dirname } from 'path'
