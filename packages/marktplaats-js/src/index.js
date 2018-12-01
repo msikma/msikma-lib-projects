@@ -1,10 +1,10 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
+import toDataString from 'mlib-common/lib/output'
 import getDetail from './scrape/detail'
 import runSearch from './scrape/search'
 import listCategories from './categories'
-import toDataString from './out'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {

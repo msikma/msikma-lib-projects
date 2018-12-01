@@ -10,7 +10,8 @@ const dutchMonthTable = dutchMonths.reduce((acc, month, idx) => ({ ...acc, [mont
 // Vocabulary items: used to turn plain Dutch into a simpler form.
 export const statusVocab = {
   'Zo goed als nieuw': 'ZGAN',
-  'Gebruikt': 'GEBRUIKT'
+  'Gebruikt': 'GEBRUIKT',
+  'Nieuw': 'NIEUW'
 }
 export const deliveryVocab = {
   'Verzenden': 'VERZENDEN',
@@ -38,6 +39,24 @@ export const parseMPDate = (date) => {
   return cleanDate
 }
 
+// We get up to two attributes from a listing. One for shipping and one for status.
+// Check which one they are, since we can't tell from the HTML.
+// Attrs is an array like e.g. ['OPHALEN/VERZENDEN', 'GEBRUIKT'].
+export const separateAttributes = (attrs) => {
+  const statusKeys = Object.keys(statusVocab)
+  const statusVals = Object.values(statusVocab)
+  const deliveryKeys = Object.keys(deliveryVocab)
+  const deliveryVals = Object.values(deliveryVocab)
+  const items = attrs.reduce((acc, attr) => {
+    const statusIdx = statusKeys.indexOf(attr)
+    const deliveryIdx = deliveryKeys.indexOf(attr)
+    if (statusIdx > -1) return { ...acc, ['_status']: statusVals[statusIdx] }
+    if (deliveryIdx > -1) return { ...acc, ['_delivery']: deliveryVals[deliveryIdx] }
+    return { ...acc }
+  }, {})
+  return items
+}
+
 // These return the simplified text form of vocabulary strings.
 export const parseStatus = vocabLookup(statusVocab)
 export const parseDelivery = vocabLookup(deliveryVocab)
@@ -54,13 +73,16 @@ const parsePriceValue = (str) => {
 
 // Returns a parsed price from a source string found on a Marktplaats page.
 export const parsePrice = (str) => {
-  const priceType = priceLookup(str)
+  const priceType = priceLookup(str) || null
   const price = parsePriceValue(str)
   return {
     priceType,
     price
   }
 }
+
+// Adds 'https:' before a URL if it starts with '//'.
+export const addHttps = url => url && url.startsWith('//') ? `https:${url}` : url
 
 // Extracts a category slug from a URL. Works for category subpage URLs
 // and for category links on a subpage.
