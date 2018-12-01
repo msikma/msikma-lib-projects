@@ -43,17 +43,15 @@ const parsed = parser.parseArgs()
 const action = parsed.action
 const args = {
   ...parsed,
-  action: parsed.id !== 'none' ? 'list-categories' : action == null ? 'search' : action,
-  // Note: modify 'store_type' because the API expects 'individualSeller', but that's long to type.
-  store_type: parsed.store_type === 'individual' ? 'individualSeller' : parsed.store_type
+  action: parsed.id !== 'none' ? 'list-categories' : action == null ? 'search' : action
 }
 
 // Check if we have any valid search options at all. If we got none, then don't run a search unless '--action search' was specified.
-// This is to prevent us from running a useless search for everything when the user just runs 'buyee-cli' without arguments.
-const searchOptions = ['query', 'category', 'seller', 'price_min', 'price_max', 'buyout_min', 'buyout_max']
-const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.item_status !== 'any', args.store_type !== 'any'].filter(o => o).length > 0
-if (action == null && !hasAnySearchOptions) {
-  parser.error(`Must select an action if not passing any search options.`)
+// This is to prevent us from running a useless search for everything when the user just runs 'marktplaats-cli' without arguments.
+const searchOptions = ['query', 'category', 'seller', 'price_min', 'price_max']
+const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.item_status !== 'any'].filter(o => o).length > 0
+if ((action == null || action == 'search') && !hasAnySearchOptions) {
+  parser.error(`Must pass search options (such as --query).`)
 }
 
 // The cli() function is only for the command line. Make sure we remember we came from there.
