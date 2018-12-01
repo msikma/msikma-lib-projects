@@ -47,7 +47,7 @@ const getRealResults = ($) => {
 
 // Runs a search query, extracts the information, and then returns it.
 const runSearch = async params => {
-  const url = searchURI({ query: 'floppy', categoryID: 356 })
+  const url = searchURI(params)
   const html = await requestURI(url)
   const data = scrapeResults(html)
   return {

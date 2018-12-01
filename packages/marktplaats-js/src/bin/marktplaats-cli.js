@@ -24,7 +24,7 @@ parser.addArgument(['--output'], { help: 'Result output format.', choices: ['jso
 parser.addSection('Search options:', '--query')
 parser.addArgument(['--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
-parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
+//parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
 parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE' })
 parser.addArgument(['--price-max'], { help: '~', metavar: 'PRICE' })

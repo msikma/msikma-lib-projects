@@ -19,11 +19,11 @@ export const cli = async args => {
       return outputAndExit(result, args)
     }
     else if (args.action === 'search') {
-      const result = await runSearch({ query: args.query })
+      const result = await runSearch({ query: args.query, categoryID: args.category })
       return outputAndExit(result, args)
     }
     else if (args.action === 'detail') {
-      //const result = await getDetail({ query: args.query })
+      //const result = await getDetail({ id: args.id, category: args.category, slug: args.slug })
       const result = await getDetail({
         id: 'm1307407671',
         category: ['spelcomputers-en-games', 'games-overige'],
