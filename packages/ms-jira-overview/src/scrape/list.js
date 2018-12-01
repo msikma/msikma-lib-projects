@@ -3,10 +3,12 @@
 
 import path from 'path'
 import get from 'lodash/get'
-import { cheerio } from 'mlib-common/lib/scrape'
+
+import cacheData, { retrieveCache } from 'mlib-common/lib/cache'
 import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
+import { cheerio } from 'mlib-common/lib/scrape'
+
 import { issueTableURL } from './uris'
-import cacheTasks, { retrieveCache } from './cache'
 
 const listProjectTasks = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
@@ -32,7 +34,7 @@ const listProjectTasks = async (args) => {
   const tasks = [...done, ...notDone]
 
   // Save to cache.
-  await cacheTasks(tasks, args.cache_loc)
+  await cacheData(tasks, args.cache_loc)
 
   return tasks
 }
