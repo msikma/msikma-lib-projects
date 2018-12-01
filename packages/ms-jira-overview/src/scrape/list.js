@@ -16,8 +16,11 @@ const listProjectTasks = async (args) => {
   if (!data) {
     data = await reqProjectTasks(args.cookie_loc)
     // Throw here if we received an error message from Jira.
-    if (get(data, 'errors.length', 0) > 0) {
-      throw new Error(`${data.errors[0].field}: ${data.errors[0].error}`)
+    if (get(data.notDoneData, 'errors.length', 0) > 0) {
+      throw new Error(`${data.notDoneData.errors[0].field}: ${data.notDoneData.errors[0].error} (notDoneData)`)
+    }
+    if (get(data.doneData, 'errors.length', 0) > 0) {
+      throw new Error(`${data.doneData.errors[0].field}: ${data.doneData.errors[0].error} (doneData)`)
     }
   }
   else {
@@ -45,7 +48,7 @@ const reqProjectTasks = async (cookieLoc) => {
   const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar })
   const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar })
   const issues = await Promise.all([notDoneIssues, doneIssues])
-  
+
   return {
     notDoneData: JSON.parse(issues[0]),
     doneData: JSON.parse(issues[1])

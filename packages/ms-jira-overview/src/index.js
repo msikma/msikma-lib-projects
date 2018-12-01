@@ -19,6 +19,7 @@ export const cli = async args => {
   }
   catch (err) {
     console.error(`ms-jira-cli: error: uncaught exception while running task - ${err.toString()}`)
+    if (err.stack) console.error(err.stack.toString());
     process.exitCode = 1
   }
 }
