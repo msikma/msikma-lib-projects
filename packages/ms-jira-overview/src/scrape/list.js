@@ -22,24 +22,24 @@ const listProjectTasks = async (args) => {
     if (get(data.doneData, 'errors.length', 0) > 0) {
       throw new Error(`${data.doneData.errors[0].field}: ${data.doneData.errors[0].error} (doneData)`)
     }
+
+    // If not, scrape all issues and return them.
+    const $notDone = cheerio.load(data.notDoneData.table)
+    const $done = cheerio.load(data.doneData.table)
+    const notDone = scrapeTasks($notDone)
+    const done = scrapeTasks($done)
+
+    const data = [...done, ...notDone]
+
+    // Save to cache.
+    await cacheData(data, args.cache_loc)
+
+    return data
   }
   else {
     // Cached data has already been processed.
     return data
   }
-
-  // If not, scrape all issues and return them.
-  const $notDone = cheerio.load(data.notDoneData.table)
-  const $done = cheerio.load(data.doneData.table)
-  const notDone = scrapeTasks($notDone)
-  const done = scrapeTasks($done)
-
-  const tasks = [...done, ...notDone]
-
-  // Save to cache.
-  await cacheData(tasks, args.cache_loc)
-
-  return tasks
 }
 
 const reqProjectTasks = async (cookieLoc) => {
