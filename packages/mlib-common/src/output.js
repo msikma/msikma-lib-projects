@@ -1,6 +1,8 @@
 // common - Utilities for msikma library projects <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
+import util from 'util'
+
 export const toJSON = obj => {
   return JSON.stringify(obj)
 }
@@ -16,9 +18,10 @@ const dataTypes = {
 
 const toDataString = (obj, type) => {
   if (type === 'terminal') {
-    // The terminal type needs no formatting.
-    // Logging a plain object in Node makes it easily readable in a terminal.
-    return obj
+    // Use the util.inspect() method to log the entire object with color.
+    // This uses infinite depth, as opposed to Node's regular console.log()
+    // which only goes 2 levels deep.
+    return util.inspect(obj, false, null, true)
   }
   try {
     return dataTypes[type.toLowerCase()](obj)
