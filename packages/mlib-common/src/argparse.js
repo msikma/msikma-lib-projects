@@ -1,8 +1,9 @@
 // common - Utilities for msikma library projects <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
-const ArgumentParser = require('argparse').ArgumentParser
-const HelpFormatter = require('argparse/lib/help/formatter')
+import { ArgumentParser } from 'argparse'
+import HelpFormatter from 'argparse/lib/help/formatter'
+
 import { removeUnnecessaryLines } from './text'
 
 // A simple wrapper for the ArgumentParser library. Adds support for an extra help paragraph,
