@@ -2,9 +2,10 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { cheerio } from 'mlib-common/lib/scrape'
+import requestURI from 'mlib-common/lib/request'
+
 import { detailURI, extractURIInfo } from './uris'
 import { parseStatus, parseDelivery, parsePrice, parseMPDate } from './util'
-import requestURI from 'mlib-common/lib/request'
 
 // Runs detail page scraping code on the passed HTML string.
 export const scrapeDetail = (html, id, slug) => {
@@ -14,17 +15,28 @@ export const scrapeDetail = (html, id, slug) => {
 
 // Extracts all data from a detail page.
 const getDetailPage = ($, id, slug) => {
-  const $listing = $('.listing')
-  const title = $('#title').text().trim()
-  const viewCount = parseInt($('#view-count').text().trim(), 10)
-  const favCount = parseInt($('#favorited-count').text().trim(), 10)
-  const date = parseMPDate($('#displayed-since .sentence + span').text().trim())
+  const listing = $('#content')
+  const title = $('#title', listing).text().trim()
+  const viewCount = parseInt($('#view-count', listing).text().trim(), 10)
+  const favCount = parseInt($('#favorited-count', listing).text().trim(), 10)
+  const date = parseMPDate($('#displayed-since .sentence + span', listing).text().trim())
+  const $seller = $('.contact-info .top-info a', listing)
+  const $sellInfo = $('.contact-info .seller-info', listing)
+  //const score = parseInt($('.mp-StarRating > span', $sellInfo).text().slice(1, 2), 10)
+  const seller = {
+    name: $seller.text().trim(),
+    url: $seller.attr('href').trim(),
+    isVIP: $('span[data-id="vip-trust-indicator-badge"]', $seller).attr('aria-hidden').trim() !== 'true',
+    //score,
+    //scoreStr: `${score}/5`
+  }
   return {
     id,
     slug,
     title,
     viewCount,
     favCount,
+    seller,
     date
   }
 }
