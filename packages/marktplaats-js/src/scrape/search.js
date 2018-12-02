@@ -2,10 +2,11 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { cheerio } from 'mlib-common/lib/scrape'
-import { parseStatus, parseDelivery, parsePrice } from './util'
 import { removeQuery } from 'mlib-common/lib/query'
-import { searchURI } from './uris'
 import requestURI from 'mlib-common/lib/request'
+
+import { parseStatus, parseDelivery, parsePrice } from './util'
+import { searchURI, makeURILocal } from './uris'
 
 // Runs search page scraping code on the passed HTML string.
 const scrapeResults = (html) => {
@@ -22,18 +23,28 @@ const getRealResults = ($) => {
       const title = $('.heading', result).text().trim()
       const desc = $('.description > span', result).get().map(d => $(d).text().trim()).join(' ')
       const url = removeQuery($result.attr('data-url').trim())
+      const urlLocal = makeURILocal(url)
       const id = $result.attr('data-item-id').trim()
       const priceRaw = $('.column-price .price-new', result).text().trim()
       const priceVals = parsePrice(priceRaw)
       const $listingAttributes = $('.listing-priority-product-container .mp-listing-attributes', result)
       const status = parseStatus($($listingAttributes[0]).text().trim())
       const delivery = parseDelivery($($listingAttributes[1]).text().trim())
+      const location = $('.location-name', result).text().trim()
+      const $seller = $('.seller-name a', result)
+      const seller = {
+        name: $seller.text().trim(),
+        url: $seller.attr('href').trim()
+      };
       return {
         id,
         title,
         desc,
         url,
+        urlLocal,
+        location,
         ...priceVals,
+        seller,
         delivery,
         status
       }
