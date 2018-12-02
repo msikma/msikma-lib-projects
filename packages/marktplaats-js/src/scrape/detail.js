@@ -2,9 +2,8 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { cheerio } from 'mlib-common/lib/scrape'
-import { detailURI } from './uris'
+import { detailURI, extractURIInfo } from './uris'
 import { parseStatus, parseDelivery, parsePrice, parseMPDate } from './util'
-import { removeQuery } from 'mlib-common/lib/query'
 import requestURI from 'mlib-common/lib/request'
 
 // Runs detail page scraping code on the passed HTML string.
@@ -32,13 +31,14 @@ const getDetailPage = ($, id, slug) => {
 
 // Runs a query for a detail page, extracts the information, and then returns it.
 const getDetail = async params => {
-  const { id, category, slug } = params
-  const url = detailURI({ id, category, slug })
-  const html = await requestURI(url)
+  const { url } = params
+  const fullURL = detailURI(url)
+  const { id, slug } = extractURIInfo(fullURL)
+  const html = await requestURI(fullURL)
   const data = scrapeDetail(html, id, slug)
   return {
     reqParams: params,
-    reqURL: url,
+    reqURL: fullURL,
     data
   }
 }
