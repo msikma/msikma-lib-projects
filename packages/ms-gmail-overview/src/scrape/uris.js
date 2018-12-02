@@ -6,6 +6,6 @@ import { objToParams } from 'mlib-common/lib/query'
 export const baseURL = 'https://mail.google.com'
 
 // https://mail.google.com/mail/?ui=html&zy=h
-export const gmailURL = () => (
+export const gmailHome = () => (
   `${baseURL}/mail/?${objToParams({ ui: 'html', zy: 'h' })}`
 )
