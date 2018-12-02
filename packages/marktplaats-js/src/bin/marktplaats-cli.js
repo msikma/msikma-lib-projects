@@ -23,8 +23,8 @@ parser.addArgument(['--output'], { help: 'Result output format.', choices: ['jso
 // Search options:
 parser.addSection('Search options:', '--query')
 parser.addArgument(['--query'], { help: 'Query string to search for.' })
-parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
-//parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
+parser.addArgument(['--category'], { help: 'Set a specific category ID.', dest: 'catid', metavar: 'ID' })
+parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.', dest: 'subid', metavar: 'ID' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
 parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE' })
 parser.addArgument(['--price-max'], { help: '~', metavar: 'PRICE' })
@@ -32,11 +32,8 @@ parser.addArgument(['--item-status'], { help: 'Item status for search results.',
 parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 'storeTrue', dest: 'withPictures' })
 
 // Detail options:
-parser.addSection('Detail options:', '--id')
-parser.addArgument(['--id'], { help: 'ID of the item to retrieve details for.' })
-parser.addArgument(['--slug'], { help: 'Slug of the item page (optional).' })
-//parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
-//parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.' })
+parser.addSection('Detail options:', '--url')
+parser.addArgument(['--url'], { help: 'URL or local URL of the item to retrieve details for.' })
 
 
 const parsed = parser.parseArgs()
@@ -50,7 +47,7 @@ const args = {
 
 // Check if we have any valid search options at all. If we got none, then don't run a search unless '--action search' was specified.
 // This is to prevent us from running a useless search for everything when the user just runs 'buyee-cli' without arguments.
-const searchOptions = ['query', 'category', 'seller', 'price_min', 'price_max', 'buyout_min', 'buyout_max']
+const searchOptions = ['query', 'catid', 'seller', 'price_min', 'price_max', 'buyout_min', 'buyout_max']
 const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.item_status !== 'any', args.store_type !== 'any'].filter(o => o).length > 0
 if (action == null && !hasAnySearchOptions) {
   parser.error(`Must select an action if not passing any search options.`)
