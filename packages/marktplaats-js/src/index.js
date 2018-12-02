@@ -19,16 +19,12 @@ export const cli = async args => {
       return outputAndExit(result, args)
     }
     else if (args.action === 'search') {
-      const result = await runSearch({ query: args.query, categoryID: args.category })
+      const result = await runSearch({ query: args.query, categoryID: args.catid })
       return outputAndExit(result, args)
     }
     else if (args.action === 'detail') {
-      //const result = await getDetail({ id: args.id, category: args.category, slug: args.slug })
-      const result = await getDetail({
-        id: 'm1307407671',
-        category: ['spelcomputers-en-games', 'games-overige'],
-        slug: 'msx-base-floppy-handleiding'
-      })
+      //const result = await getDetail({ url: args.url })
+      const result = await getDetail({ url: 'computers-en-software/tablets-apple-ipad-hoezen-en-bescherming/m1321995147-i-pad-hoes-case-cover-pokemon-pikachu-i-pad' })
       return outputAndExit(result, args)
     }
     else {
@@ -37,7 +33,8 @@ export const cli = async args => {
     }
   }
   catch (err) {
-    console.error(`marktplaats-cli: error: uncaught exception while running task - ${err.toString()}`)
+    const stack = String(err.stack)
+    console.error(`marktplaats-cli: error: uncaught exception while running task:${stack ? `\n\n${stack}` : ` ${err.toString()}`}`)
     process.exit(1)
   }
 }
