@@ -24,7 +24,7 @@ export const cli = async args => {
     }
     else if (args.action === 'detail') {
       if (!args.url && !args.item_id) {
-        console.error(`marktplaats-cli: error: for detail action, pass at least one of "--url" and "--item_id"`)
+        console.error(`marktplaats-cli: error: for detail action, pass at least one of "--url" and "--id"`)
         process.exitCode = 1
         return
       }

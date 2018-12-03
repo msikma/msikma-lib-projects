@@ -34,7 +34,7 @@ parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 's
 // Detail options:
 parser.addSection('Detail options:', '--url')
 parser.addArgument(['--url'], { help: 'URL of an item to retrieve details for.' })
-parser.addArgument(['--item-id'], { help: `ID of an item, e.g. 'a1190949578'.` })
+parser.addArgument(['--id'], { help: `ID of an item, e.g. 'a1190949578'.`, dest: 'item_id' })
 
 const parsed = parser.parseArgs()
 const action = parsed.action
