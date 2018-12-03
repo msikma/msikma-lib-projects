@@ -39,6 +39,13 @@ export const parseMPDate = (date) => {
   return cleanDate
 }
 
+// Parses an "active since" string, like '13½ jaar'.
+export const parseActiveSince = since => {
+  const years = parseInt(since, 10)
+  const half = since.indexOf('½') > -1 ? 0.5 : 0
+  return years + half
+}
+
 /** Checks whether a thumbnail is the 'no photo' image. */
 export const hasOriginalThumb = thumb => (
   thumb ? !/no_photo\.jpg$/.test(thumb) : false

@@ -6,7 +6,7 @@ import { cheerio } from 'mlib-common/lib/scrape'
 import requestURI from 'mlib-common/lib/request'
 
 import { fullURI, extractURIInfo, makeShortLink } from './uris'
-import { parseStatus, parseDelivery, parsePrice, parseMPDate } from './util'
+import { parseStatus, parseDelivery, parsePrice, parseMPDate, parseActiveSince } from './util'
 
 // Runs detail page scraping code on the passed HTML string.
 // If something goes wrong while scraping, the data object contains error details instead.
@@ -30,7 +30,7 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
   const viewCount = parseInt($('#view-count', listing).text().trim(), 10)
   const favCount = parseInt($('#favorited-count', listing).text().trim(), 10)
   const date = parseMPDate($('#displayed-since .sentence + span', listing).text().trim())
-  const urlAd = $('#vip-seller-url-link', listing).attr('data-url').trim()
+  const externalURL = $('#vip-seller-url-link', listing).attr('data-url').trim()
   // todo: should this be an array?
   const status = $('.attribute-tables tr', listing).get().map(tr => parseStatus($('.value', tr).text().trim()))
 
@@ -40,10 +40,12 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
   const verifiedPhone = $(".trust-indicator-group span[class*='-two-factor-verification']", listing)
   const verifiedBankNr = $(".trust-indicator-group span[class*='-bank-account']", listing)
   const verifiedID = $(".trust-indicator-group span[class*='-id']", listing)
+  const activeSince = parseActiveSince($(".vip-active-since span").text().trim())
   //const score = parseInt($('.mp-StarRating > span', $sellInfo).text().slice(1, 2), 10)
   const seller = {
     name: $seller.text().trim(),
     url: $seller.attr('href').trim(),
+    activeSince,
     isVIP: $('span[data-id="vip-trust-indicator-badge"]', $seller).attr('aria-hidden').trim() !== 'true',
     verifiedPhone,
     verifiedBankNr,
@@ -52,12 +54,17 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
     //scoreStr: `${score}/5`
   }
 
-  // Price and delivery details.
+  // Payment and delivery details.
   const priceRaw = $('#vip-ad-price-container', listing).text().trim()
   const priceVals = parsePrice(priceRaw)
   const shippingRaw = $('.shipping-details-value.price', listing).text().trim()
   const shippingVals = parsePrice(shippingRaw)
-  const location = $("#vip-map-show", listing).text().trim()
+  const paymentOptions = {
+    iDeal: $('.seller-info-payment-options-ideal').length > 0
+  }
+  const $location = $("#vip-map-show", listing)
+  const location = $location.text().trim()
+  const coordinates = { lat: $location.attr('lat').trim(), long: $location.attr('long').trim() }
   const delivery = parseDelivery($('.shipping-details-value:not(.price)', listing).text().trim())
 
   // Images.
@@ -70,25 +77,27 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
     slug,
     title,
     desc,
+    date,
+    viewCount,
+    favCount,
     url,
     urlShort,
+    externalURL,
+    status,
+    seller,
     location,
+    coordinates,
     product: {
       ...priceVals
     },
     shipping: {
       ...shippingVals
     },
-    urlAd,
-    viewCount,
-    favCount,
-    seller,
+    paymentOptions,
     delivery,
-    status,
     thumb,
     hasThumb,
-    images,
-    date
+    images
   }
 }
 
