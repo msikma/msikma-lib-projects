@@ -10,7 +10,7 @@ import { searchURI, makeShortLink, extractURIInfo } from './uris'
 
 // Runs search page scraping code on the passed HTML string.
 const scrapeResults = (html) => {
-  const $ = cheerio.load(html)
+  const $ = cheerio.load(html, { decodeEntities: false })
   return getRealResults($)
 }
 
