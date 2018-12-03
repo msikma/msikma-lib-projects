@@ -23,19 +23,24 @@ export const cli = async args => {
       return outputAndExit(result, args)
     }
     else if (args.action === 'detail') {
-      //const result = await getDetail({ url: args.url })
-      const result = await getDetail({ url: 'computers-en-software/tablets-apple-ipad-hoezen-en-bescherming/m1321995147-i-pad-hoes-case-cover-pokemon-pikachu-i-pad' })
+      if (!args.url && !args.item_id) {
+        console.error(`marktplaats-cli: error: for detail action, pass at least one of "--url" and "--item_id"`)
+        process.exitCode = 1
+        return
+      }
+      const result = await getDetail({ url: args.url, id: args.item_id })
+      //const result = await getDetail({ url: 'computers-en-software/tablets-apple-ipad-hoezen-en-bescherming/m1321995147-i-pad-hoes-case-cover-pokemon-pikachu-i-pad' })
       return outputAndExit(result, args)
     }
     else {
       console.error(`marktplaats-cli: error: argument "--action": Invalid action (${args.action})`)
-      process.exit(1)
+      process.exitCode = 1
     }
   }
   catch (err) {
     const stack = String(err.stack)
     console.error(`marktplaats-cli: error: uncaught exception while running task:${stack ? `\n\n${stack}` : ` ${err.toString()}`}`)
-    process.exit(1)
+    process.exitCode = 1
   }
 }
 

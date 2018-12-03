@@ -39,6 +39,11 @@ export const parseMPDate = (date) => {
   return cleanDate
 }
 
+/** Checks whether a thumbnail is the 'no photo' image. */
+export const hasOriginalThumb = thumb => (
+  thumb ? !/no_photo\.jpg$/.test(thumb) : false
+)
+
 // We get up to two attributes from a listing. One for shipping and one for status.
 // Check which one they are, since we can't tell from the HTML.
 // Attrs is an array like e.g. ['OPHALEN/VERZENDEN', 'GEBRUIKT'].

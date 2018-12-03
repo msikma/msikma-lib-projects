@@ -5,24 +5,34 @@ import { objToParams, removeQuery } from 'mlib-common/lib/query'
 import { charTrim } from 'mlib-common/lib/util'
 
 export const baseURL = 'https://www.marktplaats.nl/'
+const shortBaseURL = 'https://link.marktplaats.nl/'
 
 const searchPage = 'z.html'
 
+/** Returns a short link made out of an ID. */
+export const makeShortLink = (id) => (
+  `${shortBaseURL}${id}`
+)
+
+/** Turns a local URL into a fully qualified one.
+    If the URL is already fully qualified, or a short URL, it's returned verbatim. */
+export const fullURI = (url) => {
+  if (url.startsWith('http') || url.indexOf('link.marktplaats.nl') > -1) {
+    return removeQuery(url)
+  }
+  else {
+    return `${removeQuery(baseURL)}a/${url}.html`
+  }
+}
+
 // Turns a full Marktplaats URL into a local one, with the domain and detail path removed.
 // E.g. 'computers-en-software/kabels-en-voeding/a1196949578-blitzwolf-15w-2a-opvouwbare-draagbare-dual-usb-zonne-ene'
-export const makeURILocal = (uri) => (
+const makeURILocal = (uri) => (
   charTrim(removeQuery(uri)
     .replace(new RegExp('https?:\/\/(www\.)?marktplaats\.nl\/a'), '')
     .replace(new RegExp('\.html$'), ''),
   '\/')
 )
-
-// Turns a local URL into a fully qualified one.
-// If the URL is already fully qualified, it's returned verbatim.
-export const detailURI = (url) => {
-  if (url.startsWith('http')) return removeQuery(url)
-  return `${removeQuery(baseURL)}a/${url}.html`
-}
 
 // Extracts ID, categories and slug from a URL.
 // E.g. 'https://www.marktplaats.nl/a/computers-en-software/kabels-en-voeding/a1196949578-blitzwolf-15w-2a-opvouwbare-draagbare-dual-usb-zonne-ene.html'
