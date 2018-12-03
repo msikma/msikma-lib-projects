@@ -21,7 +21,7 @@ export const retrieveCache = async (cacheLoc, cacheTime) => {
     if ((curr - (cacheTime * 1000 * 60)) > stat.mtimeMs) {
       return null
     }
-    
+
     const data = await readFileAsync(cacheLoc)
     return JSON.parse(data)
   }
@@ -37,8 +37,8 @@ const cacheData = async (data, cacheLoc) => {
   // Ensure the directory exists.
   const dir = dirname(cacheLoc)
   await ensureDir(dir)
-  const data = JSON.stringify(data, null, 2)
-  const success = await writeFileAsync(cacheLoc, data, 'utf8')
+  const jsonData = JSON.stringify(data, null, 2)
+  const success = await writeFileAsync(cacheLoc, jsonData, 'utf8')
   return success
 }
 
