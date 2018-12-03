@@ -22,12 +22,15 @@ export const cli = async args => {
     }
     else {
       console.error('buyee-cli: error: argument "--site": Invalid or unimplemented site')
-      process.exit(1)
+      process.exitCode = 1
+      return
     }
-    process.exit(0)
+    process.exitCode = 0
+    return
   }
   else {
     console.error('buyee-cli: error: argument "--action": Invalid action')
-    process.exit(1)
+    process.exitCode = 1
+    return
   }
 }
