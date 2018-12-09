@@ -2,8 +2,8 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import toDataString from 'mlib-common/lib/output'
-import getDetail from './scrape/detail'
-import runSearch from './scrape/search'
+import listingDetail from './scrape/detail'
+import listingSearch from './scrape/search'
 import listCategories from './categories'
 
 // Runs a single action from the command line, prints the result and then exits.
@@ -19,7 +19,7 @@ export const cli = async args => {
       return outputAndExit(result, args)
     }
     else if (args.action === 'search') {
-      const result = await runSearch({ query: args.query, categoryID: args.catid })
+      const result = await listingSearch({ query: args.query, categoryID: args.catid })
       return outputAndExit(result, args)
     }
     else if (args.action === 'detail') {
@@ -28,7 +28,7 @@ export const cli = async args => {
         process.exitCode = 1
         return
       }
-      const result = await getDetail({ url: args.url, id: args.item_id })
+      const result = await listingDetail({ url: args.url, id: args.item_id })
       return outputAndExit(result, args)
     }
     else {
@@ -43,9 +43,11 @@ export const cli = async args => {
   }
 }
 
-//
+// Output our results and exit the program.
 const outputAndExit = (result, args) => {
   const output = toDataString(result, args.output)
   console.log(output)
   process.exitCode = 0
 }
+
+export { listingDetail, listingSearch }

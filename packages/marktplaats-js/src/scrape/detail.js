@@ -117,9 +117,9 @@ const getDetailID = async (id, params) => {
 }
 
 // Runs a query for a detail page, extracts the information, and then returns it.
-const getDetail = async params => {
+const listingDetail = async params => {
   if (params.url) return getDetailURL(params.url, params)
   if (params.id) return getDetailID(params.id, params)
 }
 
-export default getDetail
+export default listingDetail

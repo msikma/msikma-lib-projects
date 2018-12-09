@@ -70,7 +70,7 @@ const getRealResults = ($) => {
 }
 
 // Runs a search query, extracts the information, and then returns it.
-const runSearch = async params => {
+const listingSearch = async params => {
   const url = searchURI(params)
   const html = await requestURI(url)
   const data = scrapeResults(html)
@@ -81,4 +81,4 @@ const runSearch = async params => {
   }
 }
 
-export default runSearch
+export default listingSearch
