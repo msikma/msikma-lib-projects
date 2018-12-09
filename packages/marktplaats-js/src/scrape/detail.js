@@ -5,8 +5,8 @@ import { removeQuery } from 'mlib-common/lib/query'
 import { cheerio } from 'mlib-common/lib/scrape'
 import requestURI from 'mlib-common/lib/request'
 
-import { fullURI, extractURIInfo, makeShortLink } from './uris'
-import { parseStatus, parseDelivery, parsePrice, parseMPDate, parseActiveSince } from './util'
+import { fullURI, extractURIInfo, makeShortLink, zToFullURI } from './uris'
+import { parseStatus, parseDelivery, parsePrice, parseMPDate, parseActiveSince, addHttps, hasOriginalThumb } from './util'
 
 // Runs detail page scraping code on the passed HTML string.
 // If something goes wrong while scraping, the data object contains error details instead.
@@ -20,6 +20,11 @@ export const scrapeDetail = (html, id, slug, url, urlShort) => {
   }
 }
 
+// Extracts images out of a Marktplaats carousel.
+const extractImages = ($container, type) => (
+  $container.attr(`data-images-${type}`).trim().split('&').map(url => addHttps(url)).filter(n => n)
+)
+
 // Extracts all data from a detail page.
 const getDetailPage = ($, id, slug, url, urlShort) => {
   const listing = $('#content')
@@ -30,28 +35,20 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
   const viewCount = parseInt($('#view-count', listing).text().trim(), 10)
   const favCount = parseInt($('#favorited-count', listing).text().trim(), 10)
   const date = parseMPDate($('#displayed-since .sentence + span', listing).text().trim())
-  const externalURL = $('#vip-seller-url-link', listing).attr('data-url').trim()
+  const $urlLink = $('#vip-seller-url-link', listing)
+  const externalURL = $urlLink.length ? $urlLink.attr('data-url').trim() : null
+
   // todo: should this be an array?
   const status = $('.attribute-tables tr', listing).get().map(tr => parseStatus($('.value', tr).text().trim()))
 
   // About the seller.
   const $seller = $('.contact-info .top-info a', listing)
-  const $sellInfo = $('.contact-info .seller-info', listing)
-  const verifiedPhone = $(".trust-indicator-group span[class*='-two-factor-verification']", listing)
-  const verifiedBankNr = $(".trust-indicator-group span[class*='-bank-account']", listing)
-  const verifiedID = $(".trust-indicator-group span[class*='-id']", listing)
-  const activeSince = parseActiveSince($(".vip-active-since span").text().trim())
-  //const score = parseInt($('.mp-StarRating > span', $sellInfo).text().slice(1, 2), 10)
+  const activeSince = parseActiveSince($("#vip-active-since span").text().trim())
   const seller = {
     name: $seller.text().trim(),
     url: $seller.attr('href').trim(),
     activeSince,
-    isVIP: $('span[data-id="vip-trust-indicator-badge"]', $seller).attr('aria-hidden').trim() !== 'true',
-    verifiedPhone,
-    verifiedBankNr,
-    verifiedID,
-    //score,
-    //scoreStr: `${score}/5`
+    isVIP: $('span[data-id="vip-trust-indicator-badge"]', $seller).attr('aria-hidden').trim() !== 'true'
   }
 
   // Payment and delivery details.
@@ -59,18 +56,17 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
   const priceVals = parsePrice(priceRaw)
   const shippingRaw = $('.shipping-details-value.price', listing).text().trim()
   const shippingVals = parsePrice(shippingRaw)
-  const paymentOptions = {
-    iDeal: $('.seller-info-payment-options-ideal').length > 0
-  }
+  const sellerLocation = $('#vip-seller-location .name', listing).text().trim()
   const $location = $("#vip-map-show", listing)
-  const location = $location.text().trim()
-  const coordinates = { lat: $location.attr('lat').trim(), long: $location.attr('long').trim() }
+  const location = $location.length ? $location.text().trim() : sellerLocation
+  const coordinates = $location.length ? { lat: $location.attr('lat').trim(), long: $location.attr('long').trim() } : null
   const delivery = parseDelivery($('.shipping-details-value:not(.price)', listing).text().trim())
 
   // Images.
-  const thumb = 'todo'
-  const hasThumb = 'todo'
-  const images = ['https://todo/image1.jpg', 'https://todo/image2.jpg']
+  const $imagesContainer = $('#vip-carousel', listing)
+  const images = extractImages($imagesContainer, 'xxl')
+  const thumbs = extractImages($imagesContainer, 's')
+  const hasImage = hasOriginalThumb(thumbs[0])
 
   return {
     id,
@@ -93,10 +89,9 @@ const getDetailPage = ($, id, slug, url, urlShort) => {
     shipping: {
       ...shippingVals
     },
-    paymentOptions,
     delivery,
-    thumb,
-    hasThumb,
+    thumbs,
+    hasImage,
     images
   }
 }

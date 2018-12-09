@@ -39,7 +39,7 @@ const getRealResults = ($) => {
       const thumbSrc = addHttps($thumb.attr('data-img-src'))
       const thumbAlt = addHttps($thumb.attr('src'))
       const thumb = thumbSrc ? thumbSrc.trim() : thumbAlt ? thumbAlt.trim() : null
-      const hasThumb = hasOriginalThumb(thumb)
+      const hasImage = hasOriginalThumb(thumb)
       const location = $('.location-name', result).text().trim()
       const $seller = $('.seller-name a', result)
       const seller = {
@@ -59,7 +59,7 @@ const getRealResults = ($) => {
         delivery,
         status,
         thumb,
-        hasThumb
+        hasImage
       }]
     }
     catch (error) {

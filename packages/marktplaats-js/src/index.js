@@ -29,7 +29,6 @@ export const cli = async args => {
         return
       }
       const result = await getDetail({ url: args.url, id: args.item_id })
-      //const result = await getDetail({ url: 'computers-en-software/tablets-apple-ipad-hoezen-en-bescherming/m1321995147-i-pad-hoes-case-cover-pokemon-pikachu-i-pad' })
       return outputAndExit(result, args)
     }
     else {

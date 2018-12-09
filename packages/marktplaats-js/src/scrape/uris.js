@@ -53,6 +53,13 @@ export const extractURIInfo = (url) => {
   return { id, slug, categories: pieces.slice(0, 2) }
 }
 
+// Converts a URL starting with '/z.html', such as links in tags.
+// If the given URL is falsy, an empty string is returned.
+export const zToFullURI = (zURL) => (
+  !zURL ? '' : `${baseURL}${zURL}`
+)
+
+/** Returns a search URI. */
 export const searchURI = ({ query, categoryID, postcode, distance}) => (
   `${baseURL}${searchPage}?${objToParams({
     query,
