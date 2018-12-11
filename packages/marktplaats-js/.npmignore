@@ -1,0 +1,8 @@
+node_modules/
+_source/
+
+# NPM ignore
+.gitignore
+.github/
+test/
+data/ # currently unused
