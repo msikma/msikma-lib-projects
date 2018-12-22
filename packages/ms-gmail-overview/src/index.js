@@ -11,15 +11,18 @@ export const cli = async args => {
       const result = await listEmails(args)
       outputAndExit(result, args)
       process.exitCode = 0
+      return
     }
     else {
       console.error(`ms-gmail-cli: error: argument "--action": Invalid action (${args.action})`)
       process.exitCode = 1
+      return
     }
   }
   catch (err) {
     console.error(`ms-gmail-cli: error: uncaught exception while running task - ${err.toString()}`)
     process.exitCode = 1
+    return
   }
 }
 
@@ -31,4 +34,5 @@ const outputAndExit = (result, args) => {
     console.log(output)
   }
   process.exitCode = 0
+  return
 }

@@ -11,16 +11,19 @@ export const cli = async args => {
       const result = await listProjectTasks(args)
       outputAndExit(result, args)
       process.exitCode = 0
+      return
     }
     else {
       console.error(`ms-jira-cli: error: argument "--action": Invalid action (${args.action})`)
       process.exitCode = 1
+      return
     }
   }
   catch (err) {
     console.error(`ms-jira-cli: error: uncaught exception while running task - ${err.toString()}`)
     if (err.stack) console.error(err.stack.toString());
     process.exitCode = 1
+    return
   }
 }
 
@@ -32,4 +35,5 @@ const outputAndExit = (result, args) => {
     console.log(output)
   }
   process.exitCode = 0
+  return
 }
