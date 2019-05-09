@@ -4,6 +4,7 @@
 
 import '@babel/polyfill'
 import makeArgParser from 'mlib-common/lib/argparse'
+import { expandTilde } from 'mlib-common/lib/file'
 import { ensurePeriod } from 'mlib-common/lib/text'
 
 const packageData = require('../../package.json')
@@ -24,6 +25,11 @@ parser.addArgument(['--cache-time'], { help: 'Duration that the cache is conside
 
 const parsed = parser.parseArgs()
 const action = parsed.action
-const args = { ...parsed, action: action == null ? 'list' : action }
+const args = {
+  ...parsed,
+  cookie_loc: expandTilde(parsed.cookie_loc),
+  cache_loc: expandTilde(parsed.cache_loc),
+  action: action == null ? 'list' : action
+}
 
 require('../index').cli(args)
