@@ -37,15 +37,58 @@ const reqGmailData = async (cookieLoc) => {
 // This is used to parse every Gmail page, since they are all more or less the same.
 // If 'getMetaData' is true, we'll return some extra info visible on the page.
 export const scrapeData = ($, name, getMetaData = false) => {
-  const tagTable = $('table.l')
-  const data = {
+  // Get the base href first so we can resolve all other links.
+  const baseHref = $('base[href]').attr('href')
 
+  const $mailTable = $('table.th')
+  const $mailTRs = $('tr', $mailTable)
+  const mails = $mailTRs.get().map(tr => {
+    const read = $(tr).attr('bgcolor').trim() === '#ffffff'
+    const $sender = $('td:nth-child(2)', tr)
+
+    // Remove any '»' characters in the sender node.
+    $('span.ar', $sender).remove()
+
+    const $subjectA = $('td:nth-child(3) a', tr)
+
+    const $tagsOuter = $('.ts font:nth-child(1)', tr)
+    const tags = $('font', $tagsOuter).text().split(',').map(t => t.trim())
+    $tagsOuter.remove()
+
+    const $preview = $('.ts font', tr)
+    const preview = $preview.text().trim().replace(/^-\s/, '').trim()
+    $preview.remove()
+    const subject = $subjectA.text().trim()
+
+    const date = $('td:nth-child(4)', tr).text().trim()
+    const link = $subjectA.attr('href').trim()
+    const sender = $sender.text().trim()
+
+    return {
+      read,
+      date,
+      subject,
+      link: `${baseHref}${link}`,
+      sender,
+      tags,
+      preview
+    }
+  })
+  const $tagsOpts = $('select[name="tact"] option[value^="ac_"]')
+  const tags = $tagsOpts.get().map(t => {
+    const $t = $(t)
+    const tag = $t.attr('value')
+    return tag.split('ac_').join('')
+  })
+  const data = {
+    mails
   }
 
   if (getMetaData) {
-    
     const meta = {
-
+      tags: tags.sort(),
+      tagsCount: tags.length,
+      baseHref
     }
     return { [name]: data, meta }
   }
