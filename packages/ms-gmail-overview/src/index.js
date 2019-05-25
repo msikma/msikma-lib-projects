@@ -29,7 +29,7 @@ export const cli = async args => {
 // Outputs the search results and exits.
 const outputAndExit = (result, args) => {
   // Don't output if we're in quiet mode.
-  if (!args.quiet) {
+  if (!args.cache_only) {
     const output = toDataString(result, args.output)
     console.log(output)
   }

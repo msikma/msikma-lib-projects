@@ -11,19 +11,15 @@ import { gmailHome } from './uris'
 
 const listEmails = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
-  let data = args.no_cache ? null : (await retrieveCache(args.cache_loc, args.cache_time))
-  if (!data) {
-    data = await reqGmailData(args.cookie_loc)
-
-    // Save to cache.
-    await cacheData(data, args.cache_loc)
-
-    return data
-  }
-  else {
+  const data = args.no_cache || args.cache_only ? null : (await retrieveCache(args.cache_loc, args.cache_time))
+  if (data) {
     // Cached data has already been processed.
     return data
   }
+  // Get new data and save it to cache.
+  const newData = await reqGmailData(args.cookie_loc)
+  await cacheData(newData, args.cache_loc)
+  return newData
 }
 
 // Retrieves all parsed Gmail data we're interested in.
