@@ -2,6 +2,7 @@
 // buyee-js - Buyee Client Library <https://github.com/msikma/msikma-lib-projects>
 // Copyright © 2018, Michiel Sikma. MIT license.
 
+import '@babel/polyfill'
 import makeArgParser from 'mlib-common/lib/argparse'
 import { ensurePeriod } from 'mlib-common/lib/text'
 
