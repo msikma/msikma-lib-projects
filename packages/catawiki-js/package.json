@@ -1,0 +1,20 @@
+{
+  "_targetWebsite": "catawiki.com",
+  "_shortDescription": "Catawiki client library",
+  "name": "catawiki-js",
+  "description": "Client library for making programmatic requests to Catawiki.com",
+  "files": ["lib", "bin"],
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/msikma-lib-projects",
+  "main": "lib/index.js",
+  "bin": {
+    "catawiki-cli": "./bin/catawiki-cli.js"
+  },
+  "repository": "https://github.com/msikma/msikma-lib-projects",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "dependencies": {
+    "mlib-common": "^1.0.0",
+    "lodash": "^4.17.5"
+  }
+}
