@@ -42,6 +42,10 @@ const getSearchResults = ($, countryCode) => {
   }
 }
 
+/**
+ * Searches for items.
+ * Accepts { query, categoryID, countryCode } parameters.
+ */
 const listingSearch = async params => {
   const url = searchURI(params)
   const html = await requestURI(url)
