@@ -24,6 +24,7 @@
     "buyee-cli": "./packages/buyee-js/bin/buyee-cli.js",
     "marktplaats-cli": "./packages/marktplaats-js/bin/marktplaats-cli.js",
     "ms-gmail-cli": "./packages/ms-gmail-overview/bin/ms-gmail-cli.js",
+    "ms-github-cli": "./packages/ms-github-overview/bin/ms-github-cli.js",
     "ms-jira-cli": "./packages/ms-jira-overview/bin/ms-jira-cli.js"
   },
   "devDependencies": {

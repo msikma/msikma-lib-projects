@@ -1,0 +1,24 @@
+{
+  "name": "ms-github-overview",
+  "description": "Simple Github API script",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/msikma-lib-projects",
+  "main": "lib/index.js",
+  "bin": {
+    "ms-github-cli": "./bin/ms-github-cli.js"
+  },
+  "repository": "https://github.com/msikma/msikma-lib-projects",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/plugin-retry": "^2.2.0",
+    "@octokit/plugin-throttling": "^2.6.0",
+    "@octokit/rest": "^16.28.2",
+    "lodash": "^4.17.5",
+    "mlib-common": "^1.0.0"
+  }
+}
