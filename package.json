@@ -25,7 +25,8 @@
     "marktplaats-cli": "./packages/marktplaats-js/bin/marktplaats-cli.js",
     "ms-gmail-cli": "./packages/ms-gmail-overview/bin/ms-gmail-cli.js",
     "ms-jira-cli": "./packages/ms-jira-overview/bin/ms-jira-cli.js",
-    "catawiki-cli": "./packages/catawiki-js/bin/catawiki-cli.js"
+    "catawiki-cli": "./packages/catawiki-js/bin/catawiki-cli.js",
+    "psxdatacenter-cli": "./packages/psxdatacenter-js/bin/psxdatacenter-cli.js"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.47",

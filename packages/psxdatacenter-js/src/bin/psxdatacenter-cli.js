@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // psxdatacenter-js - Playstation DataCenter Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// MIT license.
 
 import makeArgParser from 'mlib-common/lib/argparse'
 import { ensurePeriod } from 'mlib-common/lib/text'
@@ -12,11 +12,12 @@ const parser = makeArgParser({
   description: ensurePeriod(packageData.description),
   epilog: `For more information, see <${packageData.homepage}>.`,
   longHelp: `This command line utility runs the desired action and prints the results
-as JSON or XML.\n`,
+as JSON or XML. The input ID needs to be a PSX serial number,
+e.g. "SLPS-01783".\n`,
   version: packageData.version
 })
 
-parser.addArgument(['id'], { help: 'ID of a PSX/PS2/PSP disc.', dest: 'id' })
+parser.addArgument(['id'], { help: 'ID of a PSX/PS2/PSP disc.' })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml', 'terminal'], _choicesHelp: ['JSON string', 'XML string', 'Plain text readable in terminal (default)'], metavar: 'TYPE', defaultValue: 'terminal' })
 
 const parsed = parser.parseArgs()
