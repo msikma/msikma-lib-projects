@@ -1,11 +1,10 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import path from 'path'
 import pick from 'lodash/pick'
 import keyBy from 'lodash/keyBy'
 import { readFileAsync } from 'mlib-common/lib/promisified/fs'
-import { url } from 'inspector';
 
 // Container for the category data, to be loaded from a JSON file.
 let categoryData = []
@@ -28,19 +27,18 @@ const recurseCats = (cat) => {
   return cats
 }
 
-//
+// Loads categories into memory.
 const loadCategories = async () => {
   categoryData = JSON.parse(await readFileAsync(categoryFile, 'utf8')).data
   categoryDataFlat = categoryData.reduce((allCats, cat) => ([...allCats, ...recurseCats(cat)]))
-  allCategories = categoryDataFlat.map(c => ({ ...c, id: Number(c.id) })).keyBy(categoryDataFlat, 'id')
+  allCategories = keyBy(categoryDataFlat.map(c => ({ ...c, id: Number(c.id) })), 'id')
 }
 
-//
-const listCategories = async (id) => {
+// Returns a list of categories. If an ID is passed, a list of subcategories is returned instead.
+const listCategories = async (addSubs = false, id = null) => {
   if (categoryData.length === 0) {
     await loadCategories()
   }
-
   const output = []
 
   //

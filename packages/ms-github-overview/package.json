@@ -1,6 +1,6 @@
 {
-  "name": "ms-jira-overview",
-  "description": "Simple scraper used to get a list of project tasks from the Theorycraft Jira dashboard",
+  "name": "ms-github-overview",
+  "description": "Github API script for fetching notifications",
   "files": [
     "lib",
     "bin"
@@ -9,12 +9,15 @@
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
   "bin": {
-    "ms-jira-cli": "./bin/ms-jira-cli.js"
+    "ms-github-cli": "./bin/ms-github-cli.js"
   },
   "repository": "https://github.com/msikma/msikma-lib-projects",
   "author": "Michiel Sikma <michiel@sikma.org>",
   "license": "MIT",
   "dependencies": {
+    "@octokit/plugin-retry": "^2.2.0",
+    "@octokit/plugin-throttling": "^2.6.0",
+    "@octokit/rest": "^16.28.2",
     "lodash": "^4.17.5",
     "mlib-common": "^1.0.0"
   }

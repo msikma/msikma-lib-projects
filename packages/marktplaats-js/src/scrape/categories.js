@@ -1,5 +1,5 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import { cheerio } from 'mlib-common/lib/scrape'
 import { flatten } from 'mlib-common/lib/util'
@@ -8,13 +8,13 @@ import { throttledRequestURI } from 'mlib-common/lib/request'
 import { baseURL } from './uris'
 import { getCatSlug, getCatID } from './util'
 
-// 
+// Scrapes a page for categories.
 export const scrapeCats = (html, subCats = false) => {
   const $ = cheerio.load(html)
   return getNavCategories($, subCats)
 }
 
-// 
+// Returns categories from the navigation links.
 const getNavCategories = async ($, subCats = false) => {
   const links = subCats
     // Category subpage, e.g. 'https://www.marktplaats.nl/c/antiek-en-kunst/c1/antiek-eetgerei.html'
@@ -54,7 +54,7 @@ const getSubCategories = (html) => {
   return getNavCategories($, true)
 }
 
-// s
+// Retrieves subcategories for a specific category.
 const retrieveSubCats = async (url, id, slug) => {
   const html = await throttledRequestURI(url)
   logVerbose(`Subcategory ${id} (${slug}): retrieved main: ${url}`)
@@ -70,7 +70,7 @@ const retrieveSubCats = async (url, id, slug) => {
   return allCats
 }
 
-// 
+// Retrieves categories.
 const retrieveCategories = async () => {
   const html = await throttledRequestURI(baseURL)
   logVerbose(`Retrieved category main: ${baseURL}`)

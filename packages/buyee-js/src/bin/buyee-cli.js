@@ -22,8 +22,8 @@ parser.addArgument(['--output'], { help: 'Result output format.', choices: ['jso
 parser.addArgument(['--site'], { help: 'Buyee supported site to run the search query on. (yajp: Yahoo! Auction Japan).', choices: ['yajp'], defaultValue: 'yajp' })
 
 // Search options:
-parser.addSection('Search options:', '--query')
-parser.addArgument(['--query'], { help: 'Query string to search for.' })
+parser.addSection('Search options:')
+parser.addArgument(['-q', '--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
 parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE' })

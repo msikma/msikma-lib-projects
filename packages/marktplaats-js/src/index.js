@@ -1,5 +1,5 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import toDataString from 'mlib-common/lib/output'
 import listingDetail from './scrape/detail'
@@ -14,8 +14,8 @@ export const cli = async args => {
   }
 
   try {
-    if (args.action === 'list-categories') {
-      const result = await listCategories(args.id)
+    if (args.action === 'list-cats') {
+      const result = await listCategories(args.addSubcats, args.subcatsFor)
       return outputAndExit(result, args)
     }
     else if (args.action === 'search') {

@@ -1,12 +1,13 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import { cheerio } from 'mlib-common/lib/scrape'
 import { removeQuery } from 'mlib-common/lib/query'
 import requestURI from 'mlib-common/lib/request'
+import { loadCategories } from '../categories'
 
 import { parsePrice, separateAttributes, addHttps, hasOriginalThumb } from './util'
-import { searchURI, makeShortLink, extractURIInfo } from './uris'
+import { searchURI, apiSearchURI, makeShortLink, extractURIInfo } from './uris'
 
 // Runs search page scraping code on the passed HTML string.
 const scrapeResults = (html) => {
@@ -69,8 +70,23 @@ const getRealResults = ($) => {
   }, [])
 }
 
-// Runs a search query, extracts the information, and then returns it.
-const listingSearch = async params => {
+// Runs a search query using the Marktplaats API.
+const listingSearchAPI = async params => {
+  if (params.categoryID) {
+    await loadCategories()
+  }
+  const url = await apiSearchURI(params)
+  const json = await requestURI(url)
+  const data = JSON.parse(json)
+  return {
+    reqParams: params,
+    reqURL: url,
+    data
+  }
+}
+
+// Runs a search query using the regular Marktplaats web search page.
+const listingSearchScrape = async params => {
   const url = searchURI(params)
   const html = await requestURI(url)
   const data = scrapeResults(html)
@@ -79,6 +95,14 @@ const listingSearch = async params => {
     reqURL: url,
     data
   }
+}
+
+// Runs a search query, extracts the information, and then returns it.
+const listingSearch = async params => {
+  // Use either the regular search page or the API.
+  return params._useScrapeSearch
+    ? listingSearchScrape(params)
+    : listingSearchAPI(params)
 }
 
 export default listingSearch

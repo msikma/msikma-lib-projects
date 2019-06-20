@@ -1,5 +1,5 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import { removeQuery } from 'mlib-common/lib/query'
 import { cheerio } from 'mlib-common/lib/scrape'

@@ -31,6 +31,28 @@ export const retrieveCache = async (cacheLoc, cacheTime) => {
   }
 }
 
+export const retrieveCacheFile = async (cacheLoc, cacheTime) => {
+  try {
+    // Ensure that the directory at least exists.
+    const dir = dirname(cacheLoc)
+    await ensureDir(dir)
+
+    // Retrieve the cache and determine if it's stale or not.
+    const curr = (+new Date())
+    const stat = await statAsync(cacheLoc)
+    const mtime = stat.mtimeMs
+    const isStale = (curr - (cacheTime * 1000 * 60)) > stat.mtimeMs
+    const file = await readFileAsync(cacheLoc)
+    const data = JSON.parse(file)
+    const isEmpty = !data || Object.keys(data).length === 0
+    return { data, mtime, isStale, isEmpty }
+  }
+  catch (err) {
+    // If something went wrong, just return null so we'll grab new data.
+    return { data: null, mtime: null, isStale: true, isEmpty: true }
+  }
+}
+
 // Caches arbitrary data. The data is converted to JSON and saved as a text file in UTF8.
 // As a side effect, this function also ensures that the directory the file is in exists.
 const cacheData = async (data, cacheLoc) => {

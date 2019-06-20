@@ -16,6 +16,9 @@ const makeArgParser = (opts) => {
       this.choices = []
       // List of section headers we'll print.
       this.sections = []
+      // Used to keep track of sections and add them after the argument following them.
+      this.sectionReady = false
+      this.sectionNext = null
 
       this.parser = new ArgumentParser(opts)
       this._addLongHelp(opts.longHelp)
@@ -23,6 +26,12 @@ const makeArgParser = (opts) => {
 
     // Wrapper for ArgumentParser.addArgument().
     addArgument = (...opts) => {
+      // Add a section if we've set one up to be printed.
+      if (this.sectionReady) {
+        // We'll save the longest argument to do string matching on.
+        this.sections.push({ header: this.sectionNext, match: this.longestArgument(opts[0]) })
+        this.sectionReady = false
+      }
       // Special formatting case: if an argument has 'choices', 'metavar' and
       // our own '_choicesHelp', we want to display its options differently than normal.
       // Save a reference and modify the output before parsing.
@@ -41,10 +50,10 @@ const makeArgParser = (opts) => {
       return this.parser.parseArgs(...opts)
     }
 
-    // Adds a new section to the list of arguments, right before  whatever was passed as 'firstTag'.
-    // E.g. addSection('Search options:', '--query') will add a search options right before the --query tag.
-    addSection(header, firstTag) {
-      this.sections.push({ header, firstTag })
+    // Adds a new section to the list of arguments, right before whatever argument comes next.
+    addSection(header) {
+      this.sectionReady = true
+      this.sectionNext = header
     }
 
     // Adds extra help lines to the output if needed, and sets up a modified help formatter.
@@ -73,6 +82,14 @@ const makeArgParser = (opts) => {
       }
     }
 
+    hasArgument = (arg, line) => {
+      return new RegExp(`[^\[]${arg}([^\s]|$)`).test(line)
+    }
+
+    longestArgument = (args) => {
+      return args.reduce((l, o) => (o.length > l.length ? o : l), '')
+    }
+
     // Replaces ArgumentParser's usual help formatter with one that supports multiple sections.
     // Also cleans up the output a bit.
     _formatHelp = () => {
@@ -82,9 +99,10 @@ const makeArgParser = (opts) => {
         // Add a header string in front of it.
         let buffer = originalFormatHelp().split('\n')
         this.sections.forEach(section => {
-          buffer = buffer.map(line => (
-            line.trim().startsWith(section.firstTag) ? `\n${section.header}\n${line}` : line
-          ))
+          buffer = buffer.map(line => {
+            // Find the first argument that this section should be directly above.
+            return this.hasArgument(section.match, line) ? `\n${section.header}\n${line}` : line
+          })
         })
 
         // Format the extra multiple choice sections.
@@ -94,22 +112,15 @@ const makeArgParser = (opts) => {
           for (let a = 0; a < choices; ++a) {
             choiceSection.push(`     ${a === 0 ? '{' : ' ' }${`${choiceItem.choices[a]}${a < choices - 1 ? ',' : '}'}`.padEnd(18)}${choiceItem.choicesHelp[a] ? choiceItem.choicesHelp[a] : ''}`)
           }
-          buffer = buffer.map(line => (
-            line.trim().startsWith(this._getArgStr(choiceItem.name)) ? `${line}\n${choiceSection.join('\n')}` : line
-          ))
+          buffer = buffer.map(line => {
+            return this.hasArgument(this.longestArgument(choiceItem.name), line) ? `${line}\n${choiceSection.join('\n')}` : line
+          })
         })
 
         // While we're at it, remove double empty lines.
         return this._removeDoubleEmptyLines(buffer)
       }
     }
-
-    // Returns a string with the given argument, e.g. '-h, --help'.
-    _getArgStr = (arg) => (
-      arg.length === 1
-        ? `${arg[0]}`
-        : `${arg[0]}, ${arg[1]}`
-    )
 
     // Removes double empty lines that sometimes show up.
     _removeDoubleEmptyLines = (str) => (
