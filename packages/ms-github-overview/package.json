@@ -1,6 +1,6 @@
 {
   "name": "ms-github-overview",
-  "description": "Simple Github API script",
+  "description": "Github API script for fetching notifications",
   "files": [
     "lib",
     "bin"
