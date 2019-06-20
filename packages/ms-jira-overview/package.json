@@ -1,6 +1,6 @@
 {
   "name": "ms-jira-overview",
-  "description": "Simple scraper used to get a list of project tasks from a Jira dashboard",
+  "description": "Simple scraper used to get a list of project tasks from the Theorycraft Jira dashboard",
   "files": [
     "lib",
     "bin"
