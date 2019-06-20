@@ -1,13 +1,18 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import { objToParams, removeQuery } from 'mlib-common/lib/query'
 import { charTrim } from 'mlib-common/lib/util'
+import listCategories from '../categories'
 
 export const baseURL = 'https://www.marktplaats.nl/'
+const apiSearchURL = 'lrp/api/search'
 const shortBaseURL = 'https://link.marktplaats.nl/'
 
 const searchPage = 'z.html'
+
+// Placeholder for the list of categories.
+let categories = []
 
 /** Returns a short link made out of an ID. */
 export const makeShortLink = (id) => (
@@ -59,12 +64,38 @@ export const zToFullURI = (zURL) => (
   !zURL ? '' : `${baseURL}${zURL}`
 )
 
-/** Returns a search URI. */
-export const searchURI = ({ query, categoryID, postcode, distance}) => (
+/** Returns a search URI for the plain search page. */
+export const searchURI = ({ query, categoryID, postcode, distance, sortBy, sortOrder, searchOnTitleAndDescription, startDateFrom }) => (
   `${baseURL}${searchPage}?${objToParams({
     query,
     categoryId: categoryID,
     postcode: postcode || '',
-    distance: distance || '0'
+    distance: distance || '0',
+    sortBy: sortBy || null,
+    sortOrder: sortOrder || null,
+    searchOnTitleAndDescription: searchOnTitleAndDescription || null,
+    startDateFrom: startDateFrom || null
   })}`
 )
+
+/** Returns a search URI for the API search endpoint that returns JSON. */
+export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }) => {
+  // Ensure we have a list of categories.
+  categories = await listCategories(true)
+
+  // Convert category to the level 1 and level 2 ID keys.
+  // 'l1' is a top level category and 'l2' is a subcategory.
+  const catID = Number(categoryID)
+  const l1Cat = categories.find(cat => cat.id === catID)
+  const l2Cat = !l1Cat ? categories.find(cat => cat.sub.filter(sub => sub.id === catID).length > 0) : null
+
+  // Set the l1 and l2 category IDs to the main and subcategory respectively.
+  // If the target category is a main category, l2 is set to null.
+  const cat = categoryID != null ? (l1Cat ? l1Cat : l2Cat) : null
+  const l1CategoryId = categoryID != null ? cat.id : null
+  const l2CategoryId = categoryID != null ? (l1Cat ? null : catID) : null
+  
+  // Flatten key attributes object to an array of strings.
+  const keyAttrValues = attributesByKey ? Object.entries(attributesByKey).reduce((items, attr) => [...items, `${attr[0]}:${attr[1]}`], []) : null
+  return `${baseURL}${apiSearchURL}?${objToParams({ query, attributesByKey: keyAttrValues, attributesById, l1CategoryId, l2CategoryId, limit, offset })}`
+}

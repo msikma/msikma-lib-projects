@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import makeArgParser from 'mlib-common/lib/argparse'
 import { ensurePeriod } from 'mlib-common/lib/text'
@@ -16,9 +16,12 @@ as JSON or XML.\n`,
   version: packageData.version
 })
 
-parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail'], _choicesHelp: ['Runs a search query and returns results.', 'Prints full details for a single item by ID.'], metavar: 'ACTION' })
-parser.addArgument(['--list-cats'], { help: 'Prints a list of categories. Call with category ID to retrieve subcategories instead.', dest: 'id', defaultValue: 'none', nargs: '?' })
+parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['search', 'detail', 'list-cats'], _choicesHelp: ['Runs a search query and returns results.', 'Prints full details for a single item by ID.', 'Prints a list of categories.'], metavar: 'ACTION' })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml', 'terminal'], _choicesHelp: ['JSON string', 'XML string', 'Plain text readable in terminal (default)'], metavar: 'TYPE', defaultValue: 'terminal' })
+
+parser.addSection('Category options:', '--add-subcats')
+parser.addArgument(['--add-subcats'], { help: 'Includes subcategories in the output.', action: 'storeTrue', dest: 'addSubcats' })
+parser.addArgument(['--subcats-for'], { help: 'Shows a specific category and its subs.', metavar: 'ID', dest: 'subcatsFor' })
 
 // Search options:
 parser.addSection('Search options:', '--query')
@@ -26,9 +29,9 @@ parser.addArgument(['--query'], { help: 'Query string to search for.' })
 parser.addArgument(['--category'], { help: 'Set a specific category ID.', dest: 'catid', metavar: 'ID' })
 parser.addArgument(['--subcat'], { help: 'Set a specific subcategory ID.', dest: 'subid', metavar: 'ID' })
 parser.addArgument(['--seller'], { help: 'Restrict to a specific seller.' })
-parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE' })
-parser.addArgument(['--price-max'], { help: '~', metavar: 'PRICE' })
-parser.addArgument(['--item-status'], { help: 'Item status for search results.', choices: ['any', 'new', 'like-new', 'used'], defaultValue: 'any', metavar: 'STATUS' })
+parser.addArgument(['--price-min'], { help: 'Set the min/max price for search results.', metavar: 'PRICE', dest: 'priceMin' })
+parser.addArgument(['--price-max'], { help: '~', metavar: 'PRICE', dest: 'priceMax' })
+parser.addArgument(['--item-status'], { help: 'Item status for search results.', choices: ['any', 'new', 'like-new', 'used'], defaultValue: 'any', metavar: 'STATUS', dest: 'itemStatus' })
 parser.addArgument(['--with-pictures'], { help: 'Includes pictures.', action: 'storeTrue', dest: 'withPictures' })
 
 // Detail options:
@@ -38,16 +41,12 @@ parser.addArgument(['--id'], { help: `ID of an item, e.g. 'a1190949578'.`, dest:
 
 const parsed = parser.parseArgs()
 const action = parsed.action
-const args = {
-  ...parsed,
-  action: parsed.id !== 'none' ? 'list-categories' : action == null ? 'search' : action
-}
+const args = { ...parsed }
 
 // Check if we have any valid search options at all. If we got none, then don't run a search unless '--action search' was specified.
-
-// This is to prevent us from running a useless search for everything when the user just runs 'buyee-cli' without arguments.
-const searchOptions = ['query', 'catid', 'seller', 'price_min', 'price_max', 'buyout_min', 'buyout_max']
-const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.item_status !== 'any', args.store_type !== 'any'].filter(o => o).length > 0
+// This is to prevent us from running a useless search for everything when the user just runs 'marktplaats-cli' without arguments.
+const searchOptions = ['query', 'catid', 'subid', 'seller', 'priceMin', 'priceMax', 'withPictures']
+const hasAnySearchOptions = [...searchOptions.map(o => args[o] != null), args.itemStatus !== 'any'].filter(o => o).length > 0
 if ((action == null || action == 'search') && !hasAnySearchOptions) {
   parser.error(`Must pass search options (such as --query).`)
 }

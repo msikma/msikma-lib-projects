@@ -1,34 +1,37 @@
 // marktplaats-js - Marktplaats Client Library <https://github.com/msikma/msikma-lib-projects>
-// Copyright © 2018, Michiel Sikma. MIT license.
+// Copyright © 2018-2019, Michiel Sikma. MIT license.
 
 import path from 'path'
 import pick from 'lodash/pick'
 import { readFileAsync } from 'mlib-common/lib/promisified/fs'
-import { url } from 'inspector';
 
 // Container for the category data, to be loaded from a JSON file.
 let categoryData = []
 const categoryFile = path.normalize(`${__dirname}/../data/categories.json`)
 
-//
-const loadCategories = async () => {
+// Loads categories into memory.
+export const loadCategories = async () => {
   categoryData = JSON.parse(await readFileAsync(categoryFile, 'utf8')).data
-
 }
 
-//
-const listCategories = async (id) => {
+// Returns a list of categories. If an ID is passed, a list of subcategories is returned instead.
+const listCategories = async (addSubs = false, id = null) => {
   if (categoryData.length === 0) {
     await loadCategories()
   }
+  // Show subcategories, either when it's explicitly requested or when a single category ID is passed.
+  const showSubCats = addSubs || id != null
 
-  const output = []
+  // Remove subs if we don't want them.
+  const relevantCats = categoryData.map(cat => pick(cat, ['id', 'name', 'slug', 'url', ...(showSubCats ? ['sub'] : [])]))
 
-  //
-  const base = id != null ? categoryData.find(c => c.id === Number(id)) : categoryData
-  base.forEach(c => output.push(pick(c, ['id', 'name', 'slug', 'url'])))
-
-  return output
+  // Return either all categories or a specific one.
+  if (id != null) {
+    return relevantCats.find(cat => cat.id === Number(id))
+  }
+  else {
+    return relevantCats
+  }
 }
 
 export default listCategories
