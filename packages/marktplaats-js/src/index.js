@@ -4,7 +4,7 @@
 import toDataString from 'mlib-common/lib/output'
 import listingDetail from './scrape/detail'
 import listingSearch from './scrape/search'
-import listCategories from './categories'
+import listCategories, { listCategoriesByID } from './categories'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {
@@ -50,4 +50,4 @@ const outputAndExit = (result, args) => {
   process.exitCode = 0
 }
 
-export { listingDetail, listingSearch }
+export { listingDetail, listingSearch, listCategories, listCategoriesByID }
