@@ -18,7 +18,7 @@ Monorepo containing several JS libraries (some with CLI tool) and common code.
 
 | Name | Description | Site |
 |:-----|:------------|:-----|
-| `ms-github-overview` | Simple Github API script | [github.com](github.com) |
+| `ms-github-overview` | Github API script for fetching notifications | [github.com](github.com) |
 | `ms-gmail-overview` | Simple scraper used to get a list of emails from a Gmail simple HTML page | [mail.google.com](mail.google.com) |
 | `ms-jira-overview` | Simple scraper used to get a list of project tasks from the Theorycraft Jira dashboard | [jira.theorycraft.fi](jira.theorycraft.fi) |
 
