@@ -9,6 +9,11 @@ export const cli = async args => {
   try {
     if (args.action === 'list') {
       const result = await listEmails(args)
+      if (result.error) {
+        console.error(result.error[1])
+        process.exitCode = result.error[0]
+        return
+      }
       outputAndExit(result, args)
       process.exitCode = 0
       return

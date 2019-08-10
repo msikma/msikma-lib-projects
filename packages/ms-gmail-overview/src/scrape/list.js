@@ -16,9 +16,11 @@ const listEmails = async (args) => {
     // Cached data has already been processed.
     return data
   }
-  // Get new data and save it to cache.
+  // Get new data and save it to cache, unless an error was returned.
   const newData = await reqGmailData(args.cookie_loc)
-  await cacheData(newData, args.cache_loc)
+  if (!newData.error) {
+    await cacheData(newData, args.cache_loc)
+  }
   return newData
 }
 
@@ -26,17 +28,25 @@ const listEmails = async (args) => {
 const reqGmailData = async (cookieLoc) => {
   // Currently we only check the Gmail inbox.
   const data = await Promise.all([_scrapeGmailPage(_reqGmailInbox, 'inbox', cookieLoc, true)])
-  return data
+  return data[0]
 }
 
 // Parses the HTML and returns all useful data from the page.
 // This is used to parse every Gmail page, since they are all more or less the same.
 // If 'getMetaData' is true, we'll return some extra info visible on the page.
-export const scrapeData = ($, name, getMetaData = false) => {
+export const scrapeData = ($, name, cookieLoc, getMetaData = false) => {
   // Get the base href first so we can resolve all other links.
   const baseHref = $('base[href]').attr('href')
 
   const $mailTable = $('table.th')
+
+  // Exit early if we don't have the mail table; we're probably not logged in.
+  if ($mailTable.length === 0) {
+    return {
+      error: [1, `ms-gmail-cli: error: could not log in with the provided cookie file: ${cookieLoc}`]
+    }
+  }
+
   const $mailTRs = $('tr', $mailTable)
   const mails = $mailTRs.get().map(tr => {
     const read = $(tr).attr('bgcolor').trim() === '#ffffff'
@@ -101,7 +111,7 @@ const _scrapeGmailPage = async (fn, name, cookieLoc, getMetaData = false) => {
   // After we get the HTML, run it through the generic parsing code.
   const html = await fn(cookieLoc)
   const $html = cheerio.load(html)
-  return scrapeData($html, name, getMetaData)
+  return scrapeData($html, name, cookieLoc, getMetaData)
 }
 
 // Retrieves the Gmail inbox and parses its data.
