@@ -12,6 +12,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
+    "argparse": "^1.0.10",
     "array-flatten": "^2.1.1",
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
