@@ -16,10 +16,11 @@ const parser = makeArgParser({
 })
 
 parser.addArgument(['-q', '--quiet'], { help: 'Disables output printing (used to cache data).', action: 'storeTrue' })
-parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['list'] })
+parser.addArgument(['--action'], { help: 'Which action to take.', choices: ['data', 'list'] })
 parser.addArgument(['--output'], { help: 'Result output format.', choices: ['json', 'xml', 'terminal'], _choicesHelp: ['JSON string', 'XML string', 'Plain text readable in terminal (default)'], metavar: 'TYPE', defaultValue: 'terminal' })
 parser.addArgument(['--cache-only'], { help: 'Refreshes cache without printing output.', action: 'storeTrue' })
 parser.addArgument(['--no-cache'], { help: 'Forces a cache-less request.', action: 'storeTrue' })
+parser.addArgument(['--db-loc'], { help: 'Location of the SQLite database for storing read information.', defaultValue: '~/.cache/ms-gmail-js/id-database.json', metavar: 'DBL' })
 parser.addArgument(['--cookie-loc'], { help: 'Location of the cookie authentication file.', defaultValue: '~/.config/ms-gmail-js/cookies.txt', metavar: 'CKL' })
 parser.addArgument(['--cache-loc'], { help: 'Location of the cached data.', defaultValue: '~/.cache/ms-gmail-js/gmail-cache.json', metavar: 'CL' })
 parser.addArgument(['--cache-time'], { help: 'Duration that the cache is considered valid, in minutes. By default: 300 (5 hours).', defaultValue: 300, metavar: 'MIN' })
@@ -28,6 +29,7 @@ const parsed = parser.parseArgs()
 const action = parsed.action
 const args = {
   ...parsed,
+  db_loc: expandTilde(parsed.db_loc),
   cookie_loc: expandTilde(parsed.cookie_loc),
   cache_loc: expandTilde(parsed.cache_loc),
   action: action == null ? 'list' : action

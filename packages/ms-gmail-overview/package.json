@@ -2,7 +2,7 @@
   "name": "ms-gmail-overview",
   "description": "Simple scraper used to get a list of emails from a Gmail simple HTML page",
   "files": ["lib", "bin"],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
   "bin": {
@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "mlib-common": "^1.0.0",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "sqlite": "^2.9.1"
   }
 }
