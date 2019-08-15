@@ -26,7 +26,7 @@ parser.addArgument(['--output'], { help: 'Result output format (for \'data\' act
 parser.addArgument(['--include-read'], { help: 'Includes read emails when using the \'list\' action.', action: 'storeTrue' })
 parser.addArgument(['--cache-only'], { help: 'Refreshes cache without printing output.', action: 'storeTrue' })
 parser.addArgument(['--no-cache'], { help: 'Forces a cache-less request (still saves to cache).', action: 'storeTrue' })
-parser.addArgument(['--db-loc'], { help: 'Location of the SQLite database for storing cache.', defaultValue: '~/.cache/ms-gmail-js/id-database.json', metavar: 'DBL' })
+parser.addArgument(['--db-loc'], { help: 'Location of the SQLite database for storing cache.', defaultValue: '~/.cache/ms-gmail-js/id-database.sqlite3', metavar: 'DBL' })
 parser.addArgument(['--cookie-loc'], { help: 'Location of the cookie authentication file.', defaultValue: '~/.config/ms-gmail-js/cookies.txt', metavar: 'CKL' })
 parser.addArgument(['--cache-loc'], { help: 'Location of the cached data.', defaultValue: '~/.cache/ms-gmail-js/gmail-cache.json', metavar: 'CL' })
 parser.addArgument(['--cache-time'], { help: 'Duration that the cache is considered valid, in minutes. By default: 5.', defaultValue: 5, metavar: 'MIN' })
