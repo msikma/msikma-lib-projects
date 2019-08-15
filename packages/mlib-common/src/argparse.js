@@ -110,7 +110,7 @@ const makeArgParser = (opts) => {
           let choiceSection = []
           const choices = choiceItem.choices.length
           for (let a = 0; a < choices; ++a) {
-            choiceSection.push(`     ${a === 0 ? '{' : ' ' }${`${choiceItem.choices[a]}${a < choices - 1 ? ',' : '}'}`.padEnd(18)}${choiceItem.choicesHelp[a] ? choiceItem.choicesHelp[a] : ''}`)
+            choiceSection.push(`     ${a === 0 ? '{' : ' ' }${`${choiceItem.choices[a]}${a < choices - 1 ? ',' : '}'}`.padEnd(20)}${choiceItem.choicesHelp[a] ? choiceItem.choicesHelp[a] : ''}`)
           }
           buffer = buffer.map(line => {
             return this.hasArgument(this.longestArgument(choiceItem.name), line) ? `${line}\n${choiceSection.join('\n')}` : line
