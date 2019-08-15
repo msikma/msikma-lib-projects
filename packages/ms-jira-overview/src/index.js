@@ -2,13 +2,13 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import toDataString from 'mlib-common/lib/output'
-import listProjectTasks from './scrape/list'
+import getProjectTasks from './scrape/data'
 
 // Runs a single action from the command line, prints the result and then exits.
 export const cli = async args => {
   try {
-    if (args.action === 'list') {
-      const result = await listProjectTasks(args)
+    if (args.action === 'data') {
+      const result = await getProjectTasks(args)
       outputAndExit(result, args)
       process.exitCode = 0
       return

@@ -10,7 +10,7 @@ import { cheerio } from 'mlib-common/lib/scrape'
 
 import { issueTableURL } from './uris'
 
-const listProjectTasks = async (args) => {
+const getProjectTasks = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
   let data = args.no_cache ? null : (await retrieveCache(args.cache_loc, args.cache_time))
   if (!data) {
@@ -81,4 +81,4 @@ export const scrapeTasks = ($) => {
   })
 }
 
-export default listProjectTasks
+export default getProjectTasks
