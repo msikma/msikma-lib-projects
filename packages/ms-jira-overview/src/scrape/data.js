@@ -45,9 +45,14 @@ const getProjectTasks = async (args) => {
 const reqProjectTasks = async (cookieLoc) => {
   const cookieFile = cookieLoc ? cookieLoc : path.normalize(path.join(process.env.HOME, '.config', 'ms-jira-js', 'cookies.txt'))
   const cookieJar = await loadCookieFile(cookieFile)
-  const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar })
-  const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar })
+  const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar, gzip: true })
+  const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar, gzip: true })
   const issues = await Promise.all([notDoneIssues, doneIssues])
+
+  // If we see 'unauthorized' in the response, it probably means our cookies seem to be outdated.
+  if (~issues[0].indexOf('Unauthorized (401)')) {
+    throw new Error(`Unauthorized (401) - cookies.txt is likely outdated`)
+  }
 
   return {
     notDoneData: JSON.parse(issues[0]),
