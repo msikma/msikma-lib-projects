@@ -29,12 +29,12 @@ const getProjectTasks = async (args) => {
     const notDone = scrapeTasks($notDone)
     const done = scrapeTasks($done)
 
-    const tasks = [...done, ...notDone]
+    const jiraData = { tasks: [...done, ...notDone] }
 
     // Save to cache.
-    await cacheData(tasks, args.cache_loc)
+    await cacheData(jiraData, args.cache_loc)
 
-    return tasks
+    return jiraData
   }
   else {
     // Cached data has already been processed.
