@@ -2,8 +2,11 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import { objToParams } from 'mlib-common/lib/query'
+
 export const baseURL = 'http://jira.theorycraft.fi'
 export const dashURL = `${baseURL}/secure/Dashboard.jspa`
+
+const issueStatisticsBaseURL = `${baseURL}/rest/gadget/1.0/stats/generate`
 const issueTableBaseURL = `${baseURL}/rest/gadget/1.0/issueTable/filter`
 
 const columnNames = [
@@ -14,6 +17,16 @@ const columnNames = [
   'columnNames=status',
   'columnNames=assignee'
 ]
+
+export const issueStatisticsURL = () => (
+  `${issueStatisticsBaseURL}?${objToParams({
+    includeResolvedIssues: false,
+    projectOrFilterId: 'filter-10105',
+    sortBy: 'natural',
+    sortDirection: 'asc',
+    statType: 'statuses'
+  }, { removeEmptyString: false })}`
+)
 
 export const issueTableURL = (taskType) => (
   `${issueTableBaseURL}?${objToParams({

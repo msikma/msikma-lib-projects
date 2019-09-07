@@ -8,7 +8,8 @@ import cacheData, { retrieveCache } from 'mlib-common/lib/cache'
 import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { cheerio } from 'mlib-common/lib/scrape'
 
-import { issueTableURL } from './uris'
+import { simplifyStatus } from './util'
+import { issueTableURL, issueStatisticsURL } from './uris'
 
 const getProjectTasks = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
@@ -28,8 +29,9 @@ const getProjectTasks = async (args) => {
     const $done = cheerio.load(data.doneData.table)
     const notDone = scrapeTasks($notDone)
     const done = scrapeTasks($done)
+    const statistics = parseStatistics(data.statisticsData)
 
-    const jiraData = { tasks: [...done, ...notDone] }
+    const jiraData = { tasks: [...done, ...notDone], statistics }
 
     // Save to cache.
     await cacheData(jiraData, args.cache_loc)
@@ -45,9 +47,10 @@ const getProjectTasks = async (args) => {
 const reqProjectTasks = async (cookieLoc) => {
   const cookieFile = cookieLoc ? cookieLoc : path.normalize(path.join(process.env.HOME, '.config', 'ms-jira-js', 'cookies.txt'))
   const cookieJar = await loadCookieFile(cookieFile)
+  const issueStatistics = requestURI(issueStatisticsURL(), false, {}, false, { jar: cookieJar, gzip: true })
   const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar, gzip: true })
   const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar, gzip: true })
-  const issues = await Promise.all([notDoneIssues, doneIssues])
+  const issues = await Promise.all([notDoneIssues, doneIssues, issueStatistics])
 
   // If we see 'unauthorized' in the response, it probably means our cookies seem to be outdated.
   if (~issues[0].indexOf('Unauthorized (401)')) {
@@ -56,7 +59,26 @@ const reqProjectTasks = async (cookieLoc) => {
 
   return {
     notDoneData: JSON.parse(issues[0]),
-    doneData: JSON.parse(issues[1])
+    doneData: JSON.parse(issues[1]),
+    statisticsData: JSON.parse(issues[2])
+  }
+}
+
+const parseStatistics = (statisticsData) => {
+  const statRows = statisticsData.rows.map(row => {
+    const { html, count, percentage } = row
+    const $html = cheerio.load(html)
+    const $span = $html('span')
+    const status = simplifyStatus($span.text().trim())
+    return {
+      status,
+      count,
+      percentage
+    }
+  })
+  return {
+    issueStatus: statRows,
+    issueCount: statisticsData.totalIssueCount
   }
 }
 
@@ -68,7 +90,7 @@ export const scrapeTasks = ($) => {
     const key = $key.text().trim()
     const summary = $('.summary .issue-link:not(.parentIssue)', issue).text().trim()
     const priority = $('.priority img', issue).attr('alt').toLowerCase().trim()
-    const status = $('.status span', issue).text().toLowerCase().trim().replace(' ', '_')
+    const status = simplifyStatus($('.status span', issue).text())
     const assignee = $('.assignee', issue).text().trim()
     const $parent = $('.summary .issue-link.parentIssue', issue)
     const parent = $parent.length ? $parent.text().trim() : null
