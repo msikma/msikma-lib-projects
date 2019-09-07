@@ -9,7 +9,7 @@ import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { cheerio } from 'mlib-common/lib/scrape'
 
 import { simplifyStatus } from './util'
-import { issueTableURL, issueStatisticsURL } from './uris'
+import { issueTableURL, projectsURL, issueStatisticsURL } from './uris'
 
 const getProjectTasks = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
@@ -30,8 +30,9 @@ const getProjectTasks = async (args) => {
     const notDone = scrapeTasks($notDone)
     const done = scrapeTasks($done)
     const statistics = parseStatistics(data.statisticsData)
+    const projects = { dada: parseProjects(data.projectsDadaData), letsDeliver: parseProjects(data.projectsLDData) }
 
-    const jiraData = { tasks: [...done, ...notDone], statistics }
+    const jiraData = { tasks: [...done, ...notDone], statistics, projects }
 
     // Save to cache.
     await cacheData(jiraData, args.cache_loc)
@@ -47,20 +48,61 @@ const getProjectTasks = async (args) => {
 const reqProjectTasks = async (cookieLoc) => {
   const cookieFile = cookieLoc ? cookieLoc : path.normalize(path.join(process.env.HOME, '.config', 'ms-jira-js', 'cookies.txt'))
   const cookieJar = await loadCookieFile(cookieFile)
+
   const issueStatistics = requestURI(issueStatisticsURL(), false, {}, false, { jar: cookieJar, gzip: true })
+
   const notDoneIssues = requestURI(issueTableURL('notDone'), false, {}, false, { jar: cookieJar, gzip: true })
   const doneIssues = requestURI(issueTableURL('done'), false, {}, false, { jar: cookieJar, gzip: true })
-  const issues = await Promise.all([notDoneIssues, doneIssues, issueStatistics])
+
+  const projectListDada = requestURI(projectsURL('dada'), false, {}, false, { jar: cookieJar, gzip: true })
+  const projectListLD = requestURI(projectsURL('letsdeliver'), false, {}, false, { jar: cookieJar, gzip: true })
+
+  const data = await Promise.all([notDoneIssues, doneIssues, issueStatistics, projectListDada, projectListLD])
 
   // If we see 'unauthorized' in the response, it probably means our cookies seem to be outdated.
-  if (~issues[0].indexOf('Unauthorized (401)')) {
+  if (~data[0].indexOf('Unauthorized (401)')) {
     throw new Error(`Unauthorized (401) - cookies.txt is likely outdated: ${cookieLoc}`)
   }
 
   return {
-    notDoneData: JSON.parse(issues[0]),
-    doneData: JSON.parse(issues[1]),
-    statisticsData: JSON.parse(issues[2])
+    notDoneData: JSON.parse(data[0]),
+    doneData: JSON.parse(data[1]),
+    statisticsData: JSON.parse(data[2]),
+    projectsDadaData: JSON.parse(data[3]),
+    projectsLDData: JSON.parse(data[4])
+  }
+}
+
+const parseProjects = (projectsData) => {
+  const inner = projectsData.categories[0]
+  const catID = inner.id
+  const catName = inner.name
+  const catProjects = inner.projects
+  const simplifiedProjects = catProjects.map(proj => {
+    const { id, key, name, leadUserName, leadFullName, projectDescription, openIssues } = proj
+    const $desc = projectDescription ? cheerio.load(projectDescription) : null
+    const description = projectDescription ? $desc.text() : null
+    return {
+      id: String(id),
+      key,
+      name,
+      lead: {
+        username: leadUserName,
+        fullname: leadFullName
+      },
+      description,
+      issueOverview: openIssues.map(issue => ({
+        color: issue.colour,
+        width: issue.width,
+        label: issue.altText.replace('(1 Issues)', '(1 Issue)'),
+        priority: Number(issue.priority)
+      }))
+    }
+  })
+  return {
+    id: catID,
+    name: catName,
+    projects: simplifiedProjects
   }
 }
 

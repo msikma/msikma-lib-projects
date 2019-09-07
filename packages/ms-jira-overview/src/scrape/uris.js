@@ -6,6 +6,7 @@ import { objToParams } from 'mlib-common/lib/query'
 export const baseURL = 'http://jira.theorycraft.fi'
 export const dashURL = `${baseURL}/secure/Dashboard.jspa`
 
+const projectsBaseURL = `${baseURL}/rest/gadget/1.0/project/generate`
 const issueStatisticsBaseURL = `${baseURL}/rest/gadget/1.0/stats/generate`
 const issueTableBaseURL = `${baseURL}/rest/gadget/1.0/issueTable/filter`
 
@@ -17,6 +18,14 @@ const columnNames = [
   'columnNames=status',
   'columnNames=assignee'
 ]
+
+export const projectsURL = (projectCategory = 'dada') => (
+  `${projectsBaseURL}?${objToParams({
+    // Note: project category is either 'dada' or 'letsdeliver'.
+    projectsOrCategories: projectCategory === 'dada' ? 'cat10000' : 'cat10003',
+    showStats: true
+  }, { removeEmptyString: false })}`
+)
 
 export const issueStatisticsURL = () => (
   `${issueStatisticsBaseURL}?${objToParams({
