@@ -51,7 +51,7 @@ const reqProjectTasks = async (cookieLoc) => {
 
   // If we see 'unauthorized' in the response, it probably means our cookies seem to be outdated.
   if (~issues[0].indexOf('Unauthorized (401)')) {
-    throw new Error(`Unauthorized (401) - cookies.txt is likely outdated`)
+    throw new Error(`Unauthorized (401) - cookies.txt is likely outdated: ${cookieLoc}`)
   }
 
   return {
