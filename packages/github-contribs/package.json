@@ -1,0 +1,21 @@
+{
+  "name": "github-contribs",
+  "description": "Simple scraper used to get a Github user's contributions information",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "version": "1.0.0",
+  "homepage": "https://github.com/msikma/msikma-lib-projects",
+  "main": "lib/index.js",
+  "bin": {
+    "github-contribs-cli": "./bin/github-contribs-cli.js"
+  },
+  "repository": "https://github.com/msikma/msikma-lib-projects",
+  "author": "Michiel Sikma <michiel@sikma.org>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.5",
+    "mlib-common": "^1.0.0"
+  }
+}

@@ -23,6 +23,7 @@
     "mlib": "./scripts/mlib",
     "buyee-cli": "./packages/buyee-js/bin/buyee-cli.js",
     "catawiki-cli": "./packages/catawiki-js/bin/catawiki-cli.js",
+    "github-contribs-cli": "./packages/github-contribs/bin/github-contribs-cli.js",
     "marktplaats-cli": "./packages/marktplaats-js/bin/marktplaats-cli.js",
     "ms-github-cli": "./packages/ms-github-overview/bin/ms-github-cli.js",
     "ms-gmail-cli": "./packages/ms-gmail-overview/bin/ms-gmail-cli.js",
