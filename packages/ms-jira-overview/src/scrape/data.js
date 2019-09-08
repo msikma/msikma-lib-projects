@@ -82,6 +82,13 @@ const parseProjects = (projectsData) => {
     const { id, key, name, leadUserName, leadFullName, projectDescription, openIssues } = proj
     const $desc = projectDescription ? cheerio.load(projectDescription) : null
     const description = projectDescription ? $desc.text() : null
+    const issuePriorities = openIssues.map(issue => ({
+      issues: issue.altText ? Number(`${issue.altText}`.match(/\(([0-9]+) Issue/)[1]) : null,
+      color: issue.colour,
+      width: issue.width,
+      label: issue.altText.replace('(1 Issues)', '(1 Issue)'),
+      priority: Number(issue.priority)
+    }))
     
     return {
       id: String(id),
@@ -94,12 +101,8 @@ const parseProjects = (projectsData) => {
       description,
       summaryLink: projectURL(key),
       issueLink: issuesURL(key),
-      issueOverview: openIssues.map(issue => ({
-        color: issue.colour,
-        width: issue.width,
-        label: issue.altText.replace('(1 Issues)', '(1 Issue)'),
-        priority: Number(issue.priority)
-      }))
+      issuePriorities,
+      issueAmount: issuePriorities.reduce((n, prio) => n + prio.issues, 0)
     }
   })
   return {
