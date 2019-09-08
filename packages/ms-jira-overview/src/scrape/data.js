@@ -9,7 +9,7 @@ import requestURI, { loadCookieFile } from 'mlib-common/lib/request'
 import { cheerio } from 'mlib-common/lib/scrape'
 
 import { simplifyStatus } from './util'
-import { issueTableURL, projectsURL, issueStatisticsURL } from './uris'
+import { issueTableURL, projectsURL, issueStatisticsURL, issuesURL, projectURL } from './uris'
 
 const getProjectTasks = async (args) => {
   // Retrieve cache, unless the user specified not to use it.
@@ -82,6 +82,7 @@ const parseProjects = (projectsData) => {
     const { id, key, name, leadUserName, leadFullName, projectDescription, openIssues } = proj
     const $desc = projectDescription ? cheerio.load(projectDescription) : null
     const description = projectDescription ? $desc.text() : null
+    
     return {
       id: String(id),
       key,
@@ -91,6 +92,8 @@ const parseProjects = (projectsData) => {
         fullname: leadFullName
       },
       description,
+      summaryLink: projectURL(key),
+      issueLink: issuesURL(key),
       issueOverview: openIssues.map(issue => ({
         color: issue.colour,
         width: issue.width,

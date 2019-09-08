@@ -5,6 +5,8 @@ import { objToParams } from 'mlib-common/lib/query'
 
 export const baseURL = 'http://jira.theorycraft.fi'
 export const dashURL = `${baseURL}/secure/Dashboard.jspa`
+export const issuesURL = key => `${baseURL}/browse/${key}`
+export const projectURL = key => `${baseURL}/projects/${key}/summary`
 
 const projectsBaseURL = `${baseURL}/rest/gadget/1.0/project/generate`
 const issueStatisticsBaseURL = `${baseURL}/rest/gadget/1.0/stats/generate`
