@@ -16,6 +16,11 @@ export const removeEmptyLines = (str, leaveGap = false) => {
   }
 }
 
+/** Fixes text in HTML that has extra linebreaks and spaces. */
+export const trimInner = str => {
+  return str.replace(/\s+/g, ' ')
+}
+
 // For some reason, argparse sometimes outputs an extra linebreak after the usage text.
 // This seems to happen when the previous usage line is of a precise length.
 // Bit hackish, but this removes it.
