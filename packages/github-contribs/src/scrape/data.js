@@ -39,7 +39,6 @@ const parseContribs = html => {
   const avatarURL = $avatar.attr('src').trim()
   const avatarWidth = Number($avatar.attr('width').trim())
   const avatarHeight = Number($avatar.attr('height').trim())
-  const status = trimInner($('.user-status-container', $userInfo).text().trim())
   const fullname = $('.vcard-fullname', $userInfo).text().trim()
   const username = $('.vcard-username', $userInfo).text().trim()
   const biography = $('.user-profile-bio', $userInfo).text().trim()
