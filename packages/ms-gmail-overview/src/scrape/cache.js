@@ -2,7 +2,9 @@
 // Copyright © 2018, Michiel Sikma. MIT license.
 
 import sqlite from 'sqlite'
+import { dirname } from 'path'
 import { isArray } from 'lodash'
+import { ensureDir } from 'mlib-common/lib/file'
 
 // SQLite 3 database containing a list of IDs that have already been read.
 let db
@@ -11,11 +13,12 @@ let db
  * Opens the database file and checks whether we need to bootstrap our required tables.
  */
 export const dbInit = async (dbLocation) => {
+  await ensureDir(dirname(dbLocation))
   db = await sqlite.open(dbLocation)
 
   // If we don't have the 'cached_ids' table, assume that this is a new database file.
   if (!await hasTable('cached_ids')) {
-    await createTables();
+    await createTables()
   }
 }
 
