@@ -103,7 +103,18 @@ export const apiSearchObj = async ({ attributesByKey, categoryID }) => {
 }
 
 /** Returns a search URI for the API search endpoint that returns JSON. */
-export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }) => {
+export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }, { exactQueryOnly = true } = {}) => {
   const { keyAttrValues, l1Cat, l2Cat } = await apiSearchObj({ attributesByKey, categoryID })
-  return `${baseURL}${apiSearchURL}?${objToParams({ query, attributesByKey: keyAttrValues, attributesById, l1CategoryId: l1Cat ? l1Cat.id : null, l2CategoryId: l2Cat ? l2Cat.id : null, limit, offset })}`
+  return (
+    `${baseURL}${apiSearchURL}?${objToParams({
+      query,
+      attributesByKey: keyAttrValues,
+      attributesById,
+      l1CategoryId: l1Cat ? l1Cat.id : null,
+      l2CategoryId: l2Cat ? l2Cat.id : null,
+      limit,
+      offset,
+      bypassSpellingSuggestion: exactQueryOnly ? true : false
+    })}`
+  )
 }
