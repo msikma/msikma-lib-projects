@@ -89,12 +89,12 @@ export const apiSearchObj = async ({ attributesByKey, categoryID }) => {
   // 'l1' is a top level category and 'l2' is a subcategory.
   const catInfo = categories[String(categoryID)]
   // A category that has no parent is a top level category.
-  const isTopCategory = catInfo.parentID == null
+  const isTopCategory = catInfo ? catInfo.parentID == null : null
 
   // Set the l1 and l2 category IDs to the main and subcategory respectively.
   // If the target category is a main category, l2 is set to null.
-  const l1Cat = isTopCategory ? catInfo : categories[String(catInfo.parentID)]
-  const l2Cat = isTopCategory ? null : catInfo
+  const l1Cat = !catInfo ? null : (isTopCategory ? catInfo : categories[String(catInfo.parentID)])
+  const l2Cat = !catInfo ? null : (isTopCategory ? null : catInfo)
   
   // Flatten key attributes object to an array of strings.
   const keyAttrValues = attributesByKey ? Object.entries(attributesByKey).reduce((items, attr) => [...items, `${attr[0]}:${attr[1]}`], []) : null
@@ -105,5 +105,5 @@ export const apiSearchObj = async ({ attributesByKey, categoryID }) => {
 /** Returns a search URI for the API search endpoint that returns JSON. */
 export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }) => {
   const { keyAttrValues, l1Cat, l2Cat } = await apiSearchObj({ attributesByKey, categoryID })
-  return `${baseURL}${apiSearchURL}?${objToParams({ query, attributesByKey: keyAttrValues, attributesById, l1CategoryId: l1Cat.id, l2CategoryId: l2Cat ? l2Cat.id : null, limit, offset })}`
+  return `${baseURL}${apiSearchURL}?${objToParams({ query, attributesByKey: keyAttrValues, attributesById, l1CategoryId: l1Cat ? l1Cat.id : null, l2CategoryId: l2Cat ? l2Cat.id : null, limit, offset })}`
 }
