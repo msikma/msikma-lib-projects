@@ -15,36 +15,60 @@ let allCategories = {}
 const categoryFile = path.normalize(`${__dirname}/../data/categories.json`)
 
 /** Returns base info from a category; everything except its subcategories. */
-const catBaseInfo = (c) => pick(c, ['id', 'name', 'slug', 'url'])
+const catBaseInfo = (c, isSubcat = false, parentID = null) => ({
+  ...pick({ ...c }, ['id', 'name', 'slug', 'url']),
+  ...(isSubcat ? { isSubcat: true } : {}),
+  ...(parentID ? { parentID } : {})
+})
 
 // Goes through every category and returns it and its subcategories as one list.
-const recurseCats = (cat) => {
+const recurseCats = (cat, isSubcat = false, parentID = null) => {
   const cats = []
-  cats.push(catBaseInfo(cat))
-  if (cat.sub) {
-    cats.push(...recurseCats(cat.sub))
+  if (Array.isArray(cat)) {
+    for (const sub of cat) {
+      sub.id && cats.push(catBaseInfo(sub, isSubcat, parentID))
+    }
+  }
+  else {
+    cat.id && cats.push(catBaseInfo(cat, isSubcat, parentID))
+  }
+  if (cat.sub && cat.sub.length > 0) {
+    cats.push(...recurseCats(cat.sub, true, cat.id))
   }
   return cats
 }
 
 // Loads categories into memory.
-const loadCategories = async () => {
+export const loadCategories = async () => {
   categoryData = JSON.parse(await readFileAsync(categoryFile, 'utf8')).data
-  categoryDataFlat = categoryData.reduce((allCats, cat) => ([...allCats, ...recurseCats(cat)]))
+  categoryDataFlat = categoryData.reduce((allCats, cat) => ([...allCats, ...recurseCats(cat)]), [])
   allCategories = keyBy(categoryDataFlat.map(c => ({ ...c, id: Number(c.id) })), 'id')
 }
 
-// Returns a list of categories. If an ID is passed, a list of subcategories is returned instead.
-const listCategories = async (addSubs = false, id = null) => {
+// Returns all categories as an object.
+export const listCategoriesFlat = async () => {
   if (categoryData.length === 0) {
     await loadCategories()
   }
-  const output = []
+  return allCategories
+}
 
-  //
-  // TODO: add try/catch here
-  const base = id != null ? allCategories[Number(id)] : categoryData
-  base.forEach(c => output.push(catBaseInfo(c)))
+// Returns a list of categories. If an ID is passed, a list of subcategories is returned instead.
+const listCategories = async (addSubs = false, catsCatID = null) => {
+  if (categoryData.length === 0) {
+    await loadCategories()
+  }
+
+  // Add either all categories, or a specific category ID to the output.
+  // Add either only the main categories, or subcategories as well.
+  const output = []
+  const idVal = Number(catsCatID)
+  const base = catsCatID != null ? recurseCats(categoryData.find(n => n.id === idVal)) : allCategories
+  for (const item of Object.values(base)) {
+    if (addSubs || (!addSubs && !item.isSubcat)) {
+      output.push(item)
+    }
+  }
   return output
 }
 

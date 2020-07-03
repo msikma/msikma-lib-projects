@@ -21,7 +21,7 @@ parser.addArgument(['--output'], { help: 'Result output format.', choices: ['jso
 
 parser.addSection('Category options:', '--add-subcats')
 parser.addArgument(['--add-subcats'], { help: 'Includes subcategories in the output.', action: 'storeTrue', dest: 'addSubcats' })
-parser.addArgument(['--subcats-for'], { help: 'Shows a specific category and its subs.', metavar: 'ID', dest: 'subcatsFor' })
+parser.addArgument(['--cat-id'], { help: 'Lists a specific category, and potentially its subs.', metavar: 'ID', dest: 'catsCatID' })
 
 // Search options:
 parser.addSection('Search options:', '--query')

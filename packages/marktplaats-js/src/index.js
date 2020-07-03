@@ -15,7 +15,7 @@ export const cli = async args => {
 
   try {
     if (args.action === 'list-cats') {
-      const result = await listCategories(args.addSubcats, args.subcatsFor)
+      const result = await listCategories(args.addSubcats, args.catsCatID)
       return outputAndExit(result, args)
     }
     else if (args.action === 'search') {
