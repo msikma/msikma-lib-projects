@@ -78,8 +78,8 @@ export const searchURI = ({ query, categoryID, postcode, distance, sortBy, sortO
   })}`
 )
 
-/** Returns a search URI for the API search endpoint that returns JSON. */
-export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }) => {
+/** Returns all information needed to construct a search API URL. */
+export const apiSearchObj = async ({ attributesByKey, categoryID }) => {
   // Ensure we have a list of categories.
   if (!Object.values(categories).length) {
     categories = await listCategoriesFlat()
@@ -87,7 +87,6 @@ export const apiSearchURI = async ({ query, attributesByKey, attributesById, cat
 
   // Convert category to the level 1 and level 2 ID keys.
   // 'l1' is a top level category and 'l2' is a subcategory.
-  const catID = Number(categoryID)
   const catInfo = categories[String(categoryID)]
   // A category that has no parent is a top level category.
   const isTopCategory = catInfo.parentID == null
@@ -99,5 +98,12 @@ export const apiSearchURI = async ({ query, attributesByKey, attributesById, cat
   
   // Flatten key attributes object to an array of strings.
   const keyAttrValues = attributesByKey ? Object.entries(attributesByKey).reduce((items, attr) => [...items, `${attr[0]}:${attr[1]}`], []) : null
+
+  return { keyAttrValues, l1Cat, l2Cat }
+}
+
+/** Returns a search URI for the API search endpoint that returns JSON. */
+export const apiSearchURI = async ({ query, attributesByKey, attributesById, categoryID, limit, offset }) => {
+  const { keyAttrValues, l1Cat, l2Cat } = await apiSearchObj({ attributesByKey, categoryID })
   return `${baseURL}${apiSearchURL}?${objToParams({ query, attributesByKey: keyAttrValues, attributesById, l1CategoryId: l1Cat.id, l2CategoryId: l2Cat ? l2Cat.id : null, limit, offset })}`
 }

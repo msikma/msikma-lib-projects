@@ -7,7 +7,7 @@ import requestURI from 'mlib-common/lib/request'
 import { loadCategories } from '../categories'
 
 import { parsePrice, separateAttributes, addHttps, hasOriginalThumb } from './util'
-import { searchURI, apiSearchURI, makeShortLink, extractURIInfo } from './uris'
+import { searchURI, apiSearchURI, apiSearchObj, makeShortLink, extractURIInfo } from './uris'
 
 // Runs search page scraping code on the passed HTML string.
 const scrapeResults = (html) => {
@@ -75,11 +75,13 @@ const listingSearchAPI = async params => {
   if (params.categoryID) {
     await loadCategories()
   }
+  const urlInfo = await apiSearchObj(params)
+  const { l1Cat, l2Cat } = urlInfo
   const url = await apiSearchURI(params)
   const json = await requestURI(url)
   const data = JSON.parse(json)
   return {
-    reqParams: params,
+    reqParams: { ...params, categoryInfo: { l1Cat, l2Cat } },
     reqURL: url,
     data
   }
