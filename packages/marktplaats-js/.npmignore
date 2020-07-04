@@ -5,4 +5,3 @@ _source/
 .gitignore
 .github/
 test/
-data/ # currently unused
