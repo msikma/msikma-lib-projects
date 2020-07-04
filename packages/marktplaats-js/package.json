@@ -3,7 +3,7 @@
   "_shortDescription": "Marktplaats client library",
   "name": "marktplaats-js",
   "description": "Client library for making programmatic requests to Marktplaats.nl",
-  "files": ["lib", "bin"],
+  "files": ["lib", "bin", "data"],
   "version": "1.1.2",
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
