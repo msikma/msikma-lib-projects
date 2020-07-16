@@ -4,7 +4,7 @@
   "name": "marktplaats-js",
   "description": "Client library for making programmatic requests to Marktplaats.nl",
   "files": ["lib", "bin", "data"],
-  "version": "1.1.2",
+  "version": "1.1.3",
   "homepage": "https://github.com/msikma/msikma-lib-projects",
   "main": "lib/index.js",
   "bin": {

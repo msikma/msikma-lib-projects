@@ -79,23 +79,48 @@ const listingSearchAPI = async params => {
   const { l1Cat, l2Cat } = urlInfo
   const url = await apiSearchURI(params)
   const json = await requestURI(url)
-  const data = JSON.parse(json)
-  return {
+  let returnData = {
     reqParams: { ...params, categoryInfo: { l1Cat, l2Cat } },
-    reqURL: url,
-    data
+    reqURL: url
+  }
+  let data = null
+  let error = null
+  let success = false
+  try {
+    data = JSON.parse(json)
+    success = true
+  }
+  catch (err) {
+    error = err
+  }
+  return {
+    ...returnData,
+    data,
+    error,
+    success
   }
 }
 
 // Runs a search query using the regular Marktplaats web search page.
 const listingSearchScrape = async params => {
   const url = searchURI(params)
-  const html = await requestURI(url)
-  const data = scrapeResults(html)
+  let data = null
+  let success = false
+  let error = null
+  try {
+    const html = await requestURI(url)
+    data = scrapeResults(html)
+    success = true
+  }
+  catch (err) {
+    error = err
+  }
   return {
     reqParams: params,
     reqURL: url,
-    data
+    data,
+    error,
+    success
   }
 }
 
