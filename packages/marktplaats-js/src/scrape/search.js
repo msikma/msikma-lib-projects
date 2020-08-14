@@ -78,21 +78,30 @@ const listingSearchAPI = async params => {
   const urlInfo = await apiSearchObj(params)
   const { l1Cat, l2Cat } = urlInfo
   const url = await apiSearchURI(params)
-  const json = await requestURI(url)
-  let returnData = {
-    reqParams: { ...params, categoryInfo: { l1Cat, l2Cat } },
-    reqURL: url
-  }
-  let data = null
+  let json = null
   let error = null
+  let data = null
   let success = false
   try {
-    data = JSON.parse(json)
-    success = true
+    json = await requestURI(url)
   }
   catch (err) {
     error = err
   }
+  let returnData = {
+    reqParams: { ...params, categoryInfo: { l1Cat, l2Cat } },
+    reqURL: url
+  }
+  if (!error) {
+    try {
+      data = JSON.parse(json)
+      success = true
+    }
+    catch (err) {
+      error = err
+    }
+  }
+  
   return {
     ...returnData,
     data,
