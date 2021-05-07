@@ -19,6 +19,6 @@
     "mlib-common": "^1.0.0",
     "argparse": "^1.0.10",
     "cheerio": "^1.0.0-rc.2",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.21"
   }
 }
