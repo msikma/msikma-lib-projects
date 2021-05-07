@@ -18,7 +18,7 @@
     "@octokit/plugin-retry": "^2.2.0",
     "@octokit/plugin-throttling": "^2.6.0",
     "@octokit/rest": "^16.28.2",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "mlib-common": "^1.0.0"
   }
 }
